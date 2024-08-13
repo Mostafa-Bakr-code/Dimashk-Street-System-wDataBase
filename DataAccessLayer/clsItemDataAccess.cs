@@ -153,7 +153,8 @@ namespace DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM Items";
+            string query = "SELECT Items.ItemID ,Items.ItemName, Categories.CategoryName, Items.Price\r\nFROM Categories INNER JOIN\r\n " +
+                "Items ON Categories.CategoryID = Items.CategoryID";
 
             SqlCommand command = new SqlCommand(query, connection);
 

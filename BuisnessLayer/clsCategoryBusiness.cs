@@ -67,6 +67,20 @@ namespace BuisnessLayer
 
         }
 
+        public static clsCategoryBusiness Find(string CategoryName)
+        {
+
+            int ID = -1;
+        
+           
+            if (clsCategoryDataAccess.GetCategoryInfoByName(CategoryName, ref ID))
+
+                return new clsCategoryBusiness(ID, CategoryName);
+            else
+                return null;
+
+        }
+
         public bool Save()
         {
 

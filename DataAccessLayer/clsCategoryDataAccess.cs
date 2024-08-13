@@ -59,6 +59,67 @@ namespace DataAccessLayer
             return isFound;
         }
 
+        public static bool GetCategoryInfoByName(string CategoryName, ref int ID)
+                                        
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT * FROM Categories WHERE CategoryName = @CategoryName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@CategoryName", CategoryName);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+
+                    // The record was found
+                    isFound = true;
+
+                    ID = (int)reader["CategoryID"];
+
+                    if (reader["CategoryName"] != DBNull.Value)
+                    {
+                        CategoryName = (string)reader["CategoryName"];
+                    }
+                    else
+                    {
+                        CategoryName = "";
+                    }
+
+
+
+                }
+                else
+                {
+                    // The record was not found
+                    isFound = false;
+                }
+
+                reader.Close();
+
+
+            }
+            catch (Exception ex)
+            {
+                //Console.WriteLine("Error: " + ex.Message);
+                isFound = false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
         public static int AddNewCategory(string Name)
 
         {

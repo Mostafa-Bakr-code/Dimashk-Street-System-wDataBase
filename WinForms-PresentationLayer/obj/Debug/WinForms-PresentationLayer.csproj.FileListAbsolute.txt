@@ -1,0 +1,16 @@
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms_PresentationLayer.FormMain.resources
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms_PresentationLayer.Properties.Resources.resources
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.csproj.GenerateResource.cache
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\bin\Debug\WinForms-PresentationLayer.exe.config
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\bin\Debug\WinForms-PresentationLayer.exe
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\bin\Debug\WinForms-PresentationLayer.pdb
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\bin\Debug\BuisnessLayer.dll
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\bin\Debug\BuisnessLayer.pdb
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.csproj.CopyComplete
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.exe
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.pdb
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms_PresentationLayer.FormAddEditItem.resources

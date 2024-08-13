@@ -138,6 +138,23 @@ namespace DimashStreet_3Tier_
             }
         }
 
+        static void testFindCategory(string categoryName)
+
+        {
+            clsCategoryBusiness Category1 = clsCategoryBusiness.Find(categoryName);
+
+            if (Category1 != null)
+            {
+                Console.WriteLine(Category1.ID);
+                Console.WriteLine(Category1.Name);
+
+            }
+            else
+            {
+                Console.WriteLine("Category [" + categoryName + "] Not found!");
+            }
+        }
+
         static void testAddNewCategory()
 
 
@@ -420,7 +437,7 @@ namespace DimashStreet_3Tier_
         {
             // Test Items
 
-            ListItems();
+            //ListItems();
 
             //testAddNewItem();
 
@@ -434,7 +451,7 @@ namespace DimashStreet_3Tier_
 
             // Test Categories
 
-            ListCategories();
+            //ListCategories();
 
             //testAddNewCategory();
 
@@ -444,11 +461,13 @@ namespace DimashStreet_3Tier_
 
             //testIsCategoryExist(3);
 
+            //testFindCategory("pizza");
+
             //---------------------------------------------------
 
             // Test Orders
 
-            ListOrders();
+            //ListOrders();
 
             //testAddNewOrder();
 
@@ -468,7 +487,7 @@ namespace DimashStreet_3Tier_
 
             //testUpdateOrderItems(1006);
 
-            ListOrderItems();
+            //ListOrderItems();
 
             Console.ReadKey();
         }

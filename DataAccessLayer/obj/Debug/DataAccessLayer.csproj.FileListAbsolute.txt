@@ -4,3 +4,9 @@ E:\Hadhod\c#\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.
 E:\Hadhod\c#\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
 E:\Hadhod\c#\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 E:\Hadhod\c#\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
