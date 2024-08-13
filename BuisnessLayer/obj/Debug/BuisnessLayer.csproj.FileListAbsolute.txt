@@ -1,0 +1,9 @@
+E:\Hadhod\c#\BuisnessLayer\bin\Debug\BuisnessLayer.dll
+E:\Hadhod\c#\BuisnessLayer\bin\Debug\BuisnessLayer.pdb
+E:\Hadhod\c#\BuisnessLayer\bin\Debug\DataAccessLayer.dll
+E:\Hadhod\c#\BuisnessLayer\bin\Debug\DataAccessLayer.pdb
+E:\Hadhod\c#\BuisnessLayer\obj\Debug\BuisnessLayer.csproj.AssemblyReference.cache
+E:\Hadhod\c#\BuisnessLayer\obj\Debug\BuisnessLayer.csproj.CoreCompileInputs.cache
+E:\Hadhod\c#\BuisnessLayer\obj\Debug\BuisnessLayer.csproj.CopyComplete
+E:\Hadhod\c#\BuisnessLayer\obj\Debug\BuisnessLayer.dll
+E:\Hadhod\c#\BuisnessLayer\obj\Debug\BuisnessLayer.pdb

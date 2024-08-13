@@ -1,0 +1,12 @@
+E:\Hadhod\c#\DimashStreet(3Tier)\bin\Debug\DimashStreet(3Tier).exe.config
+E:\Hadhod\c#\DimashStreet(3Tier)\bin\Debug\DimashStreet(3Tier).exe
+E:\Hadhod\c#\DimashStreet(3Tier)\bin\Debug\DimashStreet(3Tier).pdb
+E:\Hadhod\c#\DimashStreet(3Tier)\bin\Debug\BuisnessLayer.dll
+E:\Hadhod\c#\DimashStreet(3Tier)\bin\Debug\BuisnessLayer.pdb
+E:\Hadhod\c#\DimashStreet(3Tier)\obj\Debug\PresentationLayerConsole.csproj.AssemblyReference.cache
+E:\Hadhod\c#\DimashStreet(3Tier)\obj\Debug\PresentationLayerConsole.csproj.CoreCompileInputs.cache
+E:\Hadhod\c#\DimashStreet(3Tier)\obj\Debug\PresentationLayerConsole.csproj.CopyComplete
+E:\Hadhod\c#\DimashStreet(3Tier)\obj\Debug\DimashStreet(3Tier).exe
+E:\Hadhod\c#\DimashStreet(3Tier)\obj\Debug\DimashStreet(3Tier).pdb
+E:\Hadhod\c#\DimashStreet(3Tier)\bin\Debug\DataAccessLayer.dll
+E:\Hadhod\c#\DimashStreet(3Tier)\bin\Debug\DataAccessLayer.pdb
