@@ -62,50 +62,61 @@ namespace DataAccessLayer
             return isFound;
         }
 
-        public static int AddNewOrderItems(int OrderID, int itemID, int quantity, decimal price, decimal totalItemsPrice)
+        public static int AddNewOrderItems(int OrderID, int itemID, int quantity)
 
         {
-            //this function will return the new ItemID if succeeded and -1 if not.
+            // This function will return the new OrderItemID if successful and -1 if not.
             int ID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"INSERT INTO OrderItems (OrderID, ItemID, Quantity, Price, TotalItemsPrice)
-                             VALUES (@OrderID, @itemID, @quantity, @price, @totalItemsPrice);
-                             SELECT SCOPE_IDENTITY();";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@OrderID", OrderID);
-            command.Parameters.AddWithValue("@itemID", itemID);
-            command.Parameters.AddWithValue("@quantity", quantity);
-            command.Parameters.AddWithValue("@price", price);
-            command.Parameters.AddWithValue("@totalItemsPrice", totalItemsPrice);
 
             try
             {
                 connection.Open();
 
-                object result = command.ExecuteScalar();
+                // Step 1: Retrieve the price from the Items table
+                string getPriceQuery = "SELECT Price FROM Items WHERE ItemID = @itemID";
+                SqlCommand getPriceCommand = new SqlCommand(getPriceQuery, connection);
+                getPriceCommand.Parameters.AddWithValue("@itemID", itemID);
 
+                object priceResult = getPriceCommand.ExecuteScalar();
+                if (priceResult == null)
+                {
+                    throw new Exception("Item not found.");
+                }
+
+                decimal price = (decimal)priceResult;
+
+                // Calculate totalItemsPrice
+                decimal totalItemsPrice = price * quantity;
+
+                // Step 2: Insert the new OrderItem
+                string query = @"INSERT INTO OrderItems (OrderID, ItemID, Quantity, Price, TotalItemsPrice)
+                         VALUES (@OrderID, @itemID, @quantity, @price, @totalItemsPrice);
+                         SELECT SCOPE_IDENTITY();";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@OrderID", OrderID);
+                command.Parameters.AddWithValue("@itemID", itemID);
+                command.Parameters.AddWithValue("@quantity", quantity);
+                command.Parameters.AddWithValue("@price", price);
+                command.Parameters.AddWithValue("@totalItemsPrice", totalItemsPrice);
+
+                object result = command.ExecuteScalar();
 
                 if (result != null && int.TryParse(result.ToString(), out int insertedID))
                 {
                     ID = insertedID;
                 }
             }
-
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-
             }
-
             finally
             {
                 connection.Close();
             }
-
 
             return ID;
         }
@@ -162,7 +173,9 @@ namespace DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT * FROM OrderItems";
+            string query = "SELECT OrderItems.ID, OrderItems.OrderID, Items.ItemName, OrderItems.Quantity, " +
+                "OrderItems.Price, OrderItems.TotalItemsPrice\r\nFROM  " +
+                "Items INNER JOIN\r\n OrderItems ON Items.ItemID = OrderItems.ItemID";
 
             SqlCommand command = new SqlCommand(query, connection);
 

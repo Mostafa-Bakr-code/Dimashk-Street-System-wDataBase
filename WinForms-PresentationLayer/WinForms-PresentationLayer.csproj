@@ -52,19 +52,37 @@
     <Compile Include="FormAddEditItem.Designer.cs">
       <DependentUpon>FormAddEditItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddEditCategories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddEditCategories.Designer.cs">
+      <DependentUpon>FormAddEditCategories.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddEditOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddEditOrder.Designer.cs">
+      <DependentUpon>FormAddEditOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAddEditItem.resx">
       <DependentUpon>FormAddEditItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAddEditCategories.resx">
+      <DependentUpon>FormAddEditCategories.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAddEditOrder.resx">
+      <DependentUpon>FormAddEditOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

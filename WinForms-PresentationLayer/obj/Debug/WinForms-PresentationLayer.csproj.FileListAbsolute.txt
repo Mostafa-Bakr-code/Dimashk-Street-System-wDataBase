@@ -14,3 +14,5 @@ C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLay
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.exe
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.pdb
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms_PresentationLayer.FormAddEditItem.resources
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms_PresentationLayer.FormAddEditCategories.resources
+C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms_PresentationLayer.FormAddEditOrder.resources

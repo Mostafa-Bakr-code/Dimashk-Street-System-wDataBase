@@ -161,7 +161,7 @@
             this.Controls.Add(this.labeliteam);
             this.Controls.Add(this.lbMode);
             this.Name = "FormAddEditItem";
-            this.Text = "FormAddEditItem";
+            this.Text = "Add/Edit Item";
             this.Load += new System.EventHandler(this.FormAddEditItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

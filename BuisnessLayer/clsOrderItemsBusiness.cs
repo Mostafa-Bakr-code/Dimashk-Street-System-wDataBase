@@ -30,22 +30,21 @@ namespace BuisnessLayer
             this.OrderID = -1;
             this.ItemID = -1;
             this.Quantity = 0;            
-            this.Price = 0;
-            this.TotalItemsPrice = 0;
+            //this.Price = 0;
+            //this.TotalItemsPrice = 0;
 
 
             Mode = enMode.AddNew;
 
         }
 
-        private clsOrderItemsBusiness(int ID, int orderID, int itemID, int quantity, decimal price, decimal totalItemPrice)
+        private clsOrderItemsBusiness(int ID, int orderID, int itemID, int quantity)
         {
             this.ID = ID;
             this.OrderID = orderID;
             this.ItemID = itemID;
             this.Quantity = quantity;
-            this.Price = price;
-            this.TotalItemsPrice = totalItemPrice;
+
 
             Mode = enMode.Update;
 
@@ -55,7 +54,7 @@ namespace BuisnessLayer
         {
             //call DataAccess Layer 
 
-            this.ID = clsOrderItemsData.AddNewOrderItems(this.OrderID, this.ItemID, this.Quantity, this.Price, this.TotalItemsPrice);
+            this.ID = clsOrderItemsData.AddNewOrderItems(this.OrderID, this.ItemID, this.Quantity);
 
             return (this.ID != -1);
         }
@@ -81,7 +80,7 @@ namespace BuisnessLayer
 
             if (clsOrderItemsData.GetOrderItemInfoByID(ID, ref OrderID, ref ItemID, ref quantity, ref price, ref totalItemPrice))
 
-                return new clsOrderItemsBusiness(ID, OrderID, ItemID, quantity, price, totalItemPrice);
+                return new clsOrderItemsBusiness(ID, OrderID, ItemID, quantity);
 
             else
                 return null;

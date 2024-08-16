@@ -9,24 +9,26 @@ namespace WinForms_PresentationLayer
         public FormMain()
         {
             InitializeComponent();
+            this.IsMdiContainer = true;
         }
 
         private void _RefreshItemsList()
         {
-            
+
             dgvListItems.DataSource = clsItemBusiness.GetAllItems();
+            //dgvListItems.DataSource = clsCategoryBusiness.GetAllCategories();
+
+        }
+
+        private void _RefreshCategoriesList()
+        {
+
+            dgvCategories.DataSource = clsCategoryBusiness.GetAllCategories();
 
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            _RefreshItemsList();
-        }
-
-        private void btnAddItem_Click(object sender, EventArgs e)
-        {
-            FormAddEditItem frm = new FormAddEditItem(-1);
-            frm.ShowDialog();
             _RefreshItemsList();
         }
 
@@ -50,6 +52,108 @@ namespace WinForms_PresentationLayer
                     MessageBox.Show("Deleted Sucssefully");
                 _RefreshItemsList();
             }
+        }
+
+        private void toolStripMenuEditCategory_Click(object sender, EventArgs e)
+        {
+            FormAddEditCategories frm = new FormAddEditCategories((int)dgvCategories.CurrentRow.Cells[0].Value);
+            frm.ShowDialog();
+            _RefreshCategoriesList();
+        }
+
+        private void toolStripMenuDeleteCategory_Click(object sender, EventArgs e)
+        {
+            string categoryID = dgvCategories.CurrentRow.Cells[0].Value.ToString();
+            DialogResult result =
+            MessageBox.Show($"Are you sure you want to delete Category {categoryID}",
+                "Delete Item", MessageBoxButtons.OKCancel);
+
+            if (result == DialogResult.OK)
+            {
+                if (clsCategoryBusiness.DeleteCategory((int)dgvCategories.CurrentRow.Cells[0].Value))
+                    MessageBox.Show("Deleted Sucssefully");
+                _RefreshCategoriesList();
+            }
+        }
+
+        private void btnItemsMenu_Click(object sender, EventArgs e)
+        {
+            dgvOrders.Visible = false;
+            dgvOrderItems.Visible = false;
+            dgvCategories.Visible = false;
+            dgvListItems.Visible = true;
+            dgvListItems.DataSource = clsItemBusiness.GetAllItems();
+        }
+
+        private void btnOrdersMenu_Click(object sender, EventArgs e)
+        {
+            dgvListItems.Visible=false;
+            dgvOrderItems.Visible = false;
+            dgvCategories.Visible = false;
+            dgvOrders.Visible = true;
+            dgvOrders.DataSource = clsOrderBusiness.GetAllOrders();
+        }
+
+        private void btnOrderItems_Click(object sender, EventArgs e)
+        {
+            dgvListItems.Visible = false;
+            dgvCategories.Visible = false;
+            dgvOrders.Visible = false;
+            dgvOrderItems.Visible = true;
+            dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItems();
+        }
+
+        private void btnCategoriesMenu_Click(object sender, EventArgs e)
+        {
+            dgvListItems.Visible = false;
+            dgvOrderItems.Visible = false;
+            dgvOrders.Visible = false;
+            dgvCategories.Visible = true;
+            dgvCategories.DataSource = clsCategoryBusiness.GetAllCategories();
+        }
+
+        private void btnAddCategory_Click(object sender, EventArgs e)
+        {
+            FormAddEditCategories frm = new FormAddEditCategories(-1);
+            frm.ShowDialog();
+            _RefreshCategoriesList();
+        }
+
+        private void btnAddItem_Click(object sender, EventArgs e)
+        {
+            FormAddEditItem frm = new FormAddEditItem(-1);
+            frm.ShowDialog();
+            _RefreshItemsList();
+        }
+
+        private void toolStripEditOrder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripDeleteOrder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripEditOrderItems_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripDeleteOrderItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddOrder_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddOrderItems_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
