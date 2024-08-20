@@ -125,5 +125,11 @@ namespace BuisnessLayer
             return clsOrdersData.IsOrderExist(ID);
 
         }
+
+        public void UpdateOrderTotal()
+        {
+            clsOrdersData.UpdateOrderTotal(ID);
+       
+        }
     }
 }

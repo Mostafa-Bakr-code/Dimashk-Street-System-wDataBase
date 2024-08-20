@@ -108,6 +108,8 @@ namespace DataAccessLayer
                 {
                     ID = insertedID;
                 }
+
+                clsOrdersData.UpdateOrderTotal(OrderID);
             }
             catch (Exception ex)
             {
@@ -209,6 +211,51 @@ namespace DataAccessLayer
 
         }
 
+        public static DataTable GetAllOrderItemsByOrderID(int OrderID)
+        {
+
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT OrderItems.ID, OrderItems.OrderID, Items.ItemName, OrderItems.Quantity, " +
+                           "OrderItems.Price, OrderItems.TotalItemsPrice " +
+                           "FROM Items INNER JOIN OrderItems ON Items.ItemID = OrderItems.ItemID " +
+                           "WHERE OrderItems.OrderID = @OrderID";
+
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@OrderID", OrderID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+
+
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+
+        }
+
         public static bool DeleteOrderItems(int ID)
         {
 
@@ -222,6 +269,42 @@ namespace DataAccessLayer
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@ID", ID);
+
+            try
+            {
+                connection.Open();
+
+                rowsAffected = command.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+
+                connection.Close();
+
+            }
+
+            return (rowsAffected > 0);
+
+        }
+
+        public static bool DeleteOrderItemsByOrderID(int orderID)
+        {
+
+            int rowsAffected = 0;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"Delete OrderItems 
+                                where OrderID = @orderID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@orderID", orderID);
 
             try
             {

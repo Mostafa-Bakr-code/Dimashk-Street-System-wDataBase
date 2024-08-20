@@ -42,7 +42,6 @@ namespace BuisnessLayer
 
         private bool _AddNewItem()
         {
-            //call DataAccess Layer 
 
             this.ID = clsItemDataAccess.AddNewItem(this.Name, this.CategoryID, this.Price);
 
@@ -51,9 +50,7 @@ namespace BuisnessLayer
 
         private bool _UpdateItem()
         {
-            //call DataAccess Layer 
-
-
+            
             return clsItemDataAccess.UpdateItem(this.ID, this.Name, this.CategoryID, this.Price);
 
         }

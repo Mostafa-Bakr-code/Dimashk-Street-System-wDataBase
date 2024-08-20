@@ -427,7 +427,21 @@ namespace DimashStreet_3Tier_
 
             foreach (DataRow row in dataTable.Rows)
             {
-                Console.WriteLine($"{row["ID"]},  {row["OrderID"]} {row["ItemID"]} {row["Quantity"]} {row["Price"]} {row["TotalItemsPrice"]}");
+                Console.WriteLine($"{row["ID"]},  {row["OrderID"]} {row["ItemName"]} {row["Quantity"]} {row["Price"]} {row["TotalItemsPrice"]}");
+            }
+
+        }
+
+        static void ListOrderItemsByID(int OrderID)
+        {
+
+            DataTable dataTable = clsOrderItemsBusiness.GetAllOrderItemsbyID(OrderID);
+
+            Console.WriteLine("OrderItems Data:");
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                Console.WriteLine($"{row["ID"]},  {row["OrderID"]} {row["ItemName"]} {row["Quantity"]} {row["Price"]} {row["TotalItemsPrice"]}");
             }
 
         }
@@ -435,6 +449,7 @@ namespace DimashStreet_3Tier_
 
         static void Main(string[] args)
         {
+
             // Test Items
 
             //ListItems();
@@ -483,16 +498,18 @@ namespace DimashStreet_3Tier_
 
             //testAddNewOrderItems();
 
-            //testDeleteOrderItems(1006);
+            //testDeleteOrderItems(1084);
 
             //testUpdateOrderItems(1006);
 
             //ListOrderItems();
 
+            //ListOrderItemsByID(1014);
+
             Console.ReadKey();
         }
 
-
+       
 
 
     }

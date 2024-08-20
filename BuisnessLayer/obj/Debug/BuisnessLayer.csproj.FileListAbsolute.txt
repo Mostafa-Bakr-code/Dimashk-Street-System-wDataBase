@@ -16,3 +16,12 @@ C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\obj\Debug\
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\obj\Debug\BuisnessLayer.csproj.CopyComplete
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\obj\Debug\BuisnessLayer.dll
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\obj\Debug\BuisnessLayer.pdb
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\bin\Debug\BuisnessLayer.dll
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\bin\Debug\BuisnessLayer.pdb
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\obj\Debug\BuisnessLayer.csproj.AssemblyReference.cache
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\obj\Debug\BuisnessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\obj\Debug\Buisness.5534DC49.Up2Date
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\obj\Debug\BuisnessLayer.dll
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\BuisnessLayer\obj\Debug\BuisnessLayer.pdb

@@ -10,3 +10,9 @@ C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debu
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debug\DataAccessLayer.dll
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debug\DataAccessLayer.pdb
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\bin\Debug\DataAccessLayer.dll
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\bin\Debug\DataAccessLayer.pdb
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.AssemblyReference.cache
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debug\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debug\DataAccessLayer.dll
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DataAccessLayer\obj\Debug\DataAccessLayer.pdb

@@ -29,7 +29,7 @@ namespace BuisnessLayer
             this.ID = -1;
             this.OrderID = -1;
             this.ItemID = -1;
-            this.Quantity = 0;            
+            this.Quantity = 1;            
             //this.Price = 0;
             //this.TotalItemsPrice = 0;
 
@@ -57,34 +57,6 @@ namespace BuisnessLayer
             this.ID = clsOrderItemsData.AddNewOrderItems(this.OrderID, this.ItemID, this.Quantity);
 
             return (this.ID != -1);
-        }
-
-        private bool _UpdateOrderItem()
-        {
-            //call DataAccess Layer 
-
-
-            return clsOrderItemsData.UpdateOrderItem(this.ID, this.OrderID, this.ItemID, this.Quantity, this.Price, this.TotalItemsPrice);
-
-        }
-
-        public static clsOrderItemsBusiness Find(int ID)
-        {
-
-            int OrderID = -1;
-            int ItemID = -1;
-            int quantity = -1;
-            decimal price = -1;
-            decimal totalItemPrice = -1;
-
-
-            if (clsOrderItemsData.GetOrderItemInfoByID(ID, ref OrderID, ref ItemID, ref quantity, ref price, ref totalItemPrice))
-
-                return new clsOrderItemsBusiness(ID, OrderID, ItemID, quantity);
-
-            else
-                return null;
-
         }
 
         public bool Save()
@@ -117,6 +89,36 @@ namespace BuisnessLayer
             return false;
         }
 
+
+        private bool _UpdateOrderItem()
+        {
+            //call DataAccess Layer 
+
+
+            return clsOrderItemsData.UpdateOrderItem(this.ID, this.OrderID, this.ItemID, this.Quantity, this.Price, this.TotalItemsPrice);
+
+        }
+
+        public static clsOrderItemsBusiness Find(int ID)
+        {
+
+            int OrderID = -1;
+            int ItemID = -1;
+            int quantity = -1;
+            decimal price = -1;
+            decimal totalItemPrice = -1;
+
+
+            if (clsOrderItemsData.GetOrderItemInfoByID(ID, ref OrderID, ref ItemID, ref quantity, ref price, ref totalItemPrice))
+
+                return new clsOrderItemsBusiness(ID, OrderID, ItemID, quantity);
+
+            else
+                return null;
+
+        }
+
+       
         public static DataTable GetAllOrderItems()
         {
 
@@ -124,10 +126,25 @@ namespace BuisnessLayer
 
         }
 
+        public static DataTable GetAllOrderItemsbyID(int OrderID)
+
+        {
+
+            return clsOrderItemsData.GetAllOrderItemsByOrderID(OrderID);
+
+        }
+
         public static bool DeleteOrderItems(int ID)
         {
 
             return clsOrderItemsData.DeleteOrderItems(ID);
+
+        }
+
+        public static bool DeleteOrderItemsByOrderID(int orderID)
+        {
+
+            return clsOrderItemsData.DeleteOrderItemsByOrderID(orderID);
 
         }
 

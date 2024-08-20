@@ -46,89 +46,100 @@
             // lbMode
             // 
             this.lbMode.AutoSize = true;
-            this.lbMode.Location = new System.Drawing.Point(190, 26);
+            this.lbMode.Location = new System.Drawing.Point(285, 40);
+            this.lbMode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMode.Name = "lbMode";
-            this.lbMode.Size = new System.Drawing.Size(72, 13);
+            this.lbMode.Size = new System.Drawing.Size(106, 20);
             this.lbMode.TabIndex = 0;
             this.lbMode.Text = "Add/Edit Item";
             // 
             // labeliteam
             // 
             this.labeliteam.AutoSize = true;
-            this.labeliteam.Location = new System.Drawing.Point(28, 108);
+            this.labeliteam.Location = new System.Drawing.Point(42, 166);
+            this.labeliteam.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labeliteam.Name = "labeliteam";
-            this.labeliteam.Size = new System.Drawing.Size(41, 13);
+            this.labeliteam.Size = new System.Drawing.Size(62, 20);
             this.labeliteam.TabIndex = 1;
             this.labeliteam.Text = "Item ID";
             // 
             // lbItemName
             // 
             this.lbItemName.AutoSize = true;
-            this.lbItemName.Location = new System.Drawing.Point(28, 162);
+            this.lbItemName.Location = new System.Drawing.Point(42, 249);
+            this.lbItemName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbItemName.Name = "lbItemName";
-            this.lbItemName.Size = new System.Drawing.Size(58, 13);
+            this.lbItemName.Size = new System.Drawing.Size(87, 20);
             this.lbItemName.TabIndex = 2;
             this.lbItemName.Text = "Item Name";
             // 
             // lbItemCategory
             // 
             this.lbItemCategory.AutoSize = true;
-            this.lbItemCategory.Location = new System.Drawing.Point(28, 219);
+            this.lbItemCategory.Location = new System.Drawing.Point(42, 337);
+            this.lbItemCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbItemCategory.Name = "lbItemCategory";
-            this.lbItemCategory.Size = new System.Drawing.Size(72, 13);
+            this.lbItemCategory.Size = new System.Drawing.Size(109, 20);
             this.lbItemCategory.TabIndex = 3;
             this.lbItemCategory.Text = "Item Category";
             // 
             // lbItemPrice
             // 
             this.lbItemPrice.AutoSize = true;
-            this.lbItemPrice.Location = new System.Drawing.Point(28, 285);
+            this.lbItemPrice.Location = new System.Drawing.Point(42, 438);
+            this.lbItemPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbItemPrice.Name = "lbItemPrice";
-            this.lbItemPrice.Size = new System.Drawing.Size(54, 13);
+            this.lbItemPrice.Size = new System.Drawing.Size(80, 20);
             this.lbItemPrice.TabIndex = 4;
             this.lbItemPrice.Text = "Item Price";
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // txtItemName
             // 
-            this.txtItemName.Location = new System.Drawing.Point(121, 159);
+            this.txtItemName.Location = new System.Drawing.Point(182, 243);
+            this.txtItemName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(148, 20);
+            this.txtItemName.Size = new System.Drawing.Size(220, 26);
             this.txtItemName.TabIndex = 6;
             // 
             // txtItemPrice
             // 
-            this.txtItemPrice.Location = new System.Drawing.Point(121, 278);
+            this.txtItemPrice.Location = new System.Drawing.Point(182, 428);
+            this.txtItemPrice.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtItemPrice.Name = "txtItemPrice";
-            this.txtItemPrice.Size = new System.Drawing.Size(148, 20);
+            this.txtItemPrice.Size = new System.Drawing.Size(220, 26);
             this.txtItemPrice.TabIndex = 7;
             // 
             // lbItemID
             // 
             this.lbItemID.AutoSize = true;
-            this.lbItemID.Location = new System.Drawing.Point(118, 108);
+            this.lbItemID.Location = new System.Drawing.Point(177, 166);
+            this.lbItemID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbItemID.Name = "lbItemID";
-            this.lbItemID.Size = new System.Drawing.Size(25, 13);
+            this.lbItemID.Size = new System.Drawing.Size(36, 20);
             this.lbItemID.TabIndex = 8;
             this.lbItemID.Text = "???";
             // 
             // cbItemCategory
             // 
             this.cbItemCategory.FormattingEnabled = true;
-            this.cbItemCategory.Location = new System.Drawing.Point(123, 218);
+            this.cbItemCategory.Location = new System.Drawing.Point(184, 335);
+            this.cbItemCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbItemCategory.Name = "cbItemCategory";
-            this.cbItemCategory.Size = new System.Drawing.Size(145, 21);
+            this.cbItemCategory.Size = new System.Drawing.Size(216, 28);
             this.cbItemCategory.TabIndex = 9;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(69, 404);
+            this.btnSave.Location = new System.Drawing.Point(104, 622);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(124, 56);
+            this.btnSave.Size = new System.Drawing.Size(186, 86);
             this.btnSave.TabIndex = 10;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -136,9 +147,10 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(235, 404);
+            this.btnClose.Location = new System.Drawing.Point(352, 622);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(124, 56);
+            this.btnClose.Size = new System.Drawing.Size(186, 86);
             this.btnClose.TabIndex = 11;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -146,9 +158,9 @@
             // 
             // FormAddEditItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(470, 501);
+            this.ClientSize = new System.Drawing.Size(705, 771);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.cbItemCategory);
@@ -160,6 +172,7 @@
             this.Controls.Add(this.lbItemName);
             this.Controls.Add(this.labeliteam);
             this.Controls.Add(this.lbMode);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormAddEditItem";
             this.Text = "Add/Edit Item";
             this.Load += new System.EventHandler(this.FormAddEditItem_Load);

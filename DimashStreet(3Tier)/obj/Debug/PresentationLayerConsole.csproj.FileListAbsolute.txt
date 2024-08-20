@@ -22,3 +22,15 @@ C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\obj\
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\obj\Debug\PresentationLayerConsole.csproj.CopyComplete
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\obj\Debug\DimashStreet(3Tier).exe
 C:\Users\Lenovo\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\obj\Debug\DimashStreet(3Tier).pdb
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\bin\Debug\DimashStreet(3Tier).exe.config
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\bin\Debug\DimashStreet(3Tier).exe
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\bin\Debug\DimashStreet(3Tier).pdb
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\bin\Debug\BuisnessLayer.dll
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\bin\Debug\DataAccessLayer.dll
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\bin\Debug\BuisnessLayer.pdb
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\bin\Debug\DataAccessLayer.pdb
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\obj\Debug\PresentationLayerConsole.csproj.AssemblyReference.cache
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\obj\Debug\PresentationLayerConsole.csproj.CoreCompileInputs.cache
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\obj\Debug\Presenta.47626B7E.Up2Date
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\obj\Debug\DimashStreet(3Tier).exe
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\DimashStreet(3Tier)\obj\Debug\DimashStreet(3Tier).pdb

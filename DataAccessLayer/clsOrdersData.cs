@@ -107,6 +107,31 @@ namespace DataAccessLayer
             return ID;
         }
 
+        public static void UpdateOrderTotal(int OrderID)
+        {
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            
+                try
+                {
+                    connection.Open();
+
+                    string updateOrderTotalQuery = @"UPDATE Orders 
+                                             SET Total = (SELECT SUM(TotalItemsPrice) 
+                                                          FROM OrderItems 
+                                                          WHERE OrderID = @OrderID)
+                                             WHERE OrderID = @OrderID";
+
+                    SqlCommand updateCommand = new SqlCommand(updateOrderTotalQuery, connection);
+                    updateCommand.Parameters.AddWithValue("@OrderID", OrderID);
+                    updateCommand.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            
+        }
+
         public static bool UpdateOrders(int ID, DateTime date, decimal Total)
 
         {

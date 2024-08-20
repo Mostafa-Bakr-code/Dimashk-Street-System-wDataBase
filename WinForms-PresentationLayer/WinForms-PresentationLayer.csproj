@@ -70,6 +70,12 @@
     <Compile Include="FormAddEditOrder.Designer.cs">
       <DependentUpon>FormAddEditOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormViewOrderItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormViewOrderItems.Designer.cs">
+      <DependentUpon>FormViewOrderItems.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FormAddEditItem.resx">
@@ -83,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAddEditOrder.resx">
       <DependentUpon>FormAddEditOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormViewOrderItems.resx">
+      <DependentUpon>FormViewOrderItems.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

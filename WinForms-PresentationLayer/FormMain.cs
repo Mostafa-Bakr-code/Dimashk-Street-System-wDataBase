@@ -8,8 +8,10 @@ namespace WinForms_PresentationLayer
     {
         public FormMain()
         {
+
+
             InitializeComponent();
-            this.IsMdiContainer = true;
+           
         }
 
         private void _RefreshItemsList()
@@ -42,15 +44,16 @@ namespace WinForms_PresentationLayer
         private void toolStripMenuItemDelete_Click(object sender, EventArgs e)
         {
             string itemID = dgvListItems.CurrentRow.Cells[0].Value.ToString();
+
             DialogResult result =
             MessageBox.Show($"Are you sure you want to delete Item {itemID}",
                 "Delete Item", MessageBoxButtons.OKCancel);
 
             if (result == DialogResult.OK)
             {
-                if (clsItemBusiness.DeleteItem((int)dgvListItems.CurrentRow.Cells[0].Value))
+                if (clsItemBusiness.DeleteItem(int.Parse(itemID)))
                     MessageBox.Show("Deleted Sucssefully");
-                _RefreshItemsList();
+                   _RefreshItemsList();
             }
         }
 
@@ -148,12 +151,38 @@ namespace WinForms_PresentationLayer
 
         private void btnAddOrder_Click(object sender, EventArgs e)
         {
-
+            FormAddEditOrder frm = new FormAddEditOrder(-1);
+            frm.ShowDialog();
         }
 
         private void btnAddOrderItems_Click(object sender, EventArgs e)
         {
 
+
+
+        }
+
+        private void toolStripShowOrderItems_Click(object sender, EventArgs e)
+        {
+            int orderID = -1; 
+
+            if (dgvOrders.CurrentRow != null)
+            {
+                orderID = Convert.ToInt32(dgvOrders.CurrentRow.Cells[0].Value);
+
+                MessageBox.Show($"Selected OrderID: {orderID}");
+
+                FormViewOrderItems frm = new FormViewOrderItems(orderID);
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select an order first.");
+            }
+
+
         }
     }
 }
+
+// start when deleteting orderitem you must update the totalprice
