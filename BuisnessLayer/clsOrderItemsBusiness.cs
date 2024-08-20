@@ -134,10 +134,10 @@ namespace BuisnessLayer
 
         }
 
-        public static bool DeleteOrderItems(int ID)
+        public static bool DeleteOrderItems(int ID, int OrderID)
         {
 
-            return clsOrderItemsData.DeleteOrderItems(ID);
+            return clsOrderItemsData.DeleteOrderItems(ID, OrderID);
 
         }
 

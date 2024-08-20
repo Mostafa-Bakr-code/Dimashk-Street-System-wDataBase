@@ -401,13 +401,13 @@ namespace DimashStreet_3Tier_
             }
         }
 
-        static void testDeleteOrderItems(int ID)
+        static void testDeleteOrderItems(int ID, int OrderID)
 
         {
 
             if (clsOrderItemsBusiness.isOrderItemsExist(ID))
 
-                if (clsOrderItemsBusiness.DeleteOrderItems(ID))
+                if (clsOrderItemsBusiness.DeleteOrderItems(ID, OrderID))
 
                     Console.WriteLine("OrderItem Deleted Successfully.");
                 else
@@ -498,7 +498,7 @@ namespace DimashStreet_3Tier_
 
             //testAddNewOrderItems();
 
-            //testDeleteOrderItems(1084);
+            testDeleteOrderItems(1146,1094);
 
             //testUpdateOrderItems(1006);
 

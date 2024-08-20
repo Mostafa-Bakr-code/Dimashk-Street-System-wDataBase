@@ -275,9 +275,12 @@ namespace WinForms_PresentationLayer
 
             if (result == DialogResult.OK)
             {
-                if (clsOrderItemsBusiness.DeleteOrderItems(int.Parse(orderItemID)))
+                if (clsOrderItemsBusiness.DeleteOrderItems(int.Parse(orderItemID),_Order.ID))
                     MessageBox.Show("Deleted Sucssefully");
+
+                    _Order = clsOrderBusiness.Find(_Order.ID);
                     listOrderItems(_Order.ID);
+                    updateOrderDataDisplay();
             }
 
         }

@@ -185,4 +185,3 @@ namespace WinForms_PresentationLayer
     }
 }
 
-// start when deleteting orderitem you must update the totalprice

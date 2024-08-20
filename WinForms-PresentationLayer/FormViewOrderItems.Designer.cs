@@ -35,18 +35,18 @@
             // dgvShowOrderItems
             // 
             this.dgvShowOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvShowOrderItems.Location = new System.Drawing.Point(4, 12);
+            this.dgvShowOrderItems.Location = new System.Drawing.Point(0, 12);
             this.dgvShowOrderItems.Name = "dgvShowOrderItems";
             this.dgvShowOrderItems.RowHeadersWidth = 62;
             this.dgvShowOrderItems.RowTemplate.Height = 28;
-            this.dgvShowOrderItems.Size = new System.Drawing.Size(784, 426);
+            this.dgvShowOrderItems.Size = new System.Drawing.Size(1012, 426);
             this.dgvShowOrderItems.TabIndex = 0;
             // 
             // FormViewOrderItems
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1021, 448);
             this.Controls.Add(this.dgvShowOrderItems);
             this.Name = "FormViewOrderItems";
             this.Text = "FormViewOrderItems";

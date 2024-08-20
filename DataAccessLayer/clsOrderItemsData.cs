@@ -65,7 +65,7 @@ namespace DataAccessLayer
         public static int AddNewOrderItems(int OrderID, int itemID, int quantity)
 
         {
-            // This function will return the new OrderItemID if successful and -1 if not.
+            
             int ID = -1;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
@@ -256,7 +256,7 @@ namespace DataAccessLayer
 
         }
 
-        public static bool DeleteOrderItems(int ID)
+        public static bool DeleteOrderItems(int ID, int OrderID)
         {
 
             int rowsAffected = 0;
@@ -275,6 +275,8 @@ namespace DataAccessLayer
                 connection.Open();
 
                 rowsAffected = command.ExecuteNonQuery();
+
+                clsOrdersData.UpdateOrderTotal(OrderID);
 
             }
             catch (Exception ex)
@@ -311,6 +313,8 @@ namespace DataAccessLayer
                 connection.Open();
 
                 rowsAffected = command.ExecuteNonQuery();
+
+                clsOrdersData.UpdateOrderTotal(orderID);
 
             }
             catch (Exception ex)
