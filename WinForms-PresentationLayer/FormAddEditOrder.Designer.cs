@@ -35,6 +35,8 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.btnOrder = new System.Windows.Forms.Button();
             this.dgvOrderItems = new System.Windows.Forms.DataGridView();
+            this.contextMenuStripOrderItems = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemDeleteOrderItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbOrderTotal = new System.Windows.Forms.Label();
             this.lbOrderDate = new System.Windows.Forms.Label();
             this.lbOrderID = new System.Windows.Forms.Label();
@@ -44,12 +46,10 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lbMode = new System.Windows.Forms.Label();
             this.dgvListItems = new System.Windows.Forms.DataGridView();
-            this.contextMenuStripOrderItems = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemDeleteOrderItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             this.contextMenuStripOrderItems.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -124,6 +124,22 @@
             this.dgvOrderItems.RowTemplate.Height = 28;
             this.dgvOrderItems.Size = new System.Drawing.Size(995, 229);
             this.dgvOrderItems.TabIndex = 12;
+
+            // 
+            // contextMenuStripOrderItems
+            // 
+            this.contextMenuStripOrderItems.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuStripOrderItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemDeleteOrderItem});
+            this.contextMenuStripOrderItems.Name = "contextMenuStripOrderItems";
+            this.contextMenuStripOrderItems.Size = new System.Drawing.Size(135, 36);
+            // 
+            // toolStripMenuItemDeleteOrderItem
+            // 
+            this.toolStripMenuItemDeleteOrderItem.Name = "toolStripMenuItemDeleteOrderItem";
+            this.toolStripMenuItemDeleteOrderItem.Size = new System.Drawing.Size(134, 32);
+            this.toolStripMenuItemDeleteOrderItem.Text = "Delete";
+            this.toolStripMenuItemDeleteOrderItem.Click += new System.EventHandler(this.toolStripMenuItemDeleteOrderItem_Click);
             // 
             // lbOrderTotal
             // 
@@ -219,21 +235,6 @@
             this.dgvListItems.TabIndex = 12;
             this.dgvListItems.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvListItems_CellMouseDoubleClick);
             // 
-            // contextMenuStripOrderItems
-            // 
-            this.contextMenuStripOrderItems.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStripOrderItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemDeleteOrderItem});
-            this.contextMenuStripOrderItems.Name = "contextMenuStripOrderItems";
-            this.contextMenuStripOrderItems.Size = new System.Drawing.Size(241, 69);
-            // 
-            // toolStripMenuItemDeleteOrderItem
-            // 
-            this.toolStripMenuItemDeleteOrderItem.Name = "toolStripMenuItemDeleteOrderItem";
-            this.toolStripMenuItemDeleteOrderItem.Size = new System.Drawing.Size(240, 32);
-            this.toolStripMenuItemDeleteOrderItem.Text = "Delete";
-            this.toolStripMenuItemDeleteOrderItem.Click += new System.EventHandler(this.toolStripMenuItemDeleteOrderItem_Click);
-            // 
             // FormAddEditOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -251,8 +252,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).EndInit();
             this.contextMenuStripOrderItems.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

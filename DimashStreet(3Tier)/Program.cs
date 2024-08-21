@@ -407,7 +407,7 @@ namespace DimashStreet_3Tier_
 
             if (clsOrderItemsBusiness.isOrderItemsExist(ID))
 
-                if (clsOrderItemsBusiness.DeleteOrderItems(ID, OrderID))
+                if (clsOrderItemsBusiness.DeleteOrderItem(ID, OrderID))
 
                     Console.WriteLine("OrderItem Deleted Successfully.");
                 else
@@ -446,7 +446,22 @@ namespace DimashStreet_3Tier_
 
         }
 
+        // Test Get Orders Total
 
+        static void getOrdersTotal()
+        {
+            Console.WriteLine(clsOrderBusiness.GetTotalForAllOrders());
+        }
+
+        static void GetTotalByDateRange(DateTime startDate, DateTime endDate)
+        {
+            Console.WriteLine(clsOrderBusiness.GetTotalByDateRange(startDate,endDate));
+        }
+
+        public static decimal GetTotalByCategoryName(string categoryName)
+        {
+            return clsOrderItemsBusiness.GetTotalByCategoryName(categoryName);
+        }
         static void Main(string[] args)
         {
 
@@ -498,13 +513,23 @@ namespace DimashStreet_3Tier_
 
             //testAddNewOrderItems();
 
-            testDeleteOrderItems(1146,1094);
+            //testDeleteOrderItems(1146,1094);
 
             //testUpdateOrderItems(1006);
 
             //ListOrderItems();
 
             //ListOrderItemsByID(1014);
+
+            //---------------------------------------------------
+
+            // Test Orders Total
+
+            //getOrdersTotal();
+
+            //GetTotalByDateRange(new DateTime(2024, 8, 21), new DateTime(2024, 8, 21));
+
+            Console.WriteLine(GetTotalByCategoryName("other"));
 
             Console.ReadKey();
         }

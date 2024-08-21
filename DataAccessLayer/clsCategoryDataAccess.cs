@@ -314,5 +314,39 @@ namespace DataAccessLayer
             return isFound;
         }
 
+        public static int GetCategoryIDByName(string categoryName)
+        {
+            int categoryID = -1;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT CategoryID FROM Categories WHERE CategoryName = @CategoryName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@CategoryName", categoryName);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null)
+                {
+                    categoryID = Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return categoryID;
+        }
+
+
+
     }
 }

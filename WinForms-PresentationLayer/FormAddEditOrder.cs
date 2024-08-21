@@ -47,11 +47,16 @@ namespace WinForms_PresentationLayer
 
             dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItemsbyID(orderID);
 
-            dgvOrderItems.ReadOnly = true;
+            
+            dgvOrderItems.ReadOnly = false;
 
-            if (dgvOrderItems.Columns.Contains("Quantity"))
+          
+            foreach (DataGridViewColumn column in dgvOrderItems.Columns)
             {
-                dgvOrderItems.Columns["Quantity"].ReadOnly = false;
+                if (column.Name != "Quantity")
+                {
+                    column.ReadOnly = true;
+                }
             }
         }
 
@@ -85,7 +90,7 @@ namespace WinForms_PresentationLayer
             }
 
 
-            // Update Mode
+            // Update Mode currently no need
             else
             {
 
@@ -109,24 +114,24 @@ namespace WinForms_PresentationLayer
 
         private void dgvListItems_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-           
+
             if (e.RowIndex >= 0)
             {
-             
+
                 DataGridView dgvListItems = sender as DataGridView;
 
-             
+
                 if (dgvListItems != null)
                 {
-                 
-                    int itemIDColumnIndex = 0; 
 
-                   
+                    int itemIDColumnIndex = 0;
+
+
                     object itemIDValue = dgvListItems.Rows[e.RowIndex].Cells[itemIDColumnIndex].Value;
 
                     if (itemIDValue != null)
                     {
-                  
+
                         int itemID = Convert.ToInt32(itemIDValue);
 
                         clsOrderItemsBusiness orderItem = new clsOrderItemsBusiness();
@@ -168,7 +173,7 @@ namespace WinForms_PresentationLayer
 
                 if (result == DialogResult.Yes)
                 {
-                    deleteOrderItems();
+                    deleteAllOrderItems();
                     deleteOrder();
                     MessageBox.Show("Order and its items have been deleted successfully.");
                 }
@@ -204,12 +209,12 @@ namespace WinForms_PresentationLayer
             }
         }
 
-        private void deleteOrderItems()
+        private void deleteAllOrderItems()
 
         {
             if (_Order != null)
             {
-                bool success = clsOrderItemsBusiness.DeleteOrderItemsByOrderID(_Order.ID);
+                bool success = clsOrderItemsBusiness.DeleteAllOrderItemsByOrderID(_Order.ID);
 
                 if (success)
                 {
@@ -260,7 +265,11 @@ namespace WinForms_PresentationLayer
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-
+            deleteAllOrderItems();
+            _Order = clsOrderBusiness.Find(_Order.ID);
+            _Order.Total = 0;
+            updateOrderDataDisplay();
+            listOrderItems(_Order.ID);
         }
 
         private void toolStripMenuItemDeleteOrderItem_Click(object sender, EventArgs e)
@@ -275,7 +284,7 @@ namespace WinForms_PresentationLayer
 
             if (result == DialogResult.OK)
             {
-                if (clsOrderItemsBusiness.DeleteOrderItems(int.Parse(orderItemID),_Order.ID))
+                if (clsOrderItemsBusiness.DeleteOrderItem(int.Parse(orderItemID),_Order.ID))
                     MessageBox.Show("Deleted Sucssefully");
 
                     _Order = clsOrderBusiness.Find(_Order.ID);
@@ -285,7 +294,7 @@ namespace WinForms_PresentationLayer
 
         }
 
-
+      
 
     }
 }

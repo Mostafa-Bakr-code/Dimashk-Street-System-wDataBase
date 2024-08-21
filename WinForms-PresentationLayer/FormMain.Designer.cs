@@ -42,6 +42,7 @@
             this.contextMenuOrders = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripEditOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDeleteOrder = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripShowOrderItems = new System.Windows.Forms.ToolStripMenuItem();
             this.dgvCategories = new System.Windows.Forms.DataGridView();
             this.contextMenuCategories = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuEditCategory = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,7 +54,19 @@
             this.btnAddCategory = new System.Windows.Forms.Button();
             this.btnAddOrder = new System.Windows.Forms.Button();
             this.btnAddOrderItems = new System.Windows.Forms.Button();
-            this.toolStripShowOrderItems = new System.Windows.Forms.ToolStripMenuItem();
+            this.dateTimePickerStart = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerEnd = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnTotalRange = new System.Windows.Forms.Button();
+            this.btnAllTimeTotal = new System.Windows.Forms.Button();
+            this.panelOrdersTotal = new System.Windows.Forms.Panel();
+            this.btnTotalbyCategory = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbItemCategory = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cbItemName = new System.Windows.Forms.ComboBox();
+            this.btnTotalbyItemName = new System.Windows.Forms.Button();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -62,6 +75,7 @@
             this.contextMenuCategories.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).BeginInit();
             this.contextMenuOrderItems.SuspendLayout();
+            this.panelOrdersTotal.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripItems
@@ -182,21 +196,28 @@
             this.toolStripDeleteOrder,
             this.toolStripShowOrderItems});
             this.contextMenuOrders.Name = "contextMenuOrders";
-            this.contextMenuOrders.Size = new System.Drawing.Size(241, 133);
+            this.contextMenuOrders.Size = new System.Drawing.Size(222, 100);
             // 
             // toolStripEditOrder
             // 
             this.toolStripEditOrder.Name = "toolStripEditOrder";
-            this.toolStripEditOrder.Size = new System.Drawing.Size(240, 32);
+            this.toolStripEditOrder.Size = new System.Drawing.Size(221, 32);
             this.toolStripEditOrder.Text = "Edit";
             this.toolStripEditOrder.Click += new System.EventHandler(this.toolStripEditOrder_Click);
             // 
             // toolStripDeleteOrder
             // 
             this.toolStripDeleteOrder.Name = "toolStripDeleteOrder";
-            this.toolStripDeleteOrder.Size = new System.Drawing.Size(240, 32);
+            this.toolStripDeleteOrder.Size = new System.Drawing.Size(221, 32);
             this.toolStripDeleteOrder.Text = "Delete";
             this.toolStripDeleteOrder.Click += new System.EventHandler(this.toolStripDeleteOrder_Click);
+            // 
+            // toolStripShowOrderItems
+            // 
+            this.toolStripShowOrderItems.Name = "toolStripShowOrderItems";
+            this.toolStripShowOrderItems.Size = new System.Drawing.Size(221, 32);
+            this.toolStripShowOrderItems.Text = "View Order Items";
+            this.toolStripShowOrderItems.Click += new System.EventHandler(this.toolStripShowOrderItems_Click);
             // 
             // dgvCategories
             // 
@@ -309,18 +330,138 @@
             this.btnAddOrderItems.UseVisualStyleBackColor = true;
             this.btnAddOrderItems.Click += new System.EventHandler(this.btnAddOrderItems_Click);
             // 
-            // toolStripShowOrderItems
+            // dateTimePickerStart
             // 
-            this.toolStripShowOrderItems.Name = "toolStripShowOrderItems";
-            this.toolStripShowOrderItems.Size = new System.Drawing.Size(240, 32);
-            this.toolStripShowOrderItems.Text = "View Order Items";
-            this.toolStripShowOrderItems.Click += new System.EventHandler(this.toolStripShowOrderItems_Click);
+            this.dateTimePickerStart.Location = new System.Drawing.Point(11, 55);
+            this.dateTimePickerStart.Name = "dateTimePickerStart";
+            this.dateTimePickerStart.Size = new System.Drawing.Size(300, 26);
+            this.dateTimePickerStart.TabIndex = 25;
+            // 
+            // dateTimePickerEnd
+            // 
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(11, 166);
+            this.dateTimePickerEnd.Name = "dateTimePickerEnd";
+            this.dateTimePickerEnd.Size = new System.Drawing.Size(300, 26);
+            this.dateTimePickerEnd.TabIndex = 26;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 20);
+            this.label1.TabIndex = 27;
+            this.label1.Text = "Start Date";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 143);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(77, 20);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "End Date";
+            // 
+            // btnTotalRange
+            // 
+            this.btnTotalRange.Location = new System.Drawing.Point(349, 91);
+            this.btnTotalRange.Name = "btnTotalRange";
+            this.btnTotalRange.Size = new System.Drawing.Size(141, 63);
+            this.btnTotalRange.TabIndex = 30;
+            this.btnTotalRange.Text = "Total";
+            this.btnTotalRange.UseVisualStyleBackColor = true;
+            this.btnTotalRange.Click += new System.EventHandler(this.btnTotalRange_Click);
+            // 
+            // btnAllTimeTotal
+            // 
+            this.btnAllTimeTotal.Location = new System.Drawing.Point(11, 543);
+            this.btnAllTimeTotal.Name = "btnAllTimeTotal";
+            this.btnAllTimeTotal.Size = new System.Drawing.Size(159, 70);
+            this.btnAllTimeTotal.TabIndex = 31;
+            this.btnAllTimeTotal.Text = "All Time Total";
+            this.btnAllTimeTotal.UseVisualStyleBackColor = true;
+            this.btnAllTimeTotal.Click += new System.EventHandler(this.btnAllTimeTotal_Click);
+            // 
+            // panelOrdersTotal
+            // 
+            this.panelOrdersTotal.Controls.Add(this.btnTotalbyItemName);
+            this.panelOrdersTotal.Controls.Add(this.cbItemName);
+            this.panelOrdersTotal.Controls.Add(this.label4);
+            this.panelOrdersTotal.Controls.Add(this.btnTotalbyCategory);
+            this.panelOrdersTotal.Controls.Add(this.label3);
+            this.panelOrdersTotal.Controls.Add(this.cbItemCategory);
+            this.panelOrdersTotal.Controls.Add(this.btnAllTimeTotal);
+            this.panelOrdersTotal.Controls.Add(this.btnTotalRange);
+            this.panelOrdersTotal.Controls.Add(this.label2);
+            this.panelOrdersTotal.Controls.Add(this.label1);
+            this.panelOrdersTotal.Controls.Add(this.dateTimePickerEnd);
+            this.panelOrdersTotal.Controls.Add(this.dateTimePickerStart);
+            this.panelOrdersTotal.Location = new System.Drawing.Point(1054, 234);
+            this.panelOrdersTotal.Name = "panelOrdersTotal";
+            this.panelOrdersTotal.Size = new System.Drawing.Size(518, 626);
+            this.panelOrdersTotal.TabIndex = 32;
+            this.panelOrdersTotal.Visible = false;
+            // 
+            // btnTotalbyCategory
+            // 
+            this.btnTotalbyCategory.Location = new System.Drawing.Point(349, 266);
+            this.btnTotalbyCategory.Name = "btnTotalbyCategory";
+            this.btnTotalbyCategory.Size = new System.Drawing.Size(141, 63);
+            this.btnTotalbyCategory.TabIndex = 34;
+            this.btnTotalbyCategory.Text = "Total";
+            this.btnTotalbyCategory.UseVisualStyleBackColor = true;
+            this.btnTotalbyCategory.Click += new System.EventHandler(this.btnTotalbyCategory_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 266);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 20);
+            this.label3.TabIndex = 33;
+            this.label3.Text = "Category";
+            // 
+            // cbItemCategory
+            // 
+            this.cbItemCategory.FormattingEnabled = true;
+            this.cbItemCategory.Location = new System.Drawing.Point(90, 263);
+            this.cbItemCategory.Name = "cbItemCategory";
+            this.cbItemCategory.Size = new System.Drawing.Size(210, 28);
+            this.cbItemCategory.TabIndex = 32;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 423);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 20);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "Item Name";
+            // 
+            // cbItemName
+            // 
+            this.cbItemName.FormattingEnabled = true;
+            this.cbItemName.Location = new System.Drawing.Point(90, 420);
+            this.cbItemName.Name = "cbItemName";
+            this.cbItemName.Size = new System.Drawing.Size(210, 28);
+            this.cbItemName.TabIndex = 36;
+            // 
+            // btnTotalbyItemName
+            // 
+            this.btnTotalbyItemName.Location = new System.Drawing.Point(349, 420);
+            this.btnTotalbyItemName.Name = "btnTotalbyItemName";
+            this.btnTotalbyItemName.Size = new System.Drawing.Size(141, 63);
+            this.btnTotalbyItemName.TabIndex = 37;
+            this.btnTotalbyItemName.Text = "Total";
+            this.btnTotalbyItemName.UseVisualStyleBackColor = true;
+            this.btnTotalbyItemName.Click += new System.EventHandler(this.btnTotalbyItemName_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1894, 1000);
+            this.Controls.Add(this.panelOrdersTotal);
             this.Controls.Add(this.btnAddOrderItems);
             this.Controls.Add(this.btnAddOrder);
             this.Controls.Add(this.btnAddCategory);
@@ -345,6 +486,8 @@
             this.contextMenuCategories.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).EndInit();
             this.contextMenuOrderItems.ResumeLayout(false);
+            this.panelOrdersTotal.ResumeLayout(false);
+            this.panelOrdersTotal.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -375,6 +518,19 @@
         private System.Windows.Forms.Button btnAddOrder;
         private System.Windows.Forms.Button btnAddOrderItems;
         private System.Windows.Forms.ToolStripMenuItem toolStripShowOrderItems;
+        private System.Windows.Forms.DateTimePicker dateTimePickerStart;
+        private System.Windows.Forms.DateTimePicker dateTimePickerEnd;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnTotalRange;
+        private System.Windows.Forms.Button btnAllTimeTotal;
+        private System.Windows.Forms.Panel panelOrdersTotal;
+        private System.Windows.Forms.ComboBox cbItemCategory;
+        private System.Windows.Forms.Button btnTotalbyCategory;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnTotalbyItemName;
+        private System.Windows.Forms.ComboBox cbItemName;
+        private System.Windows.Forms.Label label4;
     }
 }
 

@@ -282,6 +282,136 @@ namespace DataAccessLayer
             return isFound;
         }
 
+        public static decimal GetTotalForAllOrders()
+        {
+            decimal total = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT SUM(Total) 
+                     FROM Orders";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != DBNull.Value)
+                {
+                    total = Convert.ToDecimal(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return total;
+        }
+
+        public static decimal GetTotalByDateRange(DateTime startDate, DateTime endDate)
+        {
+            decimal total = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT SUM(Total) 
+                     FROM Orders 
+                     WHERE CAST([Date] AS DATE) BETWEEN @startDate AND @endDate";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@startDate", startDate.Date); // Ensure the time part is ignored
+            command.Parameters.AddWithValue("@endDate", endDate.Date);     // Ensure the time part is ignored
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != DBNull.Value)
+                {
+                    total = Convert.ToDecimal(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return total;
+        }
+
+        public static DateTime GetEarliestOrderDate()
+        {
+            DateTime earliestDate = DateTime.MaxValue;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT MIN([Date]) FROM Orders";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != DBNull.Value)
+                {
+                    earliestDate = Convert.ToDateTime(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return earliestDate;
+        }
+
+        public static DateTime GetLatestOrderDate()
+        {
+            DateTime latestDate = DateTime.MinValue;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = "SELECT MAX([Date]) FROM Orders";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != DBNull.Value)
+                {
+                    latestDate = Convert.ToDateTime(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return latestDate;
+        }
+
+
 
     }
 }

@@ -131,5 +131,27 @@ namespace BuisnessLayer
             clsOrdersData.UpdateOrderTotal(ID);
        
         }
+
+        public static decimal GetTotalForAllOrders()
+        {
+            return clsOrdersData.GetTotalForAllOrders();
+        }
+
+        public static decimal GetTotalByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return clsOrdersData.GetTotalByDateRange(startDate, endDate);
+        }
+
+        public static DateTime GetEarliestOrderDate()
+        {
+            return clsOrdersData.GetEarliestOrderDate();
+        }
+
+        public static DateTime GetLatestOrderDate()
+        {
+            return clsOrdersData.GetLatestOrderDate();
+        }
+
+
     }
 }

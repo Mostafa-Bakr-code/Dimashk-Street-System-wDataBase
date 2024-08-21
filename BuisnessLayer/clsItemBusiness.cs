@@ -15,7 +15,6 @@ namespace BuisnessLayer
         public int CategoryID { set; get; }
         public decimal Price { set; get; }
 
-
         public clsItemBusiness()
 
         {
@@ -122,6 +121,8 @@ namespace BuisnessLayer
             return clsItemDataAccess.IsItemExist(ID);   
 
         }
+
+
 
 
     }

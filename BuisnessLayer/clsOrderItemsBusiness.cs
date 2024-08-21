@@ -118,7 +118,6 @@ namespace BuisnessLayer
 
         }
 
-       
         public static DataTable GetAllOrderItems()
         {
 
@@ -134,17 +133,17 @@ namespace BuisnessLayer
 
         }
 
-        public static bool DeleteOrderItems(int ID, int OrderID)
+        public static bool DeleteOrderItem(int ID, int OrderID)
         {
 
-            return clsOrderItemsData.DeleteOrderItems(ID, OrderID);
+            return clsOrderItemsData.DeleteOrderItem(ID, OrderID);
 
         }
 
-        public static bool DeleteOrderItemsByOrderID(int orderID)
+        public static bool DeleteAllOrderItemsByOrderID(int orderID)
         {
 
-            return clsOrderItemsData.DeleteOrderItemsByOrderID(orderID);
+            return clsOrderItemsData.DeleteAllOrderItemsByOrderID(orderID);
 
         }
 
@@ -155,7 +154,15 @@ namespace BuisnessLayer
 
         }
 
+        public static decimal GetTotalByCategoryName(string categoryName)
+        {
+            return clsOrderItemsData.GetTotalByCategoryName(categoryName);
+        }
 
+        public static decimal GetTotalByItemName(string itemName)
+        {
+            return clsOrderItemsData.GetTotalByCategoryName(itemName);
+        }
 
     }
 }

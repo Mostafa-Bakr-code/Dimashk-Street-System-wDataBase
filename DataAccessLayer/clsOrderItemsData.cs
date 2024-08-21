@@ -256,7 +256,7 @@ namespace DataAccessLayer
 
         }
 
-        public static bool DeleteOrderItems(int ID, int OrderID)
+        public static bool DeleteOrderItem(int ID, int OrderID)
         {
 
             int rowsAffected = 0;
@@ -294,7 +294,7 @@ namespace DataAccessLayer
 
         }
 
-        public static bool DeleteOrderItemsByOrderID(int orderID)
+        public static bool DeleteAllOrderItemsByOrderID(int orderID)
         {
 
             int rowsAffected = 0;
@@ -365,5 +365,82 @@ namespace DataAccessLayer
 
             return isFound;
         }
+
+        public static decimal GetTotalByCategoryName(string categoryName)
+        {
+            decimal total = 0;
+            int categoryID = clsCategoryDataAccess.GetCategoryIDByName(categoryName);
+            if (categoryID == -1) return total; // Return 0 if the category is not found
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT SUM(OrderItems.TotalItemsPrice)
+                         FROM OrderItems
+                         INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+                         WHERE Items.CategoryID = @CategoryID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@CategoryID", categoryID);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != DBNull.Value)
+                {
+                    total = Convert.ToDecimal(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return total;
+        }
+
+        public static decimal GetTotalByItemName(string itemName)
+        {
+            decimal total = 0;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"SELECT SUM(OrderItems.TotalItemsPrice)
+                     FROM OrderItems
+                     INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+                     WHERE Items.ItemName = @ItemName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@ItemName", itemName);
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != DBNull.Value)
+                {
+                    total = Convert.ToDecimal(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return total;
+        }
+
+
+
     }
 }
