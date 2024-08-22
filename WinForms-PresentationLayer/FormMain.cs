@@ -30,6 +30,16 @@ namespace WinForms_PresentationLayer
 
         }
 
+        public void _RefreshOrderList()
+        {
+            dgvOrders.DataSource = clsOrderBusiness.GetAllOrders();
+        }
+
+        public void _RefreshOrderItemsList()
+        {
+            dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItems();
+        }
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             _RefreshItemsList();
@@ -142,6 +152,8 @@ namespace WinForms_PresentationLayer
         private void toolStripEditOrder_Click(object sender, EventArgs e)
         {
 
+            FormAddEditOrder frm = new FormAddEditOrder((int)dgvOrders.CurrentRow.Cells[0].Value);
+            frm.ShowDialog();
         }
 
         private void toolStripDeleteOrder_Click(object sender, EventArgs e)
@@ -368,7 +380,7 @@ namespace WinForms_PresentationLayer
 
 
 
-        // prepare to implement orderitems edit and reflects on order
+        // add orderitems edit , prepare to refresh the orderitems when closing the form
     }
 }
 

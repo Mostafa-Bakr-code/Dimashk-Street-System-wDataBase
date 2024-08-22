@@ -22,9 +22,11 @@ namespace WinForms_PresentationLayer
 
         private bool _orderPlaced = false;
 
+
         public FormAddEditOrder(int orderID)
         {
             InitializeComponent();
+
 
             this.FormClosing += FormAddEditOrder_FormClosing;
 
@@ -40,6 +42,7 @@ namespace WinForms_PresentationLayer
             {
                 _Mode = enMode.Update;
             }
+          
         }
 
         private void listOrderItems(int orderID)
@@ -98,10 +101,14 @@ namespace WinForms_PresentationLayer
 
                 _Order = clsOrderBusiness.Find(_orderID);
 
+                updateOrderDataDisplay();
+
+                listOrderItems(_Order.ID);
+
                 if (_Order == null)
                 {
                     MessageBox.Show("This form will be closed because No Order with ID = " + _orderID);
-                    //this.Close();
+                  
 
                     return;
                 }
@@ -160,16 +167,16 @@ namespace WinForms_PresentationLayer
 
         private void FormAddEditOrder_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (!_orderPlaced) {
 
 
+            if (_Mode == enMode.AddNew && !_orderPlaced) // Only prompt for deletion if in AddNew mode
+            {
                 DialogResult result = MessageBox.Show(
-              "Are you sure you want to delete this order and all its items?",
-                 "Confirm Delete",
-                 MessageBoxButtons.YesNo,
-                 MessageBoxIcon.Warning
-                                        );
-
+                    "Are you sure you want to delete this order and all its items?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
 
                 if (result == DialogResult.Yes)
                 {
@@ -179,10 +186,10 @@ namespace WinForms_PresentationLayer
                 }
                 else
                 {
-
                     e.Cancel = true;
                 }
             }
+            // If in Update mode, simply close the form without deleting the order
 
 
         }
@@ -247,20 +254,43 @@ namespace WinForms_PresentationLayer
 
             _Order.UpdateOrderTotal();
 
-            bool success = _Order.Save();
+            bool success = false;
 
-            if (success)
+            if (_Mode == enMode.AddNew)
             {
-                MessageBox.Show("Order placed successfully!");
+                // Place a new order
+                success = _Order.Save();
 
-                _orderPlaced = true;
+                if (success)
+                {
+                    MessageBox.Show("Order placed successfully!");
+                    _orderPlaced = true;
 
-                this.Close();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to place the order. Please try again.");
+                }
             }
-            else
+            else if (_Mode == enMode.Update)
             {
-                MessageBox.Show("Failed to place the order. Please try again.");
+                // Update the existing order
+                success = _Order.Save();
+
+                if (success)
+                {
+                    MessageBox.Show("Order updated successfully!");
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update the order. Please try again.");
+                }
             }
+
+
         }
 
         private void btnReset_Click(object sender, EventArgs e)
