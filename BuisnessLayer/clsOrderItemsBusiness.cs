@@ -159,9 +159,19 @@ namespace BuisnessLayer
             return clsOrderItemsData.GetTotalByCategoryName(categoryName);
         }
 
+        public static decimal GetTotalByCategoryNameAndDateRange(string categoryName, DateTime startDate, DateTime endDate) 
+        { 
+            return clsOrderItemsData.GetTotalByCategoryNameAndDateRange(categoryName,startDate,endDate);
+        }
+
         public static decimal GetTotalByItemName(string itemName)
         {
-            return clsOrderItemsData.GetTotalByCategoryName(itemName);
+            return clsOrderItemsData.GetTotalByItemName(itemName);
+        }
+
+        public static decimal GetTotalByItemNameAndDateRange(string itemName, DateTime startDate, DateTime endDate)
+        {
+            return clsOrderItemsData.GetTotalByItemNameAndDateRange(itemName,startDate,endDate);
         }
 
     }

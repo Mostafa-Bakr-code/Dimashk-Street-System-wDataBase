@@ -19,7 +19,7 @@ namespace WinForms_PresentationLayer
         {
 
             dgvListItems.DataSource = clsItemBusiness.GetAllItems();
-            //dgvListItems.DataSource = clsCategoryBusiness.GetAllCategories();
+       
 
         }
 
@@ -128,6 +128,7 @@ namespace WinForms_PresentationLayer
             FormAddEditCategories frm = new FormAddEditCategories(-1);
             frm.ShowDialog();
             _RefreshCategoriesList();
+            //_FillCategoriesInComoboBox();
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -135,6 +136,7 @@ namespace WinForms_PresentationLayer
             FormAddEditItem frm = new FormAddEditItem(-1);
             frm.ShowDialog();
             _RefreshItemsList();
+            //_FillItemsNameInComoboBox();
         }
 
         private void toolStripEditOrder_Click(object sender, EventArgs e)
@@ -279,13 +281,13 @@ namespace WinForms_PresentationLayer
             if (cbItemName.SelectedItem != null)
             {
 
-                string selectedCategory = cbItemName.SelectedItem.ToString();
+                string selectedItem = cbItemName.SelectedItem.ToString();
 
 
-                decimal total = clsOrderItemsBusiness.GetTotalByItemName(selectedCategory);
+                decimal total = clsOrderItemsBusiness.GetTotalByItemName(selectedItem);
 
 
-                MessageBox.Show($"Total for Item '{selectedCategory}': {total}", "Total by ItemName", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Total for Item '{selectedItem}': {total}", "Total by ItemName", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -294,8 +296,79 @@ namespace WinForms_PresentationLayer
             }
         }
 
+        private void btnTotalbyCategoryAndDateRange_Click(object sender, EventArgs e)
+        {
+            DateTime startDate = dateTimePickerStart.Value.Date;
+            DateTime endDate = dateTimePickerEnd.Value.Date;
 
-        // start logic of calc sum total by item name isnt working, it returns 0
+            if (endDate < startDate)
+            {
+                MessageBox.Show("End date cannot be before start date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            string selectedCategory = "";
+
+            if (cbItemCategory.SelectedItem != null)
+            {
+
+                selectedCategory = cbItemCategory.SelectedItem.ToString();
+               
+            }
+            else
+            {
+
+                MessageBox.Show("Please select a category from the dropdown.", "Category Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            decimal total = clsOrderItemsBusiness.GetTotalByCategoryNameAndDateRange(selectedCategory, startDate, endDate);
+
+            string message = $"Total for category '{selectedCategory}' from {startDate:MM/dd/yyyy} to {endDate:MM/dd/yyyy}: {total}";
+
+            MessageBox.Show(message, "Total by Category and Date Range", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+        }
+
+        private void btnTotalbyItemNameAndDateRange_Click(object sender, EventArgs e)
+        {
+            DateTime startDate = dateTimePickerStart.Value.Date;
+            DateTime endDate = dateTimePickerEnd.Value.Date;
+
+            if (endDate < startDate)
+            {
+                MessageBox.Show("End date cannot be before start date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            string selectedItemName = "";
+
+            if (cbItemName.SelectedItem != null)
+            {
+
+                selectedItemName = cbItemName.SelectedItem.ToString();
+
+            }
+            else
+            {
+
+                MessageBox.Show("Please select ItemName from the dropdown.", "ItemName Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            decimal total = clsOrderItemsBusiness.GetTotalByItemNameAndDateRange(selectedItemName, startDate, endDate);
+
+            string message = $"Total for ItemName '{selectedItemName}' from {startDate:MM/dd/yyyy} to {endDate:MM/dd/yyyy}: {total}";
+
+            MessageBox.Show(message, "Total by Item Name and Date Range", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
+
+
+
+
+        // prepare to implement orderitems edit and reflects on order
     }
 }
 

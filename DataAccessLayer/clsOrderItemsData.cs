@@ -404,6 +404,47 @@ namespace DataAccessLayer
             return total;
         }
 
+        public static decimal GetTotalByCategoryNameAndDateRange(string categoryName, DateTime startDate, DateTime endDate)
+        {
+            decimal total = 0;
+            int categoryID = clsCategoryDataAccess.GetCategoryIDByName(categoryName);
+            if (categoryID == -1) return total; // Return 0 if the category is not found
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+            SELECT SUM(OrderItems.TotalItemsPrice)
+            FROM OrderItems
+            INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+            INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+            INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+            WHERE Categories.CategoryName = @CategoryName
+            AND CAST(Orders.Date AS DATE) BETWEEN @StartDate AND @EndDate";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@CategoryName", categoryName); // Corrected parameter name
+                command.Parameters.AddWithValue("@StartDate", startDate.Date); // Ensure the time part is ignored
+                command.Parameters.AddWithValue("@EndDate", endDate.Date);     // Ensure the time part is ignored
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        total = Convert.ToDecimal(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return total;
+        }
+
         public static decimal GetTotalByItemName(string itemName)
         {
             decimal total = 0;
@@ -439,6 +480,45 @@ namespace DataAccessLayer
 
             return total;
         }
+
+        public static decimal GetTotalByItemNameAndDateRange(string itemName, DateTime startDate, DateTime endDate)
+        {
+            decimal total = 0;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+                     SELECT SUM(OrderItems.TotalItemsPrice)
+                     FROM OrderItems
+                     INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+                     INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+                     WHERE Items.ItemName = @ItemName
+                     AND CAST(Orders.Date AS DATE) BETWEEN @StartDate AND @EndDate";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ItemName", itemName);
+                command.Parameters.AddWithValue("@StartDate", startDate.Date); // Ensure the time part is ignored
+                command.Parameters.AddWithValue("@EndDate", endDate.Date);     // Ensure the time part is ignored
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        total = Convert.ToDecimal(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return total;
+        }
+
 
 
 

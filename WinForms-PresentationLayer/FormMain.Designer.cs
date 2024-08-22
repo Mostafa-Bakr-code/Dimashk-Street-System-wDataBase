@@ -61,12 +61,14 @@
             this.btnTotalRange = new System.Windows.Forms.Button();
             this.btnAllTimeTotal = new System.Windows.Forms.Button();
             this.panelOrdersTotal = new System.Windows.Forms.Panel();
+            this.btnTotalbyCategoryAndDateRange = new System.Windows.Forms.Button();
+            this.btnTotalbyItemName = new System.Windows.Forms.Button();
+            this.cbItemName = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnTotalbyCategory = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cbItemCategory = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbItemName = new System.Windows.Forms.ComboBox();
-            this.btnTotalbyItemName = new System.Windows.Forms.Button();
+            this.btnTotalbyItemNameAndDateRange = new System.Windows.Forms.Button();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -108,18 +110,18 @@
             this.dgvListItems.AllowUserToOrderColumns = true;
             this.dgvListItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListItems.ContextMenuStrip = this.contextMenuStripItems;
-            this.dgvListItems.Location = new System.Drawing.Point(18, 254);
+            this.dgvListItems.Location = new System.Drawing.Point(203, 121);
             this.dgvListItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvListItems.Name = "dgvListItems";
             this.dgvListItems.ReadOnly = true;
             this.dgvListItems.RowHeadersWidth = 62;
-            this.dgvListItems.Size = new System.Drawing.Size(1029, 606);
+            this.dgvListItems.Size = new System.Drawing.Size(682, 865);
             this.dgvListItems.TabIndex = 0;
             this.dgvListItems.Visible = false;
             // 
             // btnAddItem
             // 
-            this.btnAddItem.Location = new System.Drawing.Point(18, 869);
+            this.btnAddItem.Location = new System.Drawing.Point(32, 164);
             this.btnAddItem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(152, 52);
@@ -130,7 +132,7 @@
             // 
             // btnCategoriesMenu
             // 
-            this.btnCategoriesMenu.Location = new System.Drawing.Point(18, 192);
+            this.btnCategoriesMenu.Location = new System.Drawing.Point(18, 43);
             this.btnCategoriesMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCategoriesMenu.Name = "btnCategoriesMenu";
             this.btnCategoriesMenu.Size = new System.Drawing.Size(152, 52);
@@ -141,7 +143,7 @@
             // 
             // btnItemsMenu
             // 
-            this.btnItemsMenu.Location = new System.Drawing.Point(192, 192);
+            this.btnItemsMenu.Location = new System.Drawing.Point(192, 43);
             this.btnItemsMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnItemsMenu.Name = "btnItemsMenu";
             this.btnItemsMenu.Size = new System.Drawing.Size(152, 52);
@@ -152,7 +154,7 @@
             // 
             // btnOrdersMenu
             // 
-            this.btnOrdersMenu.Location = new System.Drawing.Point(366, 192);
+            this.btnOrdersMenu.Location = new System.Drawing.Point(361, 43);
             this.btnOrdersMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnOrdersMenu.Name = "btnOrdersMenu";
             this.btnOrdersMenu.Size = new System.Drawing.Size(152, 52);
@@ -163,7 +165,7 @@
             // 
             // btnOrderItems
             // 
-            this.btnOrderItems.Location = new System.Drawing.Point(542, 192);
+            this.btnOrderItems.Location = new System.Drawing.Point(531, 43);
             this.btnOrderItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnOrderItems.Name = "btnOrderItems";
             this.btnOrderItems.Size = new System.Drawing.Size(152, 52);
@@ -179,12 +181,12 @@
             this.dgvOrders.AllowUserToOrderColumns = true;
             this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrders.ContextMenuStrip = this.contextMenuOrders;
-            this.dgvOrders.Location = new System.Drawing.Point(18, 254);
+            this.dgvOrders.Location = new System.Drawing.Point(203, 126);
             this.dgvOrders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvOrders.Name = "dgvOrders";
             this.dgvOrders.ReadOnly = true;
             this.dgvOrders.RowHeadersWidth = 62;
-            this.dgvOrders.Size = new System.Drawing.Size(1029, 606);
+            this.dgvOrders.Size = new System.Drawing.Size(682, 865);
             this.dgvOrders.TabIndex = 17;
             this.dgvOrders.Visible = false;
             // 
@@ -226,12 +228,12 @@
             this.dgvCategories.AllowUserToOrderColumns = true;
             this.dgvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCategories.ContextMenuStrip = this.contextMenuCategories;
-            this.dgvCategories.Location = new System.Drawing.Point(18, 254);
+            this.dgvCategories.Location = new System.Drawing.Point(203, 126);
             this.dgvCategories.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvCategories.Name = "dgvCategories";
             this.dgvCategories.ReadOnly = true;
             this.dgvCategories.RowHeadersWidth = 62;
-            this.dgvCategories.Size = new System.Drawing.Size(1029, 606);
+            this.dgvCategories.Size = new System.Drawing.Size(682, 865);
             this.dgvCategories.TabIndex = 18;
             this.dgvCategories.Visible = false;
             // 
@@ -265,12 +267,12 @@
             this.dgvOrderItems.AllowUserToOrderColumns = true;
             this.dgvOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrderItems.ContextMenuStrip = this.contextMenuOrderItems;
-            this.dgvOrderItems.Location = new System.Drawing.Point(18, 254);
+            this.dgvOrderItems.Location = new System.Drawing.Point(203, 126);
             this.dgvOrderItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvOrderItems.Name = "dgvOrderItems";
             this.dgvOrderItems.ReadOnly = true;
             this.dgvOrderItems.RowHeadersWidth = 62;
-            this.dgvOrderItems.Size = new System.Drawing.Size(1029, 606);
+            this.dgvOrderItems.Size = new System.Drawing.Size(682, 865);
             this.dgvOrderItems.TabIndex = 19;
             this.dgvOrderItems.Visible = false;
             // 
@@ -299,7 +301,7 @@
             // 
             // btnAddCategory
             // 
-            this.btnAddCategory.Location = new System.Drawing.Point(192, 869);
+            this.btnAddCategory.Location = new System.Drawing.Point(32, 235);
             this.btnAddCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddCategory.Name = "btnAddCategory";
             this.btnAddCategory.Size = new System.Drawing.Size(152, 52);
@@ -310,7 +312,7 @@
             // 
             // btnAddOrder
             // 
-            this.btnAddOrder.Location = new System.Drawing.Point(366, 869);
+            this.btnAddOrder.Location = new System.Drawing.Point(32, 297);
             this.btnAddOrder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddOrder.Name = "btnAddOrder";
             this.btnAddOrder.Size = new System.Drawing.Size(152, 52);
@@ -321,7 +323,7 @@
             // 
             // btnAddOrderItems
             // 
-            this.btnAddOrderItems.Location = new System.Drawing.Point(542, 869);
+            this.btnAddOrderItems.Location = new System.Drawing.Point(32, 359);
             this.btnAddOrderItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddOrderItems.Name = "btnAddOrderItems";
             this.btnAddOrderItems.Size = new System.Drawing.Size(152, 52);
@@ -339,7 +341,7 @@
             // 
             // dateTimePickerEnd
             // 
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(11, 166);
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(392, 57);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
             this.dateTimePickerEnd.Size = new System.Drawing.Size(300, 26);
             this.dateTimePickerEnd.TabIndex = 26;
@@ -356,7 +358,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 143);
+            this.label2.Location = new System.Drawing.Point(494, 20);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 20);
             this.label2.TabIndex = 28;
@@ -364,11 +366,11 @@
             // 
             // btnTotalRange
             // 
-            this.btnTotalRange.Location = new System.Drawing.Point(349, 91);
+            this.btnTotalRange.Location = new System.Drawing.Point(7, 103);
             this.btnTotalRange.Name = "btnTotalRange";
             this.btnTotalRange.Size = new System.Drawing.Size(141, 63);
             this.btnTotalRange.TabIndex = 30;
-            this.btnTotalRange.Text = "Total";
+            this.btnTotalRange.Text = "All Time Total by Date Range";
             this.btnTotalRange.UseVisualStyleBackColor = true;
             this.btnTotalRange.Click += new System.EventHandler(this.btnTotalRange_Click);
             // 
@@ -384,6 +386,8 @@
             // 
             // panelOrdersTotal
             // 
+            this.panelOrdersTotal.Controls.Add(this.btnTotalbyItemNameAndDateRange);
+            this.panelOrdersTotal.Controls.Add(this.btnTotalbyCategoryAndDateRange);
             this.panelOrdersTotal.Controls.Add(this.btnTotalbyItemName);
             this.panelOrdersTotal.Controls.Add(this.cbItemName);
             this.panelOrdersTotal.Controls.Add(this.label4);
@@ -396,19 +400,56 @@
             this.panelOrdersTotal.Controls.Add(this.label1);
             this.panelOrdersTotal.Controls.Add(this.dateTimePickerEnd);
             this.panelOrdersTotal.Controls.Add(this.dateTimePickerStart);
-            this.panelOrdersTotal.Location = new System.Drawing.Point(1054, 234);
+            this.panelOrdersTotal.Location = new System.Drawing.Point(904, 12);
             this.panelOrdersTotal.Name = "panelOrdersTotal";
-            this.panelOrdersTotal.Size = new System.Drawing.Size(518, 626);
+            this.panelOrdersTotal.Size = new System.Drawing.Size(853, 626);
             this.panelOrdersTotal.TabIndex = 32;
             this.panelOrdersTotal.Visible = false;
             // 
+            // btnTotalbyCategoryAndDateRange
+            // 
+            this.btnTotalbyCategoryAndDateRange.Location = new System.Drawing.Point(509, 260);
+            this.btnTotalbyCategoryAndDateRange.Name = "btnTotalbyCategoryAndDateRange";
+            this.btnTotalbyCategoryAndDateRange.Size = new System.Drawing.Size(150, 63);
+            this.btnTotalbyCategoryAndDateRange.TabIndex = 38;
+            this.btnTotalbyCategoryAndDateRange.Text = "Total by Category and Date Range";
+            this.btnTotalbyCategoryAndDateRange.UseVisualStyleBackColor = true;
+            this.btnTotalbyCategoryAndDateRange.Click += new System.EventHandler(this.btnTotalbyCategoryAndDateRange_Click);
+            // 
+            // btnTotalbyItemName
+            // 
+            this.btnTotalbyItemName.Location = new System.Drawing.Point(349, 420);
+            this.btnTotalbyItemName.Name = "btnTotalbyItemName";
+            this.btnTotalbyItemName.Size = new System.Drawing.Size(141, 63);
+            this.btnTotalbyItemName.TabIndex = 37;
+            this.btnTotalbyItemName.Text = "All Time Total By Item Name";
+            this.btnTotalbyItemName.UseVisualStyleBackColor = true;
+            this.btnTotalbyItemName.Click += new System.EventHandler(this.btnTotalbyItemName_Click);
+            // 
+            // cbItemName
+            // 
+            this.cbItemName.FormattingEnabled = true;
+            this.cbItemName.Location = new System.Drawing.Point(90, 420);
+            this.cbItemName.Name = "cbItemName";
+            this.cbItemName.Size = new System.Drawing.Size(210, 28);
+            this.cbItemName.TabIndex = 36;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 423);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(87, 20);
+            this.label4.TabIndex = 35;
+            this.label4.Text = "Item Name";
+            // 
             // btnTotalbyCategory
             // 
-            this.btnTotalbyCategory.Location = new System.Drawing.Point(349, 266);
+            this.btnTotalbyCategory.Location = new System.Drawing.Point(349, 260);
             this.btnTotalbyCategory.Name = "btnTotalbyCategory";
             this.btnTotalbyCategory.Size = new System.Drawing.Size(141, 63);
             this.btnTotalbyCategory.TabIndex = 34;
-            this.btnTotalbyCategory.Text = "Total";
+            this.btnTotalbyCategory.Text = "All Time Total by Category";
             this.btnTotalbyCategory.UseVisualStyleBackColor = true;
             this.btnTotalbyCategory.Click += new System.EventHandler(this.btnTotalbyCategory_Click);
             // 
@@ -429,32 +470,15 @@
             this.cbItemCategory.Size = new System.Drawing.Size(210, 28);
             this.cbItemCategory.TabIndex = 32;
             // 
-            // label4
+            // btnTotalbyItemNameAndDateRange
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 423);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(87, 20);
-            this.label4.TabIndex = 35;
-            this.label4.Text = "Item Name";
-            // 
-            // cbItemName
-            // 
-            this.cbItemName.FormattingEnabled = true;
-            this.cbItemName.Location = new System.Drawing.Point(90, 420);
-            this.cbItemName.Name = "cbItemName";
-            this.cbItemName.Size = new System.Drawing.Size(210, 28);
-            this.cbItemName.TabIndex = 36;
-            // 
-            // btnTotalbyItemName
-            // 
-            this.btnTotalbyItemName.Location = new System.Drawing.Point(349, 420);
-            this.btnTotalbyItemName.Name = "btnTotalbyItemName";
-            this.btnTotalbyItemName.Size = new System.Drawing.Size(141, 63);
-            this.btnTotalbyItemName.TabIndex = 37;
-            this.btnTotalbyItemName.Text = "Total";
-            this.btnTotalbyItemName.UseVisualStyleBackColor = true;
-            this.btnTotalbyItemName.Click += new System.EventHandler(this.btnTotalbyItemName_Click);
+            this.btnTotalbyItemNameAndDateRange.Location = new System.Drawing.Point(509, 420);
+            this.btnTotalbyItemNameAndDateRange.Name = "btnTotalbyItemNameAndDateRange";
+            this.btnTotalbyItemNameAndDateRange.Size = new System.Drawing.Size(183, 63);
+            this.btnTotalbyItemNameAndDateRange.TabIndex = 39;
+            this.btnTotalbyItemNameAndDateRange.Text = "All Time Total By Item Name and Date Range";
+            this.btnTotalbyItemNameAndDateRange.UseVisualStyleBackColor = true;
+            this.btnTotalbyItemNameAndDateRange.Click += new System.EventHandler(this.btnTotalbyItemNameAndDateRange_Click);
             // 
             // FormMain
             // 
@@ -463,12 +487,12 @@
             this.ClientSize = new System.Drawing.Size(1894, 1000);
             this.Controls.Add(this.panelOrdersTotal);
             this.Controls.Add(this.btnAddOrderItems);
-            this.Controls.Add(this.btnAddOrder);
-            this.Controls.Add(this.btnAddCategory);
             this.Controls.Add(this.dgvOrderItems);
             this.Controls.Add(this.dgvCategories);
+            this.Controls.Add(this.btnAddOrder);
             this.Controls.Add(this.dgvOrders);
             this.Controls.Add(this.btnAddItem);
+            this.Controls.Add(this.btnAddCategory);
             this.Controls.Add(this.dgvListItems);
             this.Controls.Add(this.btnOrderItems);
             this.Controls.Add(this.btnOrdersMenu);
@@ -531,6 +555,8 @@
         private System.Windows.Forms.Button btnTotalbyItemName;
         private System.Windows.Forms.ComboBox cbItemName;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnTotalbyCategoryAndDateRange;
+        private System.Windows.Forms.Button btnTotalbyItemNameAndDateRange;
     }
 }
 

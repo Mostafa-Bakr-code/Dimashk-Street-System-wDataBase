@@ -462,6 +462,11 @@ namespace DimashStreet_3Tier_
         {
             return clsOrderItemsBusiness.GetTotalByCategoryName(categoryName);
         }
+
+        public static decimal GetTotalByCategoryNameAndDateRange(string categoryName, DateTime startDate, DateTime endDate)
+        {
+            return clsOrderItemsBusiness.GetTotalByCategoryNameAndDateRange(categoryName, startDate, endDate);
+        }
         static void Main(string[] args)
         {
 
@@ -529,7 +534,9 @@ namespace DimashStreet_3Tier_
 
             //GetTotalByDateRange(new DateTime(2024, 8, 21), new DateTime(2024, 8, 21));
 
-            Console.WriteLine(GetTotalByCategoryName("other"));
+            //Console.WriteLine(GetTotalByCategoryName("other"));
+
+            Console.WriteLine(GetTotalByCategoryNameAndDateRange("Fish", new DateTime(2024, 8, 22), new DateTime(2024, 8, 22)));
 
             Console.ReadKey();
         }
