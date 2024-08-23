@@ -182,7 +182,7 @@ namespace WinForms_PresentationLayer
                 {
                     deleteAllOrderItems();
                     deleteOrder();
-                    MessageBox.Show("Order and its items have been deleted successfully.");
+                    //MessageBox.Show("Order and its items have been deleted successfully.");
                 }
                 else
                 {

@@ -30,6 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbOrderID = new System.Windows.Forms.Label();
+            this.lbOrderDate = new System.Windows.Forms.Label();
+            this.lbOrderTotal = new System.Windows.Forms.Label();
+            this.btnFreeOrder = new System.Windows.Forms.Button();
             this.txtComment = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
@@ -37,17 +46,10 @@
             this.dgvOrderItems = new System.Windows.Forms.DataGridView();
             this.contextMenuStripOrderItems = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemDeleteOrderItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbOrderTotal = new System.Windows.Forms.Label();
-            this.lbOrderDate = new System.Windows.Forms.Label();
-            this.lbOrderID = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.lbMode = new System.Windows.Forms.Label();
             this.dgvListItems = new System.Windows.Forms.DataGridView();
-            this.btnFreeOrder = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).BeginInit();
             this.contextMenuStripOrderItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
@@ -55,50 +57,151 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.btnFreeOrder);
             this.panel1.Controls.Add(this.txtComment);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnReset);
             this.panel1.Controls.Add(this.btnOrder);
             this.panel1.Controls.Add(this.dgvOrderItems);
-            this.panel1.Controls.Add(this.lbOrderTotal);
-            this.panel1.Controls.Add(this.lbOrderDate);
-            this.panel1.Controls.Add(this.lbOrderID);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.label4);
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(734, 72);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1001, 583);
             this.panel1.TabIndex = 11;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Turquoise;
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.lbOrderID);
+            this.groupBox1.Controls.Add(this.lbOrderDate);
+            this.groupBox1.Controls.Add(this.lbOrderTotal);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(1, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(464, 163);
+            this.groupBox1.TabIndex = 51;
+            this.groupBox1.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(15, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 20);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Order ID ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(15, 45);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 20);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Order Date";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(15, 80);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(99, 20);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Order Total";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(15, 140);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(104, 20);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Order Items";
+            // 
+            // lbOrderID
+            // 
+            this.lbOrderID.AutoSize = true;
+            this.lbOrderID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbOrderID.Location = new System.Drawing.Point(151, 11);
+            this.lbOrderID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbOrderID.Name = "lbOrderID";
+            this.lbOrderID.Size = new System.Drawing.Size(36, 20);
+            this.lbOrderID.TabIndex = 9;
+            this.lbOrderID.Text = "???";
+            // 
+            // lbOrderDate
+            // 
+            this.lbOrderDate.AutoSize = true;
+            this.lbOrderDate.Location = new System.Drawing.Point(151, 45);
+            this.lbOrderDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbOrderDate.Name = "lbOrderDate";
+            this.lbOrderDate.Size = new System.Drawing.Size(36, 20);
+            this.lbOrderDate.TabIndex = 10;
+            this.lbOrderDate.Text = "???";
+            // 
+            // lbOrderTotal
+            // 
+            this.lbOrderTotal.AutoSize = true;
+            this.lbOrderTotal.Location = new System.Drawing.Point(151, 80);
+            this.lbOrderTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbOrderTotal.Name = "lbOrderTotal";
+            this.lbOrderTotal.Size = new System.Drawing.Size(36, 20);
+            this.lbOrderTotal.TabIndex = 11;
+            this.lbOrderTotal.Text = "???";
+            // 
+            // btnFreeOrder
+            // 
+            this.btnFreeOrder.BackColor = System.Drawing.Color.Red;
+            this.btnFreeOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFreeOrder.ForeColor = System.Drawing.Color.Yellow;
+            this.btnFreeOrder.Location = new System.Drawing.Point(850, 21);
+            this.btnFreeOrder.Name = "btnFreeOrder";
+            this.btnFreeOrder.Size = new System.Drawing.Size(126, 40);
+            this.btnFreeOrder.TabIndex = 17;
+            this.btnFreeOrder.Text = "Free Order";
+            this.btnFreeOrder.UseVisualStyleBackColor = false;
+            this.btnFreeOrder.Click += new System.EventHandler(this.btnFreeOrder_Click);
+            // 
             // txtComment
             // 
             this.txtComment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtComment.Location = new System.Drawing.Point(116, 429);
+            this.txtComment.Location = new System.Drawing.Point(3, 447);
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(568, 136);
+            this.txtComment.Size = new System.Drawing.Size(567, 123);
             this.txtComment.TabIndex = 16;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 429);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(16, 424);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 20);
+            this.label1.Size = new System.Drawing.Size(85, 20);
             this.label1.TabIndex = 15;
             this.label1.Text = "Comment";
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(667, 31);
+            this.btnReset.Location = new System.Drawing.Point(493, 21);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(130, 55);
+            this.btnReset.Size = new System.Drawing.Size(107, 33);
             this.btnReset.TabIndex = 14;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -106,9 +209,10 @@
             // 
             // btnOrder
             // 
-            this.btnOrder.Location = new System.Drawing.Point(522, 31);
+            this.btnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOrder.Location = new System.Drawing.Point(818, 447);
             this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Size = new System.Drawing.Size(130, 55);
+            this.btnOrder.Size = new System.Drawing.Size(178, 77);
             this.btnOrder.TabIndex = 13;
             this.btnOrder.Text = "Order";
             this.btnOrder.UseVisualStyleBackColor = true;
@@ -120,7 +224,7 @@
             this.dgvOrderItems.AllowUserToDeleteRows = false;
             this.dgvOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrderItems.ContextMenuStrip = this.contextMenuStripOrderItems;
-            this.dgvOrderItems.Location = new System.Drawing.Point(7, 167);
+            this.dgvOrderItems.Location = new System.Drawing.Point(1, 172);
             this.dgvOrderItems.Name = "dgvOrderItems";
             this.dgvOrderItems.RowHeadersWidth = 62;
             this.dgvOrderItems.RowTemplate.Height = 28;
@@ -142,83 +246,13 @@
             this.toolStripMenuItemDeleteOrderItem.Text = "Delete";
             this.toolStripMenuItemDeleteOrderItem.Click += new System.EventHandler(this.toolStripMenuItemDeleteOrderItem_Click);
             // 
-            // lbOrderTotal
-            // 
-            this.lbOrderTotal.AutoSize = true;
-            this.lbOrderTotal.Location = new System.Drawing.Point(163, 92);
-            this.lbOrderTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbOrderTotal.Name = "lbOrderTotal";
-            this.lbOrderTotal.Size = new System.Drawing.Size(36, 20);
-            this.lbOrderTotal.TabIndex = 11;
-            this.lbOrderTotal.Text = "???";
-            // 
-            // lbOrderDate
-            // 
-            this.lbOrderDate.AutoSize = true;
-            this.lbOrderDate.Location = new System.Drawing.Point(163, 51);
-            this.lbOrderDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbOrderDate.Name = "lbOrderDate";
-            this.lbOrderDate.Size = new System.Drawing.Size(36, 20);
-            this.lbOrderDate.TabIndex = 10;
-            this.lbOrderDate.Text = "???";
-            // 
-            // lbOrderID
-            // 
-            this.lbOrderID.AutoSize = true;
-            this.lbOrderID.Location = new System.Drawing.Point(163, 15);
-            this.lbOrderID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbOrderID.Name = "lbOrderID";
-            this.lbOrderID.Size = new System.Drawing.Size(36, 20);
-            this.lbOrderID.TabIndex = 9;
-            this.lbOrderID.Text = "???";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(22, 15);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 20);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Order ID ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(22, 51);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 20);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Order Date";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(22, 130);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 20);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Order Items";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(22, 92);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 20);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Order Total";
-            // 
             // lbMode
             // 
-            this.lbMode.AutoSize = true;
-            this.lbMode.Location = new System.Drawing.Point(262, 40);
+            this.lbMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMode.Location = new System.Drawing.Point(244, 19);
             this.lbMode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMode.Name = "lbMode";
-            this.lbMode.Size = new System.Drawing.Size(139, 20);
+            this.lbMode.Size = new System.Drawing.Size(132, 34);
             this.lbMode.TabIndex = 12;
             this.lbMode.Text = "Add/Update Order";
             // 
@@ -232,19 +266,9 @@
             this.dgvListItems.ReadOnly = true;
             this.dgvListItems.RowHeadersWidth = 62;
             this.dgvListItems.RowTemplate.Height = 28;
-            this.dgvListItems.Size = new System.Drawing.Size(709, 565);
+            this.dgvListItems.Size = new System.Drawing.Size(709, 583);
             this.dgvListItems.TabIndex = 12;
             this.dgvListItems.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvListItems_CellMouseDoubleClick);
-            // 
-            // btnFreeOrder
-            // 
-            this.btnFreeOrder.Location = new System.Drawing.Point(856, 31);
-            this.btnFreeOrder.Name = "btnFreeOrder";
-            this.btnFreeOrder.Size = new System.Drawing.Size(130, 55);
-            this.btnFreeOrder.TabIndex = 17;
-            this.btnFreeOrder.Text = "Free Order";
-            this.btnFreeOrder.UseVisualStyleBackColor = true;
-            this.btnFreeOrder.Click += new System.EventHandler(this.btnFreeOrder_Click);
             // 
             // FormAddEditOrder
             // 
@@ -262,11 +286,12 @@
             this.Load += new System.EventHandler(this.FormAddEditOrder_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).EndInit();
             this.contextMenuStripOrderItems.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -290,5 +315,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripOrderItems;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteOrderItem;
         private System.Windows.Forms.Button btnFreeOrder;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

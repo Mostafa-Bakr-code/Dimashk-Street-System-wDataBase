@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using BuisnessLayer;
 
@@ -100,6 +101,9 @@ namespace WinForms_PresentationLayer
             dgvListItems.Visible = true;
             dgvListItems.DataSource = clsItemBusiness.GetAllItems();
             panelOrdersTotal.Visible = false;
+
+            btnAddItem.Visible = true;
+            btnAddCategory.Visible = false;
         }
 
         private void btnOrdersMenu_Click(object sender, EventArgs e)
@@ -111,6 +115,9 @@ namespace WinForms_PresentationLayer
             dgvOrders.DataSource = clsOrderBusiness.GetAllOrders();
             panelOrdersTotal.Visible = true;
 
+            btnAddItem.Visible = false;
+            btnAddCategory.Visible = false;
+
         }
 
         private void btnOrderItems_Click(object sender, EventArgs e)
@@ -121,6 +128,9 @@ namespace WinForms_PresentationLayer
             dgvOrderItems.Visible = true;
             dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItems();
             panelOrdersTotal.Visible = false;
+
+            btnAddItem.Visible = false;
+            btnAddCategory.Visible = false;
         }
 
         private void btnCategoriesMenu_Click(object sender, EventArgs e)
@@ -131,6 +141,9 @@ namespace WinForms_PresentationLayer
             dgvCategories.Visible = true;
             dgvCategories.DataSource = clsCategoryBusiness.GetAllCategories();
             panelOrdersTotal.Visible = false;
+
+            btnAddItem.Visible = false;
+            btnAddCategory.Visible = true;
         }
 
         private void btnAddCategory_Click(object sender, EventArgs e)
@@ -138,7 +151,7 @@ namespace WinForms_PresentationLayer
             FormAddEditCategories frm = new FormAddEditCategories(-1);
             frm.ShowDialog();
             _RefreshCategoriesList();
-            //_FillCategoriesInComoboBox();
+   
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
@@ -146,7 +159,8 @@ namespace WinForms_PresentationLayer
             FormAddEditItem frm = new FormAddEditItem(-1);
             frm.ShowDialog();
             _RefreshItemsList();
-            //_FillItemsNameInComoboBox();
+
+      
         }
 
         private void toolStripEditOrder_Click(object sender, EventArgs e)
@@ -421,6 +435,36 @@ namespace WinForms_PresentationLayer
                 MessageBoxIcon.Information);
 
         }
+
+        private void dgvOrders_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+           
+            if (e.ColumnIndex == dgvOrders.Columns["Total"].Index && e.Value != null)
+            {
+                decimal orderTotal;
+                if (decimal.TryParse(e.Value.ToString(), out orderTotal))
+                {
+                    if (orderTotal == 0)
+                    {
+                        // Apply formatting to the entire row
+                        dgvOrders.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Red;
+                        dgvOrders.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.Black;
+
+
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
 
 
 
