@@ -273,13 +273,17 @@ namespace WinForms_PresentationLayer
             if (cbItemCategory.SelectedItem != null)
             {
 
+                DateTime earliestDate = clsOrderBusiness.GetEarliestOrderDate();
+                DateTime latestDate = clsOrderBusiness.GetLatestOrderDate();
+
                 string selectedCategory = cbItemCategory.SelectedItem.ToString();
 
 
                 decimal total = clsOrderItemsBusiness.GetTotalByCategoryName(selectedCategory);
 
 
-                MessageBox.Show($"Total for category '{selectedCategory}': {total}", "Total by Category", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Total for category '{selectedCategory}': {total}\n" + $"Earliest order date: {earliestDate.ToShortDateString()}\n" +
+                            $"Latest order date: {latestDate.ToShortDateString()}", "Total by Category", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -292,6 +296,8 @@ namespace WinForms_PresentationLayer
         {
             if (cbItemName.SelectedItem != null)
             {
+                DateTime earliestDate = clsOrderBusiness.GetEarliestOrderDate();
+                DateTime latestDate = clsOrderBusiness.GetLatestOrderDate();
 
                 string selectedItem = cbItemName.SelectedItem.ToString();
 
@@ -299,7 +305,8 @@ namespace WinForms_PresentationLayer
                 decimal total = clsOrderItemsBusiness.GetTotalByItemName(selectedItem);
 
 
-                MessageBox.Show($"Total for Item '{selectedItem}': {total}", "Total by ItemName", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Total for Item '{selectedItem}': {total}\n" + $"Earliest order date: {earliestDate.ToShortDateString()}\n" +
+                            $"Latest order date: {latestDate.ToShortDateString()}", "Total by ItemName", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
@@ -373,6 +380,46 @@ namespace WinForms_PresentationLayer
             string message = $"Total for ItemName '{selectedItemName}' from {startDate:MM/dd/yyyy} to {endDate:MM/dd/yyyy}: {total}";
 
             MessageBox.Show(message, "Total by Item Name and Date Range", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnFreeOrdersTotal_Click(object sender, EventArgs e)
+        {
+            decimal total = clsOrderBusiness.GetTotalOfFreeOrders();
+
+
+            DateTime earliestDate = clsOrderBusiness.GetEarliestOrderDate();
+            DateTime latestDate = clsOrderBusiness.GetLatestOrderDate();
+
+
+            MessageBox.Show($"Total for all Free orders: {total}\n" +
+                            $"Earliest order date: {earliestDate.ToShortDateString()}\n" +
+                            $"Latest order date: {latestDate.ToShortDateString()}",
+                            "Total Orders",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+        }
+
+        private void btnFreeOrdersTotalRange_Click(object sender, EventArgs e)
+        {
+
+            DateTime startDate = dateTimePickerStart.Value.Date;
+            DateTime endDate = dateTimePickerEnd.Value.Date;
+
+            decimal total = clsOrderBusiness.GetTotalOfFreeOrdersByDateRange(startDate,endDate);
+
+            if (endDate < startDate)
+            {
+                MessageBox.Show("End date cannot be before start date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            MessageBox.Show($"Total for all Free orders: {total}\n" +
+                $"Start date: {startDate.ToShortDateString()}\n" +
+                $"End date: {endDate.ToShortDateString()}",
+                "Total Free Orders",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
         }
 
 

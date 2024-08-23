@@ -374,10 +374,13 @@ namespace DataAccessLayer
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"SELECT SUM(OrderItems.TotalItemsPrice)
-                         FROM OrderItems
-                         INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
-                         WHERE Items.CategoryID = @CategoryID";
+            string query = @"
+                SELECT SUM(OrderItems.TotalItemsPrice)
+                FROM OrderItems
+                INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+                INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+                WHERE Items.CategoryID = @CategoryID
+                AND Orders.Total > 0";  // Exclude free orders
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@CategoryID", categoryID);
@@ -413,13 +416,14 @@ namespace DataAccessLayer
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
                 string query = @"
-            SELECT SUM(OrderItems.TotalItemsPrice)
-            FROM OrderItems
-            INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
-            INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
-            INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
-            WHERE Categories.CategoryName = @CategoryName
-            AND CAST(Orders.Date AS DATE) BETWEEN @StartDate AND @EndDate";
+                  SELECT SUM(OrderItems.TotalItemsPrice)
+                  FROM OrderItems
+                  INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+                  INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+                  INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+                  WHERE Categories.CategoryName = @CategoryName
+                  AND CAST(Orders.Date AS DATE) BETWEEN @StartDate AND @EndDate
+                  AND Orders.Total > 0";  // Exclude free orders
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@CategoryName", categoryName); // Corrected parameter name
@@ -454,7 +458,9 @@ namespace DataAccessLayer
             string query = @"SELECT SUM(OrderItems.TotalItemsPrice)
                      FROM OrderItems
                      INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
-                     WHERE Items.ItemName = @ItemName";
+                     INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+                     WHERE Items.ItemName = @ItemName
+                     AND Orders.Total > 0";  // Exclude free orders
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@ItemName", itemName);
@@ -488,12 +494,13 @@ namespace DataAccessLayer
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
                 string query = @"
-                     SELECT SUM(OrderItems.TotalItemsPrice)
-                     FROM OrderItems
-                     INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
-                     INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
-                     WHERE Items.ItemName = @ItemName
-                     AND CAST(Orders.Date AS DATE) BETWEEN @StartDate AND @EndDate";
+                 SELECT SUM(OrderItems.TotalItemsPrice)
+                FROM OrderItems
+                INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+                INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+                WHERE Items.ItemName = @ItemName
+                AND CAST(Orders.Date AS DATE) BETWEEN @StartDate AND @EndDate
+                AND Orders.Total > 0";  // Exclude free orders
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@ItemName", itemName);

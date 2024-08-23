@@ -411,6 +411,75 @@ namespace DataAccessLayer
             return latestDate;
         }
 
+        public static decimal GetTotalOfFreeOrders()
+        {
+            decimal totalFreeAmount = 0;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+            SELECT SUM(OrderItems.TotalItemsPrice)
+            FROM OrderItems
+            INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+            WHERE Orders.Total = 0";
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        totalFreeAmount = Convert.ToDecimal(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return totalFreeAmount;
+        }
+
+
+        public static decimal GetTotalOfFreeOrdersByDateRange(DateTime startDate, DateTime endDate)
+        {
+            decimal totalFreeAmount = 0;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+            SELECT SUM(OrderItems.TotalItemsPrice)
+            FROM OrderItems
+            INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+            WHERE Orders.Total = 0
+            AND CAST(Orders.Date AS DATE) BETWEEN @StartDate AND @EndDate";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@StartDate", startDate.Date); // Ensure the time part is ignored
+                command.Parameters.AddWithValue("@EndDate", endDate.Date);     // Ensure the time part is ignored
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        totalFreeAmount = Convert.ToDecimal(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return totalFreeAmount;
+        }
 
 
     }

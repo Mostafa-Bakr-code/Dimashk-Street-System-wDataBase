@@ -324,7 +324,57 @@ namespace WinForms_PresentationLayer
 
         }
 
-      
+        private void btnFreeOrder_Click(object sender, EventArgs e)
+        {
+            if (_Order == null)
+            {
+                MessageBox.Show("Order data is not available.");
+                return;
+            }
 
+            if (dgvOrderItems.Rows.Count == 0)
+            {
+                MessageBox.Show("You must add at least one item to the order.");
+                return;
+            }
+
+            _Order.Total = 0;
+
+            bool success = false;
+
+            if (_Mode == enMode.AddNew)
+            {
+                // Place a new order
+                success = _Order.Save();
+
+                if (success)
+                {
+                    MessageBox.Show("Order placed successfully!");
+                    _orderPlaced = true;
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to place the order. Please try again.");
+                }
+            }
+            else if (_Mode == enMode.Update)
+            {
+                // Update the existing order
+                success = _Order.Save();
+
+                if (success)
+                {
+                    MessageBox.Show("Order updated successfully!");
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to update the order. Please try again.");
+                }
+            }
+        }
     }
 }

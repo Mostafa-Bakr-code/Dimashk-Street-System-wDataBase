@@ -46,6 +46,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lbMode = new System.Windows.Forms.Label();
             this.dgvListItems = new System.Windows.Forms.DataGridView();
+            this.btnFreeOrder = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).BeginInit();
             this.contextMenuStripOrderItems.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnFreeOrder);
             this.panel1.Controls.Add(this.txtComment);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnReset);
@@ -124,7 +126,6 @@
             this.dgvOrderItems.RowTemplate.Height = 28;
             this.dgvOrderItems.Size = new System.Drawing.Size(995, 229);
             this.dgvOrderItems.TabIndex = 12;
-
             // 
             // contextMenuStripOrderItems
             // 
@@ -235,6 +236,16 @@
             this.dgvListItems.TabIndex = 12;
             this.dgvListItems.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvListItems_CellMouseDoubleClick);
             // 
+            // btnFreeOrder
+            // 
+            this.btnFreeOrder.Location = new System.Drawing.Point(856, 31);
+            this.btnFreeOrder.Name = "btnFreeOrder";
+            this.btnFreeOrder.Size = new System.Drawing.Size(130, 55);
+            this.btnFreeOrder.TabIndex = 17;
+            this.btnFreeOrder.Text = "Free Order";
+            this.btnFreeOrder.UseVisualStyleBackColor = true;
+            this.btnFreeOrder.Click += new System.EventHandler(this.btnFreeOrder_Click);
+            // 
             // FormAddEditOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -278,5 +289,6 @@
         private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripOrderItems;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDeleteOrderItem;
+        private System.Windows.Forms.Button btnFreeOrder;
     }
 }

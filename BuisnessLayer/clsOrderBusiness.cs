@@ -152,6 +152,16 @@ namespace BuisnessLayer
             return clsOrdersData.GetLatestOrderDate();
         }
 
+        public static decimal GetTotalOfFreeOrders()
+        {
+            return clsOrdersData.GetTotalOfFreeOrders();
+        }
+
+        public static decimal  GetTotalOfFreeOrdersByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return clsOrdersData.GetTotalOfFreeOrdersByDateRange(startDate,endDate);
+        }
+
 
     }
 }

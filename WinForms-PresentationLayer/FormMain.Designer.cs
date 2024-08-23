@@ -61,6 +61,7 @@
             this.btnTotalRange = new System.Windows.Forms.Button();
             this.btnAllTimeTotal = new System.Windows.Forms.Button();
             this.panelOrdersTotal = new System.Windows.Forms.Panel();
+            this.btnTotalbyItemNameAndDateRange = new System.Windows.Forms.Button();
             this.btnTotalbyCategoryAndDateRange = new System.Windows.Forms.Button();
             this.btnTotalbyItemName = new System.Windows.Forms.Button();
             this.cbItemName = new System.Windows.Forms.ComboBox();
@@ -68,7 +69,8 @@
             this.btnTotalbyCategory = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.cbItemCategory = new System.Windows.Forms.ComboBox();
-            this.btnTotalbyItemNameAndDateRange = new System.Windows.Forms.Button();
+            this.btnFreeOrdersTotal = new System.Windows.Forms.Button();
+            this.btnFreeOrdersTotalRange = new System.Windows.Forms.Button();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -386,6 +388,8 @@
             // 
             // panelOrdersTotal
             // 
+            this.panelOrdersTotal.Controls.Add(this.btnFreeOrdersTotalRange);
+            this.panelOrdersTotal.Controls.Add(this.btnFreeOrdersTotal);
             this.panelOrdersTotal.Controls.Add(this.btnTotalbyItemNameAndDateRange);
             this.panelOrdersTotal.Controls.Add(this.btnTotalbyCategoryAndDateRange);
             this.panelOrdersTotal.Controls.Add(this.btnTotalbyItemName);
@@ -405,6 +409,16 @@
             this.panelOrdersTotal.Size = new System.Drawing.Size(853, 626);
             this.panelOrdersTotal.TabIndex = 32;
             this.panelOrdersTotal.Visible = false;
+            // 
+            // btnTotalbyItemNameAndDateRange
+            // 
+            this.btnTotalbyItemNameAndDateRange.Location = new System.Drawing.Point(509, 420);
+            this.btnTotalbyItemNameAndDateRange.Name = "btnTotalbyItemNameAndDateRange";
+            this.btnTotalbyItemNameAndDateRange.Size = new System.Drawing.Size(183, 63);
+            this.btnTotalbyItemNameAndDateRange.TabIndex = 39;
+            this.btnTotalbyItemNameAndDateRange.Text = "All Time Total By Item Name and Date Range";
+            this.btnTotalbyItemNameAndDateRange.UseVisualStyleBackColor = true;
+            this.btnTotalbyItemNameAndDateRange.Click += new System.EventHandler(this.btnTotalbyItemNameAndDateRange_Click);
             // 
             // btnTotalbyCategoryAndDateRange
             // 
@@ -470,15 +484,25 @@
             this.cbItemCategory.Size = new System.Drawing.Size(210, 28);
             this.cbItemCategory.TabIndex = 32;
             // 
-            // btnTotalbyItemNameAndDateRange
+            // btnFreeOrdersTotal
             // 
-            this.btnTotalbyItemNameAndDateRange.Location = new System.Drawing.Point(509, 420);
-            this.btnTotalbyItemNameAndDateRange.Name = "btnTotalbyItemNameAndDateRange";
-            this.btnTotalbyItemNameAndDateRange.Size = new System.Drawing.Size(183, 63);
-            this.btnTotalbyItemNameAndDateRange.TabIndex = 39;
-            this.btnTotalbyItemNameAndDateRange.Text = "All Time Total By Item Name and Date Range";
-            this.btnTotalbyItemNameAndDateRange.UseVisualStyleBackColor = true;
-            this.btnTotalbyItemNameAndDateRange.Click += new System.EventHandler(this.btnTotalbyItemNameAndDateRange_Click);
+            this.btnFreeOrdersTotal.Location = new System.Drawing.Point(196, 543);
+            this.btnFreeOrdersTotal.Name = "btnFreeOrdersTotal";
+            this.btnFreeOrdersTotal.Size = new System.Drawing.Size(159, 70);
+            this.btnFreeOrdersTotal.TabIndex = 40;
+            this.btnFreeOrdersTotal.Text = "Free Orders All Time Total";
+            this.btnFreeOrdersTotal.UseVisualStyleBackColor = true;
+            this.btnFreeOrdersTotal.Click += new System.EventHandler(this.btnFreeOrdersTotal_Click);
+            // 
+            // btnFreeOrdersTotalRange
+            // 
+            this.btnFreeOrdersTotalRange.Location = new System.Drawing.Point(375, 543);
+            this.btnFreeOrdersTotalRange.Name = "btnFreeOrdersTotalRange";
+            this.btnFreeOrdersTotalRange.Size = new System.Drawing.Size(159, 70);
+            this.btnFreeOrdersTotalRange.TabIndex = 41;
+            this.btnFreeOrdersTotalRange.Text = "Free Orders Total By Date Range";
+            this.btnFreeOrdersTotalRange.UseVisualStyleBackColor = true;
+            this.btnFreeOrdersTotalRange.Click += new System.EventHandler(this.btnFreeOrdersTotalRange_Click);
             // 
             // FormMain
             // 
@@ -557,6 +581,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnTotalbyCategoryAndDateRange;
         private System.Windows.Forms.Button btnTotalbyItemNameAndDateRange;
+        private System.Windows.Forms.Button btnFreeOrdersTotalRange;
+        private System.Windows.Forms.Button btnFreeOrdersTotal;
     }
 }
 
