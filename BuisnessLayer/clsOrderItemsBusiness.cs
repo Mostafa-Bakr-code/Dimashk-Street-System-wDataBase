@@ -174,5 +174,17 @@ namespace BuisnessLayer
             return clsOrderItemsData.GetTotalByItemNameAndDateRange(itemName,startDate,endDate);
         }
 
+        public static int GetItemCountByNameAndDateRange(string itemName, DateTime startDate, DateTime endDate)
+        {
+            return clsOrderItemsData.GetCountOfItemsByNameAndDateRange(itemName, startDate, endDate);
+        }
+
+        public static int GetItemCountByName(string itemName)
+        {
+            return clsOrderItemsData.GetCountOfItemsByName(itemName);
+        }
+
+
+
     }
 }

@@ -132,5 +132,18 @@ namespace BuisnessLayer
 
         }
 
+        public static int GetCategoryCount(string categoryName)
+        {
+           return clsCategoryDataAccess.GetCountOfOrdersByCategory(categoryName);
+        }
+
+
+        public static int GetCountOfOrdersByCategoryAndDateRange(string categoryName, DateTime startDate, DateTime endDate)
+        {
+
+            return clsCategoryDataAccess.GetCountOfOrdersByCategoryAndDateRange(categoryName, startDate, endDate);
+        }
+
+
     }
 }

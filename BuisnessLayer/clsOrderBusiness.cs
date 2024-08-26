@@ -162,6 +162,26 @@ namespace BuisnessLayer
             return clsOrdersData.GetTotalOfFreeOrdersByDateRange(startDate,endDate);
         }
 
+        public static int GetTotalNumberOfOrders()
+        {
+            return clsOrdersData.GetTotalNumberOfOrders();
+        }
+
+        public static int GetTotalNumberOfOrdersByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return clsOrdersData.GetTotalNumberOfOrdersByDateRange(startDate, endDate);
+        }
+
+        public static int GetCountOfFreeOrders()
+        {
+            return clsOrdersData.GetCountOfFreeOrders();
+        }
+
+        public static int GetCountOfFreeOrdersByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return clsOrdersData.GetCountOfFreeOrdersByDateRange(startDate, endDate);
+        }
+
 
     }
 }

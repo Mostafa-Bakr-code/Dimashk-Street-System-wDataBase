@@ -243,7 +243,6 @@
             this.toolStripDeleteOrder.Name = "toolStripDeleteOrder";
             this.toolStripDeleteOrder.Size = new System.Drawing.Size(221, 32);
             this.toolStripDeleteOrder.Text = "Delete";
-            this.toolStripDeleteOrder.Click += new System.EventHandler(this.toolStripDeleteOrder_Click);
             // 
             // toolStripShowOrderItems
             // 
@@ -331,14 +330,12 @@
             this.toolStripEditOrderItems.Name = "toolStripEditOrderItems";
             this.toolStripEditOrderItems.Size = new System.Drawing.Size(134, 32);
             this.toolStripEditOrderItems.Text = "Edit";
-            this.toolStripEditOrderItems.Click += new System.EventHandler(this.toolStripEditOrderItems_Click);
             // 
             // toolStripDeleteOrderItem
             // 
             this.toolStripDeleteOrderItem.Name = "toolStripDeleteOrderItem";
             this.toolStripDeleteOrderItem.Size = new System.Drawing.Size(134, 32);
             this.toolStripDeleteOrderItem.Text = "Delete";
-            this.toolStripDeleteOrderItem.Click += new System.EventHandler(this.toolStripDeleteOrderItem_Click);
             // 
             // btnAddCategory
             // 
@@ -401,7 +398,7 @@
             // 
             // btnTotalRange
             // 
-            this.btnTotalRange.Location = new System.Drawing.Point(365, 22);
+            this.btnTotalRange.Location = new System.Drawing.Point(364, 25);
             this.btnTotalRange.Name = "btnTotalRange";
             this.btnTotalRange.Size = new System.Drawing.Size(80, 31);
             this.btnTotalRange.TabIndex = 30;
@@ -411,7 +408,7 @@
             // 
             // btnAllTimeTotal
             // 
-            this.btnAllTimeTotal.Location = new System.Drawing.Point(366, 25);
+            this.btnAllTimeTotal.Location = new System.Drawing.Point(364, 76);
             this.btnAllTimeTotal.Name = "btnAllTimeTotal";
             this.btnAllTimeTotal.Size = new System.Drawing.Size(80, 31);
             this.btnAllTimeTotal.TabIndex = 31;
@@ -438,22 +435,20 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.Turquoise;
-            this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.btnFreeOrdersTotalRange);
             this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.btnAllTimeTotal);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.btnFreeOrdersTotal);
-            this.groupBox3.Location = new System.Drawing.Point(15, 592);
+            this.groupBox3.Location = new System.Drawing.Point(15, 668);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(489, 168);
+            this.groupBox3.Size = new System.Drawing.Size(489, 96);
             this.groupBox3.TabIndex = 50;
             this.groupBox3.TabStop = false;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 22);
+            this.label9.Location = new System.Drawing.Point(4, 76);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(103, 20);
             this.label9.TabIndex = 46;
@@ -461,7 +456,7 @@
             // 
             // btnFreeOrdersTotalRange
             // 
-            this.btnFreeOrdersTotalRange.Location = new System.Drawing.Point(366, 126);
+            this.btnFreeOrdersTotalRange.Location = new System.Drawing.Point(365, 62);
             this.btnFreeOrdersTotalRange.Name = "btnFreeOrdersTotalRange";
             this.btnFreeOrdersTotalRange.Size = new System.Drawing.Size(80, 31);
             this.btnFreeOrdersTotalRange.TabIndex = 41;
@@ -472,7 +467,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 126);
+            this.label11.Location = new System.Drawing.Point(8, 62);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(244, 20);
             this.label11.TabIndex = 48;
@@ -481,7 +476,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 76);
+            this.label10.Location = new System.Drawing.Point(8, 22);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(192, 20);
             this.label10.TabIndex = 47;
@@ -489,7 +484,7 @@
             // 
             // btnFreeOrdersTotal
             // 
-            this.btnFreeOrdersTotal.Location = new System.Drawing.Point(366, 76);
+            this.btnFreeOrdersTotal.Location = new System.Drawing.Point(365, 17);
             this.btnFreeOrdersTotal.Name = "btnFreeOrdersTotal";
             this.btnFreeOrdersTotal.Size = new System.Drawing.Size(80, 31);
             this.btnFreeOrdersTotal.TabIndex = 40;
@@ -501,17 +496,19 @@
             // 
             this.groupBox4.BackColor = System.Drawing.Color.Turquoise;
             this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.btnAllTimeTotal);
+            this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.btnTotalRange);
             this.groupBox4.Location = new System.Drawing.Point(16, 101);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(489, 63);
+            this.groupBox4.Size = new System.Drawing.Size(489, 128);
             this.groupBox4.TabIndex = 51;
             this.groupBox4.TabStop = false;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(7, 22);
+            this.label12.Location = new System.Drawing.Point(4, 22);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(155, 20);
             this.label12.TabIndex = 49;
@@ -526,7 +523,7 @@
             this.groupBox2.Controls.Add(this.btnTotalbyItemNameAndDateRange);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.btnTotalbyItemName);
-            this.groupBox2.Location = new System.Drawing.Point(16, 386);
+            this.groupBox2.Location = new System.Drawing.Point(15, 454);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(488, 191);
             this.groupBox2.TabIndex = 51;
@@ -597,7 +594,7 @@
             this.groupBox1.Controls.Add(this.btnTotalbyCategory);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.btnTotalbyCategoryAndDateRange);
-            this.groupBox1.Location = new System.Drawing.Point(15, 191);
+            this.groupBox1.Location = new System.Drawing.Point(14, 249);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(489, 179);
             this.groupBox1.TabIndex = 50;

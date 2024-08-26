@@ -349,6 +349,68 @@ namespace DataAccessLayer
             return total;
         }
 
+        public static int GetTotalNumberOfOrders()
+        {
+            int orderCount = 0;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = "SELECT COUNT(*) FROM Orders";
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        orderCount = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return orderCount;
+        }
+
+        public static int GetTotalNumberOfOrdersByDateRange(DateTime startDate, DateTime endDate)
+        {
+            int orderCount = 0;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"SELECT COUNT(*) 
+                         FROM Orders 
+                         WHERE CAST([Date] AS DATE) BETWEEN @startDate AND @endDate";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@startDate", startDate.Date); // Ensure the time part is ignored
+                command.Parameters.AddWithValue("@endDate", endDate.Date);     // Ensure the time part is ignored
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        orderCount = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return orderCount;
+        }
+
         public static DateTime GetEarliestOrderDate()
         {
             DateTime earliestDate = DateTime.MaxValue;
@@ -444,7 +506,6 @@ namespace DataAccessLayer
             return totalFreeAmount;
         }
 
-
         public static decimal GetTotalOfFreeOrdersByDateRange(DateTime startDate, DateTime endDate)
         {
             decimal totalFreeAmount = 0;
@@ -480,6 +541,76 @@ namespace DataAccessLayer
 
             return totalFreeAmount;
         }
+
+        public static int GetCountOfFreeOrders()
+        {
+            int countFreeOrders = 0;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+                    SELECT COUNT(*)
+                     FROM Orders
+                        WHERE Total = 0";
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        countFreeOrders = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return countFreeOrders;
+        }
+
+        public static int GetCountOfFreeOrdersByDateRange(DateTime startDate, DateTime endDate)
+        {
+            int countFreeOrders = 0;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+                            SELECT COUNT(*)
+                             FROM Orders
+                             WHERE Total = 0
+                             AND CAST(Date AS DATE) BETWEEN @StartDate AND @EndDate";
+    
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@StartDate", startDate.Date);
+                command.Parameters.AddWithValue("@EndDate", endDate.Date);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        countFreeOrders = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return countFreeOrders;
+        }
+
+
+
 
 
     }

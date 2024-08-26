@@ -526,7 +526,81 @@ namespace DataAccessLayer
             return total;
         }
 
+        public static int GetCountOfItemsByName(string itemName)
+        {
+            int itemCount = 0;
 
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+            SELECT COUNT(*)
+            FROM OrderItems
+            INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+            INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+            WHERE Items.ItemName = @ItemName
+            AND Orders.Total > 0";  // Exclude free orders
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ItemName", itemName);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        itemCount = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return itemCount;
+        }
+
+        public static int GetCountOfItemsByNameAndDateRange(string itemName, DateTime startDate, DateTime endDate)
+        {
+            int itemCount = 0;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+            SELECT COUNT(*)
+            FROM OrderItems
+            INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+            INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+            WHERE Items.ItemName = @ItemName
+            AND Orders.Total > 0  -- Exclude free orders
+            AND CAST(Orders.Date AS DATE) >= @StartDate  -- Filter by date range
+            AND CAST(Orders.Date AS DATE) <= @EndDate";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ItemName", itemName);
+                command.Parameters.AddWithValue("@StartDate", startDate.Date);  // Use only the date part
+                command.Parameters.AddWithValue("@EndDate", endDate.Date);      // Use only the date part
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        itemCount = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return itemCount;
+        }
 
 
     }
