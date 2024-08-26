@@ -7,48 +7,33 @@ namespace DataAccessLayer
     public class clsItemDataAccess
     {
 
-        public static bool GetItemInfoByID(int ID, ref string Name, ref int CategoryID, ref decimal Price)
-        
+        public static bool GetItemInfoByID(int ID, ref string Name, ref int CategoryID, ref decimal Price, ref decimal InitialPrice, ref decimal TaxValue, ref decimal TaxRate)
         {
             bool isFound = false;
-
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = "SELECT * FROM Items WHERE ItemID = @ID";
-
+            string query = "SELECT ItemName, CategoryID, Price, InitialPrice, TaxValue, TaxRate FROM Items WHERE ItemID = @ID";
             SqlCommand command = new SqlCommand(query, connection);
-
             command.Parameters.AddWithValue("@ID", ID);
 
             try
             {
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
-
                 if (reader.Read())
                 {
-                    // The record was found
                     isFound = true;
-
                     Name = (string)reader["ItemName"];
                     CategoryID = (int)reader["CategoryID"];
                     Price = (decimal)reader["Price"];
-                  
-             
+                    InitialPrice = (decimal)reader["InitialPrice"];
+                    TaxValue = (decimal)reader["TaxValue"];
+                    TaxRate = (decimal)reader["TaxRate"];
                 }
-                else
-                {
-                    // The record was not found
-                    isFound = false;
-                }
-
                 reader.Close();
-
-
             }
             catch (Exception ex)
             {
-                //Console.WriteLine("Error: " + ex.Message);
+                // Handle exception
                 isFound = false;
             }
             finally
@@ -60,64 +45,68 @@ namespace DataAccessLayer
         }
 
         public static int AddNewItem(string Name, int CategoryID, decimal Price)
-
         {
-            //this function will return the new ItemID if succeeded and -1 if not.
             int ItemID = -1;
+            decimal TaxRate = 14.00m; // Tax rate is 14%
+            decimal TaxValue = Price * (TaxRate / 100);
+            decimal InitialPrice = Price - TaxValue;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"INSERT INTO Items (ItemName, CategoryID, Price)
-                             VALUES (@Name, @CategoryID, @Price);
-                             SELECT SCOPE_IDENTITY();";
+            string query = @"
+        INSERT INTO Items (ItemName, CategoryID, Price, InitialPrice, TaxRate, TaxValue)
+        VALUES (@Name, @CategoryID, @Price, @InitialPrice, @TaxRate, @TaxValue);
+        SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             command.Parameters.AddWithValue("@Name", Name);
             command.Parameters.AddWithValue("@CategoryID", CategoryID);
             command.Parameters.AddWithValue("@Price", Price);
+            command.Parameters.AddWithValue("@InitialPrice", InitialPrice);
+            command.Parameters.AddWithValue("@TaxRate", TaxRate);
+            command.Parameters.AddWithValue("@TaxValue", TaxValue);
 
             try
             {
                 connection.Open();
-
                 object result = command.ExecuteScalar();
-
 
                 if (result != null && int.TryParse(result.ToString(), out int insertedID))
                 {
                     ItemID = insertedID;
                 }
             }
-
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-
             }
-
             finally
             {
                 connection.Close();
             }
 
-
             return ItemID;
         }
 
         public static bool UpdateItem(int ID, string Name, int CategoryID, decimal Price)
-
         {
-
             int rowsAffected = 0;
+            decimal TaxRate = 14.00m; // Tax rate is 14%
+            decimal TaxValue = Price * (TaxRate / 100);
+            decimal InitialPrice = Price - TaxValue;
+
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"Update Items 
-                            set ItemName = @Name, 
-                                CategoryID = @CategoryID, 
-                                Price = @Price 
-
-                                where ItemID = @ID";
+            string query = @"
+        UPDATE Items 
+        SET ItemName = @Name, 
+            CategoryID = @CategoryID, 
+            Price = @Price,
+            InitialPrice = @InitialPrice,
+            TaxRate = @TaxRate,
+            TaxValue = @TaxValue
+        WHERE ItemID = @ID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -125,20 +114,20 @@ namespace DataAccessLayer
             command.Parameters.AddWithValue("@Name", Name);
             command.Parameters.AddWithValue("@CategoryID", CategoryID);
             command.Parameters.AddWithValue("@Price", Price);
-
+            command.Parameters.AddWithValue("@InitialPrice", InitialPrice);
+            command.Parameters.AddWithValue("@TaxRate", TaxRate);
+            command.Parameters.AddWithValue("@TaxValue", TaxValue);
 
             try
             {
                 connection.Open();
                 rowsAffected = command.ExecuteNonQuery();
-
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
                 return false;
             }
-
             finally
             {
                 connection.Close();
@@ -149,35 +138,38 @@ namespace DataAccessLayer
 
         public static DataTable GetAllItems()
         {
-
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT Items.ItemID ,Items.ItemName, Categories.CategoryName, Items.Price\r\nFROM Categories INNER JOIN\r\n " +
-                "Items ON Categories.CategoryID = Items.CategoryID";
+            string query = @"
+        SELECT 
+            Items.ItemID, 
+            Items.ItemName, 
+            Categories.CategoryName, 
+            Items.Price, 
+            Items.InitialPrice, 
+            Items.TaxValue, 
+            Items.TaxRate
+        FROM Items 
+        INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID";
 
             SqlCommand command = new SqlCommand(query, connection);
 
             try
             {
                 connection.Open();
-
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
-
                 {
                     dt.Load(reader);
                 }
-
                 reader.Close();
-
-
             }
-
             catch (Exception ex)
             {
-                // Console.WriteLine("Error: " + ex.Message);
+                // Consider using a logging framework or mechanism instead of Console.WriteLine in production code
+                Console.WriteLine("Error: " + ex.Message);
             }
             finally
             {
@@ -185,7 +177,6 @@ namespace DataAccessLayer
             }
 
             return dt;
-
         }
 
         public static bool DeleteItem(int ID)
@@ -258,6 +249,11 @@ namespace DataAccessLayer
             return isFound;
         }
 
+        public static decimal CalculateInitialPrice(decimal price)
+        {
+            decimal taxRate = 0.14m; // 14% tax rate
+            return price / (1 + taxRate); // Price before tax
+        }
 
 
 

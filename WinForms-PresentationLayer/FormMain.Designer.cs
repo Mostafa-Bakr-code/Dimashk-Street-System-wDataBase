@@ -66,6 +66,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btnFreeOrdersTotal = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -83,7 +84,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnTotalbyCategoryAndDateRange = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -140,7 +140,7 @@
             this.dgvListItems.Name = "dgvListItems";
             this.dgvListItems.ReadOnly = true;
             this.dgvListItems.RowHeadersWidth = 62;
-            this.dgvListItems.Size = new System.Drawing.Size(590, 779);
+            this.dgvListItems.Size = new System.Drawing.Size(908, 779);
             this.dgvListItems.TabIndex = 0;
             this.dgvListItems.Visible = false;
             // 
@@ -212,7 +212,7 @@
             this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrders.ContextMenuStrip = this.contextMenuOrders;
             this.dgvOrders.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvOrders.Location = new System.Drawing.Point(163, 164);
+            this.dgvOrders.Location = new System.Drawing.Point(161, 219);
             this.dgvOrders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvOrders.Name = "dgvOrders";
             this.dgvOrders.ReadOnly = true;
@@ -264,7 +264,7 @@
             this.dgvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCategories.ContextMenuStrip = this.contextMenuCategories;
             this.dgvCategories.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvCategories.Location = new System.Drawing.Point(163, 164);
+            this.dgvCategories.Location = new System.Drawing.Point(163, 237);
             this.dgvCategories.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvCategories.Name = "dgvCategories";
             this.dgvCategories.ReadOnly = true;
@@ -308,7 +308,7 @@
             this.dgvOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrderItems.ContextMenuStrip = this.contextMenuOrderItems;
             this.dgvOrderItems.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvOrderItems.Location = new System.Drawing.Point(163, 164);
+            this.dgvOrderItems.Location = new System.Drawing.Point(161, 265);
             this.dgvOrderItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvOrderItems.Name = "dgvOrderItems";
             this.dgvOrderItems.ReadOnly = true;
@@ -498,6 +498,18 @@
             this.groupBox4.TabIndex = 51;
             this.groupBox4.TabStop = false;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Red;
+            this.label13.Location = new System.Drawing.Point(5, 108);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(288, 17);
+            this.label13.TabIndex = 50;
+            this.label13.Text = "Total Orders count include free orders";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -670,18 +682,6 @@
             this.groupBox5.Size = new System.Drawing.Size(676, 97);
             this.groupBox5.TabIndex = 33;
             this.groupBox5.TabStop = false;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Red;
-            this.label13.Location = new System.Drawing.Point(5, 108);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(288, 17);
-            this.label13.TabIndex = 50;
-            this.label13.Text = "Total Orders count include free orders";
             // 
             // FormMain
             // 
