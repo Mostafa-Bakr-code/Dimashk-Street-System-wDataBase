@@ -616,6 +616,20 @@ namespace DataAccessLayer
         }
 
 
+        public static decimal GetTotalTaxValueByDateRange(DateTime startDate, DateTime endDate)
+        {
+            decimal total = GetTotalByDateRange(startDate, endDate);
+            decimal taxValue = total * 0.14M; // 14% tax rate
+            return taxValue;
+        }
+
+
+        public static decimal GetTotalTaxValueForAllOrders()
+        {
+            decimal total = GetTotalForAllOrders();
+            decimal taxValue = total * 0.14M; // 14% tax rate
+            return taxValue;
+        }
 
 
 

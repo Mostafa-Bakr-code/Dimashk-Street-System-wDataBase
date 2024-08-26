@@ -454,6 +454,46 @@ namespace WinForms_PresentationLayer
             }
         }
 
+        private void btnTaxValue_Click(object sender, EventArgs e)
+        {
+            decimal total = clsOrderBusiness.GetTotalTaxValueForAllOrders();
+       
+
+            DateTime earliestDate = clsOrderBusiness.GetEarliestOrderDate();
+            DateTime latestDate = clsOrderBusiness.GetLatestOrderDate();
+
+
+            MessageBox.Show($"Tax for all orders: {total}\n" +
+                           
+                            $"Earliest order date: {earliestDate.ToShortDateString()}\n" +
+                            $"Latest order date: {latestDate.ToShortDateString()}",
+                            "Total Tax value",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+        }
+
+        private void btnTaxValueDateRange_Click(object sender, EventArgs e)
+        {
+
+            DateTime startDate = dateTimePickerStart.Value.Date;
+            DateTime endDate = dateTimePickerEnd.Value.Date;
+
+            if (endDate < startDate)
+            {
+                MessageBox.Show("End date cannot be before start date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            decimal total = clsOrderBusiness.GetTotalTaxValueByDateRange(startDate, endDate);
+           
+
+
+            MessageBox.Show($"Tax Value from {startDate.ToShortDateString()} to {endDate.ToShortDateString()}: {total}\n" 
+
+                , "Total Tax Value", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
 
 
 

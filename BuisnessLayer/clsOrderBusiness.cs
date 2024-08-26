@@ -185,5 +185,16 @@ namespace BuisnessLayer
         }
 
 
+        public static decimal GetTotalTaxValueByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return clsOrdersData.GetTotalTaxValueByDateRange(startDate, endDate);
+        }
+
+        public static decimal GetTotalTaxValueForAllOrders()
+        {
+            return clsOrdersData.GetTotalTaxValueForAllOrders();
+        }
+
+
     }
 }
