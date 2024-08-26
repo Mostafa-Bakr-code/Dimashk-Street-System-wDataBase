@@ -61,13 +61,13 @@
             this.btnAllTimeTotal = new System.Windows.Forms.Button();
             this.panelOrdersTotal = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.btnFreeOrdersTotalRange = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.btnFreeOrdersTotal = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cbItemName = new System.Windows.Forms.ComboBox();
@@ -83,6 +83,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnTotalbyCategoryAndDateRange = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -445,15 +446,6 @@
             this.groupBox3.TabIndex = 50;
             this.groupBox3.TabStop = false;
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 76);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(103, 20);
-            this.label9.TabIndex = 46;
-            this.label9.Text = "All Time Total";
-            // 
             // btnFreeOrdersTotalRange
             // 
             this.btnFreeOrdersTotalRange.Location = new System.Drawing.Point(365, 62);
@@ -495,6 +487,7 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.Turquoise;
+            this.groupBox4.Controls.Add(this.label13);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Controls.Add(this.btnAllTimeTotal);
             this.groupBox4.Controls.Add(this.label9);
@@ -513,6 +506,15 @@
             this.label12.Size = new System.Drawing.Size(155, 20);
             this.label12.TabIndex = 49;
             this.label12.Text = "Total by Date Range";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 76);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(103, 20);
+            this.label9.TabIndex = 46;
+            this.label9.Text = "All Time Total";
             // 
             // groupBox2
             // 
@@ -552,9 +554,9 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(8, 102);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(327, 20);
+            this.label8.Size = new System.Drawing.Size(268, 20);
             this.label8.TabIndex = 45;
-            this.label8.Text = "All Time Total by Item Name and Date Range";
+            this.label8.Text = "Total by Item Name and Date Range";
             // 
             // btnTotalbyItemNameAndDateRange
             // 
@@ -669,6 +671,18 @@
             this.groupBox5.TabIndex = 33;
             this.groupBox5.TabStop = false;
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Red;
+            this.label13.Location = new System.Drawing.Point(5, 108);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(288, 17);
+            this.label13.TabIndex = 50;
+            this.label13.Text = "Total Orders count include free orders";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -765,6 +779,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label13;
     }
 }
 

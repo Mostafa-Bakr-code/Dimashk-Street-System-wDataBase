@@ -469,7 +469,7 @@ namespace WinForms_PresentationLayer
 
 
 
-        // add orderitems edit , prepare to refresh the orderitems when closing the form
+        // modified total to include total count
     }
 }
 

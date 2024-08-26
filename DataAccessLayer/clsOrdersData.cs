@@ -8,103 +8,109 @@ namespace DataAccessLayer
     public class clsOrdersData
     {
 
-        public static bool GetOrderInfoByID(int ID, ref DateTime date, ref decimal Total)
-
+        public static bool GetOrderInfoByID(int ID, ref DateTime date, ref decimal Total, ref int serialNumber)
         {
             bool isFound = false;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = "SELECT * FROM Orders WHERE OrderID = @ID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@ID", ID);
-
-            try
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
+                string query = "SELECT * FROM Orders WHERE OrderID = @ID";
 
-                if (reader.Read())
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@ID", ID);
+
+                try
                 {
-                    // The record was found
-                    isFound = true;
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
 
-                    ID = (int) reader ["OrderID"];
-                    date = (DateTime) reader ["Date"];
-                    Total = (decimal) reader ["Total"];
+                    if (reader.Read())
+                    {
+                        isFound = true;
 
-
+                        ID = (int)reader["OrderID"];
+                        date = (DateTime)reader["Date"];
+                        Total = (decimal)reader["Total"];
+                        serialNumber = reader["SerialNumber"] != DBNull.Value ? (int)reader["SerialNumber"] : 0;
+                    }
+                    reader.Close();
                 }
-                else
+                catch (Exception ex)
                 {
-                    // The record was not found
+                    Console.WriteLine("Error: " + ex.Message);
                     isFound = false;
                 }
-
-                reader.Close();
-
-
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-                isFound = false;
-            }
-            finally
-            {
-                connection.Close();
             }
 
             return isFound;
         }
 
-        public static int AddNewOrder(DateTime date, decimal Total)
-
+        public static int AddNewOrder(DateTime date, decimal Total, int serialNumber)
         {
-            //this function will return the new ItemID if succeeded and -1 if not.
             int ID = -1;
 
-            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
-
-            string query = @"INSERT INTO Orders (Date, Total)
-                             VALUES (@date, @Total);
-                             SELECT SCOPE_IDENTITY();";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@date", date);
-            command.Parameters.AddWithValue("@Total", Total);
-
-
-
-            try
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                connection.Open();
+                string query = @"
+            INSERT INTO Orders (Date, Total, SerialNumber)
+            VALUES (@date, @Total, @serialNumber);
+            SELECT SCOPE_IDENTITY();";
 
-                object result = command.ExecuteScalar();
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@date", date);
+                command.Parameters.AddWithValue("@Total", Total);
+                command.Parameters.AddWithValue("@serialNumber", serialNumber);
 
-
-                if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                try
                 {
-                    ID = insertedID;
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                    {
+                        ID = insertedID;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
                 }
             }
 
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-
-            }
-
-            finally
-            {
-                connection.Close();
-            }
-
-
             return ID;
+        }
+
+        public static int GetNextSerialNumber(DateTime date)
+        {
+            int serialNumber = 1;
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+            SELECT ISNULL(MAX(SerialNumber), 0) + 1 
+            FROM Orders 
+            WHERE CAST(Date AS DATE) = @date";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@date", date.Date);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        serialNumber = Convert.ToInt32(result);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return serialNumber;
         }
 
         public static void UpdateOrderTotal(int OrderID)

@@ -15,6 +15,8 @@ namespace BuisnessLayer
         public DateTime date { set; get; }
         public decimal Total { set; get; }
 
+        public int SerialNumber { get; set; }
+
 
         public clsOrderBusiness()
 
@@ -43,9 +45,10 @@ namespace BuisnessLayer
 
         private bool _AddNewOrder()
         {
-            //call DataAccess Layer 
+           
+            this.SerialNumber = clsOrdersData.GetNextSerialNumber(this.date);
 
-            this.ID = clsOrdersData.AddNewOrder(this.date, this.Total);
+            this.ID = clsOrdersData.AddNewOrder(this.date, this.Total, this.SerialNumber);
 
             return (this.ID != -1);
         }
@@ -61,14 +64,13 @@ namespace BuisnessLayer
         public static clsOrderBusiness Find(int ID)
         {
 
-            
+
             DateTime date = DateTime.Now;
             decimal Total = 0;
+            int serialNumber = 0;
 
-
-            if (clsOrdersData.GetOrderInfoByID(ID, ref date, ref Total))
-
-                return new clsOrderBusiness(ID, date, Total);
+            if (clsOrdersData.GetOrderInfoByID(ID, ref date, ref Total, ref serialNumber))
+                return new clsOrderBusiness(ID, date, Total) { SerialNumber = serialNumber };
 
             else
                 return null;
