@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -429,6 +430,32 @@ namespace WinForms_PresentationLayer
 
             // Display the formatted string in a MessageBox
             MessageBox.Show(orderInfo.ToString(), "Order Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            // Create a PrintDocument object
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.PrintPage += (sender, e) =>
+            {
+                // Define font and position
+                Font font = new Font("Arial", 12);
+                float x = e.MarginBounds.Left;
+                float y = e.MarginBounds.Top;
+
+                // Print the order info string
+                e.Graphics.DrawString(orderInfo.ToString(), font, Brushes.Black, new RectangleF(x, y, e.PageBounds.Width, e.PageBounds.Height));
+            };
+
+            // Create a PrintDialog object
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = printDoc;
+
+            // Show the print dialog to the user
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDoc.Print();
+            }
+
+
         }
 
 
