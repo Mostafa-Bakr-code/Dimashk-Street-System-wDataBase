@@ -70,7 +70,21 @@ namespace WinForms_PresentationLayer
             lbOrderID.Text = _Order.ID.ToString();
             lbOrderDate.Text = _Order.date.ToString();
             lbOrderTotal.Text = _Order.Total.ToString();
+            updateOrderTax();
 
+        }
+
+        private void updateOrderTax()
+        {
+
+            (decimal InitialPrice, decimal TaxValue) result = clsOrderBusiness.GetInitialPriceAndTaxValueForOrder(_Order.ID);
+
+      
+            decimal initialPrice = result.Item1;
+            decimal taxValue = result.Item2;
+
+            lbSubTotal.Text = initialPrice.ToString();
+            lbTaxValue.Text = taxValue.ToString();
         }
 
         private void LoadData()
