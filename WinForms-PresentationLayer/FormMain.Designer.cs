@@ -60,6 +60,11 @@
             this.btnTotalRange = new System.Windows.Forms.Button();
             this.btnAllTimeTotal = new System.Windows.Forms.Button();
             this.panelOrdersTotal = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnTaxValueDateRange = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnTaxValue = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnFreeOrdersTotalRange = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -84,11 +89,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnTotalbyCategoryAndDateRange = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.btnTaxValue = new System.Windows.Forms.Button();
-            this.btnTaxValueDateRange = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -98,12 +98,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).BeginInit();
             this.contextMenuOrderItems.SuspendLayout();
             this.panelOrdersTotal.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripItems
@@ -226,6 +226,7 @@
             this.dgvOrders.Size = new System.Drawing.Size(590, 784);
             this.dgvOrders.TabIndex = 17;
             this.dgvOrders.Visible = false;
+            this.dgvOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrders_CellClick);
             this.dgvOrders.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvOrders_CellFormatting);
             // 
             // contextMenuOrders
@@ -439,6 +440,66 @@
             this.panelOrdersTotal.Size = new System.Drawing.Size(951, 779);
             this.panelOrdersTotal.TabIndex = 32;
             this.panelOrdersTotal.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.panel1.Controls.Add(this.label15);
+            this.panel1.Controls.Add(this.btnTaxValueDateRange);
+            this.panel1.Controls.Add(this.label14);
+            this.panel1.Controls.Add(this.btnTaxValue);
+            this.panel1.Location = new System.Drawing.Point(526, 102);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(411, 124);
+            this.panel1.TabIndex = 54;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label15.Location = new System.Drawing.Point(17, 80);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(79, 20);
+            this.label15.TabIndex = 51;
+            this.label15.Text = "Tax Value";
+            // 
+            // btnTaxValueDateRange
+            // 
+            this.btnTaxValueDateRange.BackColor = System.Drawing.Color.Red;
+            this.btnTaxValueDateRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTaxValueDateRange.ForeColor = System.Drawing.Color.Snow;
+            this.btnTaxValueDateRange.Location = new System.Drawing.Point(315, 24);
+            this.btnTaxValueDateRange.Name = "btnTaxValueDateRange";
+            this.btnTaxValueDateRange.Size = new System.Drawing.Size(80, 31);
+            this.btnTaxValueDateRange.TabIndex = 53;
+            this.btnTaxValueDateRange.Text = "View";
+            this.btnTaxValueDateRange.UseVisualStyleBackColor = false;
+            this.btnTaxValueDateRange.Click += new System.EventHandler(this.btnTaxValueDateRange_Click);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label14.Location = new System.Drawing.Point(17, 24);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(190, 20);
+            this.label14.TabIndex = 51;
+            this.label14.Text = "Tax Value by Date Range";
+            // 
+            // btnTaxValue
+            // 
+            this.btnTaxValue.BackColor = System.Drawing.Color.Red;
+            this.btnTaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTaxValue.ForeColor = System.Drawing.Color.Snow;
+            this.btnTaxValue.Location = new System.Drawing.Point(315, 80);
+            this.btnTaxValue.Name = "btnTaxValue";
+            this.btnTaxValue.Size = new System.Drawing.Size(80, 31);
+            this.btnTaxValue.TabIndex = 52;
+            this.btnTaxValue.Text = "View";
+            this.btnTaxValue.UseVisualStyleBackColor = false;
+            this.btnTaxValue.Click += new System.EventHandler(this.btnTaxValue_Click);
             // 
             // groupBox3
             // 
@@ -690,66 +751,6 @@
             this.groupBox5.TabIndex = 33;
             this.groupBox5.TabStop = false;
             // 
-            // btnTaxValue
-            // 
-            this.btnTaxValue.BackColor = System.Drawing.Color.Red;
-            this.btnTaxValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTaxValue.ForeColor = System.Drawing.Color.Snow;
-            this.btnTaxValue.Location = new System.Drawing.Point(315, 80);
-            this.btnTaxValue.Name = "btnTaxValue";
-            this.btnTaxValue.Size = new System.Drawing.Size(80, 31);
-            this.btnTaxValue.TabIndex = 52;
-            this.btnTaxValue.Text = "View";
-            this.btnTaxValue.UseVisualStyleBackColor = false;
-            this.btnTaxValue.Click += new System.EventHandler(this.btnTaxValue_Click);
-            // 
-            // btnTaxValueDateRange
-            // 
-            this.btnTaxValueDateRange.BackColor = System.Drawing.Color.Red;
-            this.btnTaxValueDateRange.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTaxValueDateRange.ForeColor = System.Drawing.Color.Snow;
-            this.btnTaxValueDateRange.Location = new System.Drawing.Point(315, 24);
-            this.btnTaxValueDateRange.Name = "btnTaxValueDateRange";
-            this.btnTaxValueDateRange.Size = new System.Drawing.Size(80, 31);
-            this.btnTaxValueDateRange.TabIndex = 53;
-            this.btnTaxValueDateRange.Text = "View";
-            this.btnTaxValueDateRange.UseVisualStyleBackColor = false;
-            this.btnTaxValueDateRange.Click += new System.EventHandler(this.btnTaxValueDateRange_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.btnTaxValueDateRange);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.btnTaxValue);
-            this.panel1.Location = new System.Drawing.Point(526, 102);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(411, 124);
-            this.panel1.TabIndex = 54;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label14.Location = new System.Drawing.Point(17, 24);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(190, 20);
-            this.label14.TabIndex = 51;
-            this.label14.Text = "Tax Value by Date Range";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label15.Location = new System.Drawing.Point(17, 80);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(79, 20);
-            this.label15.TabIndex = 51;
-            this.label15.Text = "Tax Value";
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -778,6 +779,8 @@
             this.contextMenuOrderItems.ResumeLayout(false);
             this.panelOrdersTotal.ResumeLayout(false);
             this.panelOrdersTotal.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -787,8 +790,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

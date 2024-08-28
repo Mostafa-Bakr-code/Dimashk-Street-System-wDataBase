@@ -184,7 +184,6 @@ namespace BuisnessLayer
             return clsOrdersData.GetCountOfFreeOrdersByDateRange(startDate, endDate);
         }
 
-
         public static decimal GetTotalTaxValueByDateRange(DateTime startDate, DateTime endDate)
         {
             return clsOrdersData.GetTotalTaxValueByDateRange(startDate, endDate);
@@ -195,6 +194,10 @@ namespace BuisnessLayer
             return clsOrdersData.GetTotalTaxValueForAllOrders();
         }
 
+        public static (decimal InitialPrice, decimal TaxValue) GetInitialPriceAndTaxValueForOrder(int orderId)
+        {
+            return clsOrdersData.GetInitialPriceAndTaxValueForOrder((int)orderId);
+        }
 
     }
 }

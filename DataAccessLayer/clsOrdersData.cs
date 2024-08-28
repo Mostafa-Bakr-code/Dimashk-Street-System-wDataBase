@@ -615,7 +615,6 @@ namespace DataAccessLayer
             return countFreeOrders;
         }
 
-
         public static decimal GetTotalTaxValueByDateRange(DateTime startDate, DateTime endDate)
         {
             decimal total = GetTotalByDateRange(startDate, endDate);
@@ -623,13 +622,55 @@ namespace DataAccessLayer
             return taxValue;
         }
 
-
         public static decimal GetTotalTaxValueForAllOrders()
         {
             decimal total = GetTotalForAllOrders();
             decimal taxValue = total * 0.14M; // 14% tax rate
             return taxValue;
         }
+
+        public static (decimal InitialPrice, decimal TaxValue) GetInitialPriceAndTaxValueForOrder(int orderId)
+        {
+
+            decimal initialPrice = 0;
+            decimal taxValue = 0;
+            decimal totalItemsPriceWithTax = 0;
+            const decimal taxRate = 0.14M; // 14%
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+            SELECT SUM(TotalItemsPrice) 
+            FROM OrderItems
+            WHERE OrderID = @orderId";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@orderId", orderId);
+
+                try
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != DBNull.Value)
+                    {
+                        totalItemsPriceWithTax = Convert.ToDecimal(result);
+
+                        // Calculate tax value and initial price
+                        taxValue = totalItemsPriceWithTax * taxRate;
+                        initialPrice = totalItemsPriceWithTax - taxValue;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return (initialPrice, taxValue);
+
+        }
+
 
 
 

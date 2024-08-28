@@ -494,6 +494,27 @@ namespace WinForms_PresentationLayer
                 , "Total Tax Value", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if the click is on a valid row and the first column (OrderID)
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                // Retrieve the OrderID from the clicked cell
+                int orderId = Convert.ToInt32(dgvOrders.Rows[e.RowIndex].Cells[0].Value);
+
+                // Call the function to get the initial price and tax value
+                (decimal InitialPrice, decimal TaxValue) result = clsOrderBusiness.GetInitialPriceAndTaxValueForOrder(orderId);
+
+                // Extract the InitialPrice and TaxValue from the tuple
+                decimal initialPrice = result.Item1;
+                decimal taxValue = result.Item2;
+
+                // Display the results
+                MessageBox.Show($"Order ID: {orderId}\nInitial Price: {initialPrice:C}\nTax Value: {taxValue:C}",
+                                "Order Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
 
 
 
