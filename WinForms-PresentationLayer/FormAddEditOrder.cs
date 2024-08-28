@@ -67,7 +67,7 @@ namespace WinForms_PresentationLayer
         {
             
 
-            lbOrderID.Text = _Order.ID.ToString();
+            lbOrderID.Text = _Order.SerialNumber.ToString();
             lbOrderDate.Text = _Order.date.ToString();
             lbOrderTotal.Text = _Order.Total.ToString();
             updateOrderTax();
@@ -254,6 +254,8 @@ namespace WinForms_PresentationLayer
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
+            PrintOrderInfo();
+
             if (_Order == null)
             {
                 MessageBox.Show("Order data is not available.");
@@ -391,7 +393,45 @@ namespace WinForms_PresentationLayer
             }
         }
 
-  
+        private void PrintOrderInfo()
+        {
+            if (_Order == null)
+            {
+                MessageBox.Show("Order data is not available.");
+                return;
+            }
+
+            // Start creating the order info string
+            StringBuilder orderInfo = new StringBuilder();
+            orderInfo.AppendLine($"Dimashk Street\n\n ");
+            orderInfo.AppendLine($"Order ID: {_Order.SerialNumber}");
+            orderInfo.AppendLine($"Order Date: {_Order.date}");
+            orderInfo.AppendLine($"SubTotal: {lbSubTotal.Text}");
+            orderInfo.AppendLine($"Tax Value: {lbTaxValue.Text}");
+            orderInfo.AppendLine($"Vat: {lbVat.Text}");
+            orderInfo.AppendLine("\nItems:");
+
+
+            // Loop through order items and add them to the string
+            foreach (DataGridViewRow row in dgvOrderItems.Rows)
+            {
+                string itemName = row.Cells["ItemName"].Value.ToString();
+                string quantity = row.Cells["Quantity"].Value.ToString();
+                string price = row.Cells["Price"].Value.ToString();
+                string total = row.Cells["TotalItemsPrice"].Value.ToString();
+
+                orderInfo.AppendLine($"Item: {itemName}, Quantity: {quantity}, Price: {price}, Total: {total}");
+            }
+
+            orderInfo.AppendLine($"\n\nOrder Total: {_Order.Total}");
+            orderInfo.AppendLine($"\n\nThank you for your trust :) ");
+            orderInfo.AppendLine($"\nComment: {txtComment.Text}");
+
+            // Display the formatted string in a MessageBox
+            MessageBox.Show(orderInfo.ToString(), "Order Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+
 
 
 
