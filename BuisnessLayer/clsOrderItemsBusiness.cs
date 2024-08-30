@@ -59,6 +59,15 @@ namespace BuisnessLayer
             return (this.ID != -1);
         }
 
+        private bool _UpdateOrderItem()
+        {
+            //call DataAccess Layer 
+
+
+            return clsOrderItemsData.UpdateOrderItem(this.ID, this.OrderID, this.ItemID, this.Quantity, this.Price, this.TotalItemsPrice);
+
+        }
+
         public bool Save()
         {
 
@@ -87,16 +96,6 @@ namespace BuisnessLayer
 
 
             return false;
-        }
-
-
-        private bool _UpdateOrderItem()
-        {
-            //call DataAccess Layer 
-
-
-            return clsOrderItemsData.UpdateOrderItem(this.ID, this.OrderID, this.ItemID, this.Quantity, this.Price, this.TotalItemsPrice);
-
         }
 
         public static clsOrderItemsBusiness Find(int ID)

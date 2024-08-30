@@ -352,14 +352,25 @@ namespace DataAccessLayer
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
+                //string query = @"
+                // SELECT COUNT(*)
+                // FROM Orders
+                // INNER JOIN OrderItems ON Orders.OrderID = OrderItems.OrderID
+                // INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+                // INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+                //WHERE Categories.CategoryName = @CategoryName
+                //AND Orders.Total > 0";  // Exclude orders with a total of 0
+
+
                 string query = @"
-                 SELECT COUNT(*)
-                 FROM Orders
-                 INNER JOIN OrderItems ON Orders.OrderID = OrderItems.OrderID
-                 INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
-                 INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
-                WHERE Categories.CategoryName = @CategoryName
-                AND Orders.Total > 0";  // Exclude orders with a total of 0
+            SELECT SUM(OrderItems.Quantity)
+            FROM Orders
+            INNER JOIN OrderItems ON Orders.OrderID = OrderItems.OrderID
+            INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+            INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+            WHERE Categories.CategoryName = @CategoryName
+            AND Orders.Total > 0";  // Exclude orders with a total of 0
+
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@CategoryName", categoryName);
@@ -391,16 +402,29 @@ namespace DataAccessLayer
             {
 
 
+                //string query = @"
+                //        SELECT COUNT(*)
+                //        FROM Orders
+                //        INNER JOIN OrderItems ON Orders.OrderID = OrderItems.OrderID
+                //        INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+                //        INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+                //        WHERE Categories.CategoryName = @CategoryName
+                //        AND Orders.Total > 0  -- Exclude free orders
+                //        AND CAST(Orders.Date AS DATE) >= @StartDate  -- Filter by date range
+                //        AND CAST(Orders.Date AS DATE) <= @EndDate";
+
+
                 string query = @"
-                        SELECT COUNT(*)
-                        FROM Orders
-                        INNER JOIN OrderItems ON Orders.OrderID = OrderItems.OrderID
-                        INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
-                        INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
-                        WHERE Categories.CategoryName = @CategoryName
-                        AND Orders.Total > 0  -- Exclude free orders
-                        AND CAST(Orders.Date AS DATE) >= @StartDate  -- Filter by date range
-                        AND CAST(Orders.Date AS DATE) <= @EndDate";
+            SELECT SUM(OrderItems.Quantity)
+            FROM Orders
+            INNER JOIN OrderItems ON Orders.OrderID = OrderItems.OrderID
+            INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+            INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+            WHERE Categories.CategoryName = @CategoryName
+            AND Orders.Total > 0  -- Exclude free orders
+            AND CAST(Orders.Date AS DATE) >= @StartDate  -- Filter by date range
+            AND CAST(Orders.Date AS DATE) <= @EndDate";
+
 
 
                 SqlCommand command = new SqlCommand(query, connection);

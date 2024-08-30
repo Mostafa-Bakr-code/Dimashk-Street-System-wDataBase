@@ -54,6 +54,7 @@
             this.toolStripMenuItemDeleteOrderItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbMode = new System.Windows.Forms.Label();
             this.dgvListItems = new System.Windows.Forms.DataGridView();
+            this.toolStripMenuItemQuantityOrderItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).BeginInit();
@@ -305,19 +306,21 @@
             this.dgvOrderItems.RowTemplate.Height = 28;
             this.dgvOrderItems.Size = new System.Drawing.Size(995, 229);
             this.dgvOrderItems.TabIndex = 12;
+            this.dgvOrderItems.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderItems_CellValueChanged);
             // 
             // contextMenuStripOrderItems
             // 
             this.contextMenuStripOrderItems.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStripOrderItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemDeleteOrderItem});
+            this.toolStripMenuItemDeleteOrderItem,
+            this.toolStripMenuItemQuantityOrderItem});
             this.contextMenuStripOrderItems.Name = "contextMenuStripOrderItems";
-            this.contextMenuStripOrderItems.Size = new System.Drawing.Size(135, 36);
+            this.contextMenuStripOrderItems.Size = new System.Drawing.Size(153, 68);
             // 
             // toolStripMenuItemDeleteOrderItem
             // 
             this.toolStripMenuItemDeleteOrderItem.Name = "toolStripMenuItemDeleteOrderItem";
-            this.toolStripMenuItemDeleteOrderItem.Size = new System.Drawing.Size(134, 32);
+            this.toolStripMenuItemDeleteOrderItem.Size = new System.Drawing.Size(240, 32);
             this.toolStripMenuItemDeleteOrderItem.Text = "Delete";
             this.toolStripMenuItemDeleteOrderItem.Click += new System.EventHandler(this.toolStripMenuItemDeleteOrderItem_Click);
             // 
@@ -344,6 +347,13 @@
             this.dgvListItems.Size = new System.Drawing.Size(709, 583);
             this.dgvListItems.TabIndex = 12;
             this.dgvListItems.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvListItems_CellMouseDoubleClick);
+            // 
+            // toolStripMenuItemQuantityOrderItem
+            // 
+            this.toolStripMenuItemQuantityOrderItem.Name = "toolStripMenuItemQuantityOrderItem";
+            this.toolStripMenuItemQuantityOrderItem.Size = new System.Drawing.Size(240, 32);
+            this.toolStripMenuItemQuantityOrderItem.Text = "Quantity";
+            this.toolStripMenuItemQuantityOrderItem.Click += new System.EventHandler(this.toolStripMenuItemQuantityOrderItem_Click);
             // 
             // FormAddEditOrder
             // 
@@ -397,5 +407,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lbSubTotal;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemQuantityOrderItem;
     }
 }

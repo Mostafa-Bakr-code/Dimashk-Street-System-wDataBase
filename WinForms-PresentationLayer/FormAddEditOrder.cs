@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace WinForms_PresentationLayer
 {
@@ -28,7 +29,8 @@ namespace WinForms_PresentationLayer
         {
             InitializeComponent();
 
-
+            dgvOrderItems.CellValueChanged += dgvOrderItems_CellValueChanged;
+            
             this.FormClosing += FormAddEditOrder_FormClosing;
 
             _orderID = orderID;
@@ -160,6 +162,7 @@ namespace WinForms_PresentationLayer
 
                         orderItem.ItemID = itemID;
                         orderItem.OrderID = _Order.ID;
+
                         orderItem.Save();
 
                         _Order = clsOrderBusiness.Find(_Order.ID);
@@ -173,6 +176,88 @@ namespace WinForms_PresentationLayer
                     }
                 }
             }
+        }
+
+        private void dgvOrderItems_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            //{
+            //    DataGridViewCell cell = dgvOrderItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //    object cellValue = cell.Value;
+
+            //    // Assuming the column for Quantity is index 1
+            //    if (e.ColumnIndex == dgvOrderItems.Columns["Quantity"].Index)
+            //    {
+            //        int orderItemID = Convert.ToInt32(dgvOrderItems.Rows[e.RowIndex].Cells[0].Value); // Assuming ID is in column 0
+
+
+            //        int newQuantity = Convert.ToInt32(cellValue);
+
+            //        // Update the quantity in the business logic
+            //        clsOrderItemsBusiness orderItem = clsOrderItemsBusiness.Find(orderItemID);
+            //        orderItem.Quantity = newQuantity;
+            //        orderItem.Save();
+
+            //        _Order = clsOrderBusiness.Find(_Order.ID);
+
+
+            //        listOrderItems(_Order.ID);
+            //        updateOrderDataDisplay();
+            //    }
+            //}
+
+
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                DataGridViewCell cell = dgvOrderItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                object cellValue = cell.Value;
+
+                // Assuming the column for Quantity is index 1
+                if (e.ColumnIndex == dgvOrderItems.Columns["Quantity"].Index)
+                {
+                    // Check if cellValue is a valid integer
+                    if (!int.TryParse(cellValue?.ToString(), out int newQuantity))
+                    {
+                        // Show an error message if the value is not a valid integer
+                        MessageBox.Show("Please enter a valid number for the quantity.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        // Revert the cell value to its previous valid value
+                        dgvOrderItems.CancelEdit();
+
+                        // Optionally, set focus back to the cell to prompt re-entry
+                        dgvOrderItems.CurrentCell = dgvOrderItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                        dgvOrderItems.BeginEdit(true);
+                    }
+                    else if (newQuantity <= 0)
+                    {
+                        // Show an error message if the integer is less than or equal to zero
+                        MessageBox.Show("Quantity must be a positive integer.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        // Revert the cell value to its previous valid value
+                        dgvOrderItems.CancelEdit();
+
+                        // Optionally, set focus back to the cell to prompt re-entry
+                        dgvOrderItems.CurrentCell = dgvOrderItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                        dgvOrderItems.BeginEdit(true);
+                    }
+                    else
+                    {
+                        // If the value is valid, update the quantity in the business logic
+                        int orderItemID = Convert.ToInt32(dgvOrderItems.Rows[e.RowIndex].Cells[0].Value); // Assuming ID is in column 0
+                        clsOrderItemsBusiness orderItem = clsOrderItemsBusiness.Find(orderItemID);
+                        orderItem.Quantity = newQuantity;
+                        orderItem.Save();
+
+                        _Order = clsOrderBusiness.Find(_Order.ID);
+
+                        listOrderItems(_Order.ID);
+                        updateOrderDataDisplay();
+                    }
+                }
+            }
+
+
+
         }
 
         private void FormAddEditOrder_Load(object sender, EventArgs e)
@@ -255,7 +340,7 @@ namespace WinForms_PresentationLayer
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            PrintOrderInfo();
+           
 
             if (_Order == null)
             {
@@ -307,7 +392,7 @@ namespace WinForms_PresentationLayer
                 }
             }
 
-
+            PrintOrderInfo();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -335,9 +420,26 @@ namespace WinForms_PresentationLayer
                     MessageBox.Show("Deleted Sucssefully");
 
                     _Order = clsOrderBusiness.Find(_Order.ID);
+                    //_Order.Total = 0;
                     listOrderItems(_Order.ID);
-                    updateOrderDataDisplay();
+
+
+                if (dgvOrderItems.Rows.Count == 0)
+                {
+                    _Order.Total = 0;
+                    
+                }
+
+                updateOrderDataDisplay();
             }
+
+        }
+
+        private void toolStripMenuItemQuantityOrderItem_Click(object sender, EventArgs e)
+        {
+
+                
+
 
         }
 
@@ -457,9 +559,6 @@ namespace WinForms_PresentationLayer
 
 
         }
-
-
-
 
 
 

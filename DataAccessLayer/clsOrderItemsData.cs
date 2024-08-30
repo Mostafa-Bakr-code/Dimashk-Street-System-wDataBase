@@ -127,46 +127,62 @@ namespace DataAccessLayer
 
         {
 
-            int rowsAffected = 0;
+            bool updateSuccessful = false;
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"Update OrderItems
-                            set OrderID = @OrderID, 
-                                ItemID = @ItemID, 
-                                Quantity = @quantity, 
-                                Price = @price, 
-                                TotalItemsPrice = @totalItemsPrice
+            // Retrieve the price from the Items table
+            string getPriceQuery = "SELECT Price FROM Items WHERE ItemID = @itemID";
+            SqlCommand getPriceCommand = new SqlCommand(getPriceQuery, connection);
+            getPriceCommand.Parameters.AddWithValue("@itemID", itemID);
 
-                                where ID = @ID";
-
-            SqlCommand command = new SqlCommand(query, connection);
-
-            command.Parameters.AddWithValue("@ID", ID);
-            command.Parameters.AddWithValue("@OrderID", OrderID);
-            command.Parameters.AddWithValue("@ItemID", itemID);
-            command.Parameters.AddWithValue("@quantity", quantity);
-            command.Parameters.AddWithValue("@price", price);
-            command.Parameters.AddWithValue("@totalItemsPrice", totalItemsPrice);
-
-
+            decimal itemPrice = 0;
             try
             {
                 connection.Open();
-                rowsAffected = command.ExecuteNonQuery();
 
+                object priceResult = getPriceCommand.ExecuteScalar();
+                if (priceResult == null)
+                {
+                    throw new Exception("Item not found.");
+                }
+
+                itemPrice = (decimal)priceResult;
+
+                // Calculate totalItemsPrice based on the retrieved price
+                totalItemsPrice = itemPrice * quantity;
+
+                // Update the OrderItem
+                string updateQuery = @"UPDATE OrderItems
+                               SET OrderID = @OrderID, 
+                                   ItemID = @ItemID, 
+                                   Quantity = @quantity, 
+                                   Price = @price, 
+                                   TotalItemsPrice = @totalItemsPrice
+                               WHERE ID = @ID";
+
+                SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
+                updateCommand.Parameters.AddWithValue("@ID", ID);
+                updateCommand.Parameters.AddWithValue("@OrderID", OrderID);
+                updateCommand.Parameters.AddWithValue("@ItemID", itemID);
+                updateCommand.Parameters.AddWithValue("@quantity", quantity);
+                updateCommand.Parameters.AddWithValue("@price", itemPrice);
+                updateCommand.Parameters.AddWithValue("@totalItemsPrice", totalItemsPrice);
+
+                int rowsAffected = updateCommand.ExecuteNonQuery();
+                updateSuccessful = (rowsAffected > 0);
+
+                clsOrdersData.UpdateOrderTotal(OrderID);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: " + ex.Message);
-                return false;
             }
-
             finally
             {
                 connection.Close();
             }
 
-            return (rowsAffected > 0);
+            return updateSuccessful;
         }
 
         public static DataTable GetAllOrderItems()
@@ -532,8 +548,17 @@ namespace DataAccessLayer
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
+                //string query = @"
+                //     SELECT COUNT(*)
+                //     FROM OrderItems
+                //    INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+                //    INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+                //    WHERE Items.ItemName = @ItemName
+                //    AND Orders.Total > 0";  // Exclude free orders
+
+
                 string query = @"
-            SELECT COUNT(*)
+            SELECT SUM(OrderItems.Quantity)
             FROM OrderItems
             INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
             INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
@@ -568,8 +593,19 @@ namespace DataAccessLayer
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
+                //string query = @"
+                // SELECT COUNT(*)
+                // FROM OrderItems
+                // INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+                // INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+                // WHERE Items.ItemName = @ItemName
+                // AND Orders.Total > 0  -- Exclude free orders
+                // AND CAST(Orders.Date AS DATE) >= @StartDate  -- Filter by date range
+                // AND CAST(Orders.Date AS DATE) <= @EndDate";
+
+
                 string query = @"
-            SELECT COUNT(*)
+            SELECT SUM(OrderItems.Quantity)
             FROM OrderItems
             INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
             INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
