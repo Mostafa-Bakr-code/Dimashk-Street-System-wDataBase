@@ -54,7 +54,6 @@
             this.toolStripMenuItemDeleteOrderItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lbMode = new System.Windows.Forms.Label();
             this.dgvListItems = new System.Windows.Forms.DataGridView();
-            this.toolStripMenuItemQuantityOrderItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).BeginInit();
@@ -72,7 +71,7 @@
             this.panel1.Controls.Add(this.btnOrder);
             this.panel1.Controls.Add(this.dgvOrderItems);
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel1.Location = new System.Drawing.Point(734, 72);
+            this.panel1.Location = new System.Drawing.Point(910, 75);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1001, 583);
@@ -312,15 +311,14 @@
             // 
             this.contextMenuStripOrderItems.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.contextMenuStripOrderItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemDeleteOrderItem,
-            this.toolStripMenuItemQuantityOrderItem});
+            this.toolStripMenuItemDeleteOrderItem});
             this.contextMenuStripOrderItems.Name = "contextMenuStripOrderItems";
-            this.contextMenuStripOrderItems.Size = new System.Drawing.Size(153, 68);
+            this.contextMenuStripOrderItems.Size = new System.Drawing.Size(241, 69);
             // 
             // toolStripMenuItemDeleteOrderItem
             // 
             this.toolStripMenuItemDeleteOrderItem.Name = "toolStripMenuItemDeleteOrderItem";
-            this.toolStripMenuItemDeleteOrderItem.Size = new System.Drawing.Size(240, 32);
+            this.toolStripMenuItemDeleteOrderItem.Size = new System.Drawing.Size(152, 32);
             this.toolStripMenuItemDeleteOrderItem.Text = "Delete";
             this.toolStripMenuItemDeleteOrderItem.Click += new System.EventHandler(this.toolStripMenuItemDeleteOrderItem_Click);
             // 
@@ -339,27 +337,20 @@
             this.dgvListItems.AllowUserToAddRows = false;
             this.dgvListItems.AllowUserToDeleteRows = false;
             this.dgvListItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListItems.Location = new System.Drawing.Point(8, 72);
+            this.dgvListItems.Location = new System.Drawing.Point(167, 75);
             this.dgvListItems.Name = "dgvListItems";
             this.dgvListItems.ReadOnly = true;
             this.dgvListItems.RowHeadersWidth = 62;
             this.dgvListItems.RowTemplate.Height = 28;
-            this.dgvListItems.Size = new System.Drawing.Size(709, 583);
+            this.dgvListItems.Size = new System.Drawing.Size(726, 567);
             this.dgvListItems.TabIndex = 12;
             this.dgvListItems.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvListItems_CellMouseDoubleClick);
-            // 
-            // toolStripMenuItemQuantityOrderItem
-            // 
-            this.toolStripMenuItemQuantityOrderItem.Name = "toolStripMenuItemQuantityOrderItem";
-            this.toolStripMenuItemQuantityOrderItem.Size = new System.Drawing.Size(240, 32);
-            this.toolStripMenuItemQuantityOrderItem.Text = "Quantity";
-            this.toolStripMenuItemQuantityOrderItem.Click += new System.EventHandler(this.toolStripMenuItemQuantityOrderItem_Click);
             // 
             // FormAddEditOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1742, 678);
+            this.ClientSize = new System.Drawing.Size(1924, 678);
             this.Controls.Add(this.dgvListItems);
             this.Controls.Add(this.lbMode);
             this.Controls.Add(this.panel1);
@@ -407,6 +398,5 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lbSubTotal;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemQuantityOrderItem;
     }
 }

@@ -64,6 +64,8 @@ namespace WinForms_PresentationLayer
                     column.ReadOnly = true;
                 }
             }
+
+            //HideIDColumn();
         }
 
         private void updateOrderDataDisplay()
@@ -93,7 +95,9 @@ namespace WinForms_PresentationLayer
         private void LoadData()
         {
 
-            dgvListItems.DataSource = clsItemBusiness.GetAllItems();
+            LoadCategoriesAndCreateButtons();
+
+            //dgvListItems.DataSource = clsItemBusiness.GetAllItemsWithoutAllDetails();
            
 
             // Add Mode
@@ -180,33 +184,6 @@ namespace WinForms_PresentationLayer
 
         private void dgvOrderItems_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            //{
-            //    DataGridViewCell cell = dgvOrderItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            //    object cellValue = cell.Value;
-
-            //    // Assuming the column for Quantity is index 1
-            //    if (e.ColumnIndex == dgvOrderItems.Columns["Quantity"].Index)
-            //    {
-            //        int orderItemID = Convert.ToInt32(dgvOrderItems.Rows[e.RowIndex].Cells[0].Value); // Assuming ID is in column 0
-
-
-            //        int newQuantity = Convert.ToInt32(cellValue);
-
-            //        // Update the quantity in the business logic
-            //        clsOrderItemsBusiness orderItem = clsOrderItemsBusiness.Find(orderItemID);
-            //        orderItem.Quantity = newQuantity;
-            //        orderItem.Save();
-
-            //        _Order = clsOrderBusiness.Find(_Order.ID);
-
-
-            //        listOrderItems(_Order.ID);
-            //        updateOrderDataDisplay();
-            //    }
-            //}
-
-
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 DataGridViewCell cell = dgvOrderItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
@@ -215,47 +192,23 @@ namespace WinForms_PresentationLayer
                 // Assuming the column for Quantity is index 1
                 if (e.ColumnIndex == dgvOrderItems.Columns["Quantity"].Index)
                 {
-                    // Check if cellValue is a valid integer
-                    if (!int.TryParse(cellValue?.ToString(), out int newQuantity))
-                    {
-                        // Show an error message if the value is not a valid integer
-                        MessageBox.Show("Please enter a valid number for the quantity.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    int orderItemID = Convert.ToInt32(dgvOrderItems.Rows[e.RowIndex].Cells[0].Value); // Assuming ID is in column 0
 
-                        // Revert the cell value to its previous valid value
-                        dgvOrderItems.CancelEdit();
 
-                        // Optionally, set focus back to the cell to prompt re-entry
-                        dgvOrderItems.CurrentCell = dgvOrderItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                        dgvOrderItems.BeginEdit(true);
-                    }
-                    else if (newQuantity <= 0)
-                    {
-                        // Show an error message if the integer is less than or equal to zero
-                        MessageBox.Show("Quantity must be a positive integer.", "Invalid Quantity", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    int newQuantity = Convert.ToInt32(cellValue);
 
-                        // Revert the cell value to its previous valid value
-                        dgvOrderItems.CancelEdit();
+                    // Update the quantity in the business logic
+                    clsOrderItemsBusiness orderItem = clsOrderItemsBusiness.Find(orderItemID);
+                    orderItem.Quantity = newQuantity;
+                    orderItem.Save();
 
-                        // Optionally, set focus back to the cell to prompt re-entry
-                        dgvOrderItems.CurrentCell = dgvOrderItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                        dgvOrderItems.BeginEdit(true);
-                    }
-                    else
-                    {
-                        // If the value is valid, update the quantity in the business logic
-                        int orderItemID = Convert.ToInt32(dgvOrderItems.Rows[e.RowIndex].Cells[0].Value); // Assuming ID is in column 0
-                        clsOrderItemsBusiness orderItem = clsOrderItemsBusiness.Find(orderItemID);
-                        orderItem.Quantity = newQuantity;
-                        orderItem.Save();
+                    _Order = clsOrderBusiness.Find(_Order.ID);
 
-                        _Order = clsOrderBusiness.Find(_Order.ID);
 
-                        listOrderItems(_Order.ID);
-                        updateOrderDataDisplay();
-                    }
+                    listOrderItems(_Order.ID);
+                    updateOrderDataDisplay();
                 }
             }
-
 
 
         }
@@ -408,7 +361,8 @@ namespace WinForms_PresentationLayer
         {
             string orderItemID = dgvOrderItems.CurrentRow.Cells[0].Value.ToString();
 
-            MessageBox.Show(orderItemID);
+
+            //MessageBox.Show(orderItemID);
 
             DialogResult result =
             MessageBox.Show($"Are you sure you want to delete this Order Item {orderItemID}",
@@ -417,7 +371,7 @@ namespace WinForms_PresentationLayer
             if (result == DialogResult.OK)
             {
                 if (clsOrderItemsBusiness.DeleteOrderItem(int.Parse(orderItemID),_Order.ID))
-                    MessageBox.Show("Deleted Sucssefully");
+                    //MessageBox.Show("Deleted Sucssefully");
 
                     _Order = clsOrderBusiness.Find(_Order.ID);
                     //_Order.Total = 0;
@@ -509,9 +463,7 @@ namespace WinForms_PresentationLayer
             orderInfo.AppendLine($"Dimashk Street\n\n ");
             orderInfo.AppendLine($"Order ID: {_Order.SerialNumber}");
             orderInfo.AppendLine($"Order Date: {_Order.date}");
-            orderInfo.AppendLine($"SubTotal: {lbSubTotal.Text}");
-            orderInfo.AppendLine($"Tax Value: {lbTaxValue.Text}");
-            orderInfo.AppendLine($"Vat: {lbVat.Text}");
+
             orderInfo.AppendLine("\nItems:");
 
 
@@ -523,10 +475,14 @@ namespace WinForms_PresentationLayer
                 string price = row.Cells["Price"].Value.ToString();
                 string total = row.Cells["TotalItemsPrice"].Value.ToString();
 
-                orderInfo.AppendLine($"Item: {itemName}, Quantity: {quantity}, Price: {price}, Total: {total}");
+                orderInfo.AppendLine($"{itemName}, Quantity: {quantity}, Price: {price}, Total: {total}");
             }
 
-            orderInfo.AppendLine($"\n\nOrder Total: {_Order.Total}");
+
+            orderInfo.AppendLine($"\n\nSubTotal: {lbSubTotal.Text}");
+            orderInfo.AppendLine($"Tax Value: {lbTaxValue.Text}");
+            orderInfo.AppendLine($"Vat: {lbVat.Text}");
+            orderInfo.AppendLine($"Order Total: {_Order.Total}");
             orderInfo.AppendLine($"\n\nThank you for your trust :) ");
             orderInfo.AppendLine($"\nComment: {txtComment.Text}");
 
@@ -560,7 +516,53 @@ namespace WinForms_PresentationLayer
 
         }
 
+        private void CategoryButton_Click(object sender, EventArgs e, string categoryName)
+        {
+            dgvListItems.DataSource = clsItemBusiness.GetItemsByCategoryName(categoryName);
+        }
 
+        private void LoadCategoriesAndCreateButtons()
+        {
+          
+            DataTable categoriesTable = clsCategoryBusiness.GetAllCategories();
+
+            // Dynamically create buttons based on the categories retrieved
+            int buttonX = 10; // Starting X position for the first button
+            int buttonY = 50; // Starting Y position for the first button
+            int buttonHeight = 30; // Height of the buttons
+            int buttonWidth = 80; // Width of the buttons
+            int buttonSpacing = 10; // Spacing between buttons
+
+            foreach (DataRow row in categoriesTable.Rows)
+            {
+                string categoryName = row["CategoryName"].ToString();
+
+                Button categoryButton = new Button
+                {
+                    Text = categoryName,
+                    Width = buttonWidth,
+                    Height = buttonHeight,
+                    Location = new System.Drawing.Point(buttonX, buttonY)
+                };
+
+                categoryButton.Click += (sender, e) => CategoryButton_Click(sender, e, categoryName);
+
+                this.Controls.Add(categoryButton); // Add the button to the form or a container control
+
+                buttonY += buttonHeight + buttonSpacing; // Move the Y position for the next button
+            }
+        }
+
+
+
+        //private void HideIDColumn()
+        //{
+        //    if (dgvOrderItems.Columns.Contains("ID") || dgvOrderItems.Columns.Contains("OrderID"))
+        //    {
+        //        dgvOrderItems.Columns["ID"].Visible = false;
+        //        dgvOrderItems.Columns["OrderID"].Visible = false;
+        //    }
+        //}
 
 
     }

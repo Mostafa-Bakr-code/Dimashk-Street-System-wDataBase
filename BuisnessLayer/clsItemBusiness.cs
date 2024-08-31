@@ -108,6 +108,20 @@ namespace BuisnessLayer
 
         }
 
+        public static DataTable GetAllItemsWithoutAllDetails()
+        {
+
+            return clsItemDataAccess.GetAllItemsWithoutAllDetails();
+
+        }
+
+        public static DataTable GetItemsByCategoryName(string categoryName)
+        {
+
+            return clsItemDataAccess.GetItemsByCategoryName(categoryName);
+
+        }
+
         public static bool DeleteItem(int ID)
         {
             

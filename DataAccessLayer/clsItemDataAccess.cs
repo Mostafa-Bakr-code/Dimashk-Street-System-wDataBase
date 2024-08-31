@@ -179,6 +179,93 @@ namespace DataAccessLayer
             return dt;
         }
 
+        public static DataTable GetAllItemsWithoutAllDetails()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"
+                 SELECT 
+                Items.ItemID, 
+                Items.ItemName, 
+                Categories.CategoryName, 
+                Items.Price
+        
+                 FROM Items 
+                INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Consider using a logging framework or mechanism instead of Console.WriteLine in production code
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
+
+        public static DataTable GetItemsByCategoryName(string categoryName)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"
+        SELECT 
+            Items.ItemID, 
+            Items.ItemName, 
+            Categories.CategoryName, 
+            Items.Price
+
+        FROM Items 
+        INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+        WHERE Categories.CategoryName = @CategoryName";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // Add the category name as a parameter to avoid SQL injection
+            command.Parameters.AddWithValue("@CategoryName", categoryName);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Consider using a logging framework or mechanism instead of Console.WriteLine in production code
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
+
+
         public static bool DeleteItem(int ID)
         {
 
