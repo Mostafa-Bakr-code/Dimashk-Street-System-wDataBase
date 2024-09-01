@@ -565,13 +565,10 @@ namespace WinForms_PresentationLayer
 
             // Start creating the order info string
             StringBuilder orderInfo = new StringBuilder();
-            orderInfo.AppendLine($"....FROM DIMASHK .... \n\n ");
-            orderInfo.AppendLine($"{_Order.date}");
-            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
 
-
-            orderInfo.AppendLine("\nItems:");
-
+            orderInfo.AppendLine("\n\n....FROM DIMASHK .... \n\n");
+            orderInfo.AppendLine($"{_Order.date}\n\n");
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}\n\n");
 
             // Loop through order items and add them to the string
             foreach (DataGridViewRow row in dgvOrderItems.Rows)
@@ -581,62 +578,81 @@ namespace WinForms_PresentationLayer
                 string price = Convert.ToDecimal(row.Cells["Price"].Value).ToString("F2");
                 string total = Convert.ToDecimal(row.Cells["TotalItemsPrice"].Value).ToString("F2");
 
-                string comment = row.Cells["Comment"].Value.ToString();
-                
-
                 orderInfo.AppendLine($"{itemName}, Quantity: {quantity}, Price: {price}, Total: {total}");
             }
 
+
+            orderInfo.AppendLine("\nItems:\n _________________________\n");
             orderInfo.AppendLine($"\n\nSubTotal: {decimal.Parse(lbSubTotal.Text).ToString("F2")}");
-            orderInfo.AppendLine($"Tax Value: {decimal.Parse(lbTaxValue.Text).ToString("F2")}");
-            orderInfo.AppendLine($"Vat: {lbVat.Text}");
-            orderInfo.AppendLine($"Total: {_Order.Total.ToString("F2")}");
+            orderInfo.AppendLine($"\n\nTax Value: {decimal.Parse(lbTaxValue.Text).ToString("F2")}");
+            orderInfo.AppendLine($"\n\nVat: {lbVat.Text}");
+            orderInfo.AppendLine($"\n\nTotal: {_Order.Total.ToString("F2")}");
+            orderInfo.AppendLine($"\n\nThank you for choosing us!");
+            orderInfo.AppendLine("\n\n....FROM DIMASHK .... \n\n");
+            orderInfo.AppendLine($"\n\n{_Order.date}\n");
+            orderInfo.AppendLine($"\n\nID: {_Order.SerialNumber}\n");
 
-            orderInfo.AppendLine($"\n\nThanks for your trust :) ");
-            //orderInfo.AppendLine($"\nComment: {txtComment.Text}");
-
-            // Display the formatted string in a MessageBox
-            MessageBox.Show(orderInfo.ToString(), "Order Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            // Convert the StringBuilder to a string for printing
+            string orderInfoText = orderInfo.ToString();
 
             // Create a PrintDocument object
             PrintDocument printDoc = new PrintDocument();
+
+            // Adjust margins to reduce top space and add a buffer at the bottom
+            printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10); // Adjusted top margin to 20 and bottom margin to 40
+
             printDoc.PrintPage += (sender, e) =>
             {
-                // Define font and position
-                Font font = new Font("Courier New", 8);
+                Font font = new Font("Arial", 12);
                 float x = e.MarginBounds.Left;
-                float y = e.MarginBounds.Top;
+                float y = e.MarginBounds.Top - 50;
 
-                // Print the order info string
-                e.Graphics.DrawString(orderInfo.ToString(), font, Brushes.Black, new RectangleF(x, y, e.PageBounds.Width, e.PageBounds.Height));
+                // Define the maximum width and height for the text
+                float width = e.MarginBounds.Width;
+                float height = e.MarginBounds.Height - 40; // Adjust height to reserve space for the last line
+
+                // Create a StringFormat object to handle text wrapping
+                StringFormat stringFormat = new StringFormat
+                {
+                    LineAlignment = StringAlignment.Near,
+                    Alignment = StringAlignment.Near,
+                    FormatFlags = StringFormatFlags.LineLimit
+                };
+
+                // Calculate how many characters will fit on the page
+                int charsFitted, linesFilled;
+                e.Graphics.MeasureString(orderInfoText, font, new SizeF(width, height), stringFormat, out charsFitted, out linesFilled);
+
+                // Print the current page's content
+                e.Graphics.DrawString(orderInfoText, font, Brushes.Black, new RectangleF(x, y, width, height), stringFormat);
+
+                // Remove the printed content from the orderInfo string
+                orderInfoText = orderInfoText.Substring(charsFitted);
+
+                // Check if there's more content to print
+                e.HasMorePages = orderInfoText.Length > 0;
+
+                // If more pages exist, store the remaining text for the next page
+                if (e.HasMorePages)
+                {
+                    e.Graphics.DrawString("Continued on next page...", font, Brushes.Black, new RectangleF(x, y + height - 20, width, 20), stringFormat);
+                }
             };
 
             // Create a PrintDialog object
-            PrintDialog printDialog = new PrintDialog();
-            printDialog.Document = printDoc;
+            PrintDialog printDialog = new PrintDialog
+            {
+                Document = printDoc
+            };
 
             // Show the print dialog to the user
             if (printDialog.ShowDialog() == DialogResult.OK)
             {
                 printDoc.Print();
             }
-
-
-            // Directly print without showing the PrintDialog
-            //try
-            //{
-            //    printDoc.Print();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("An error occurred while printing: " + ex.Message);
-            //}
-
-
         }
 
-        private void PrintOrderInfoForChief()
+        private void PrintOrderInfoForChiefV1()
         {
             if (_Order == null)
             {
@@ -685,7 +701,7 @@ namespace WinForms_PresentationLayer
             printDoc.PrintPage += (sender, e) =>
             {
                 // Define font and position
-                Font font = new Font("Courier New", 8);
+                Font font = new Font("Arial", 14);
                 float x = e.MarginBounds.Left;
                 float y = e.MarginBounds.Top;
 
@@ -714,6 +730,83 @@ namespace WinForms_PresentationLayer
             //    MessageBox.Show("An error occurred while printing: " + ex.Message);
             //}
 
+        }
+
+        private void PrintOrderInfoForChief()
+        {
+            if (_Order == null)
+            {
+                MessageBox.Show("Order data is not available.");
+                return;
+            }
+
+            // Start creating the order info string
+            StringBuilder orderInfo = new StringBuilder();
+            //orderInfo.AppendLine($"....FROM DIMASHK Chief.... \n\n ");
+            orderInfo.AppendLine($"\n\n{_Order.date}");
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+
+            orderInfo.AppendLine("\nItems:\n _________________________\n");
+
+            // Loop through order items and add them to the string
+            foreach (DataGridViewRow row in dgvOrderItems.Rows)
+            {
+                string itemName = row.Cells["ItemName"].Value.ToString();
+                string quantity = row.Cells["Quantity"].Value.ToString();
+                //string price = row.Cells["Price"].Value.ToString();
+                //string total = row.Cells["TotalItemsPrice"].Value.ToString();
+
+                string comment = row.Cells["Comment"].Value.ToString();
+
+                orderInfo.AppendLine($"{itemName}, Quantity: {quantity},\nComment: {comment}\n_________________________\n");
+            }
+
+            orderInfo.AppendLine($"\n\n{_Order.date}");
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+
+            // Display the formatted string in a MessageBox
+            MessageBox.Show(orderInfo.ToString(), "Order Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            // Create a PrintDocument object
+            PrintDocument printDoc = new PrintDocument();
+
+            // Set custom margins (minimal margins)
+            printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10);
+
+            printDoc.PrintPage += (sender, e) =>
+            {
+                // Define font and position
+                Font font = new Font("Arial", 12);
+                float x = e.MarginBounds.Left;
+                float y = e.MarginBounds.Top;
+
+                // Define the maximum width and height for the text
+                float width = e.PageBounds.Width;
+                float height = e.PageBounds.Height;
+
+                // Print the order info string
+                e.Graphics.DrawString(orderInfo.ToString(), font, Brushes.Black, new RectangleF(x, y, width, height));
+            };
+
+            // Create a PrintDialog object
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = printDoc;
+
+            // Show the print dialog to the user
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDoc.Print();
+            }
+
+            // Directly print without showing the PrintDialog
+            //try
+            //{
+            //    printDoc.Print();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("An error occurred while printing: " + ex.Message);
+            //}
         }
 
         private void CategoryButton_Click(object sender, EventArgs e, string categoryName)
