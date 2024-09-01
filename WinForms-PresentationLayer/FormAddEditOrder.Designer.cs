@@ -45,8 +45,6 @@
             this.lbOrderDate = new System.Windows.Forms.Label();
             this.lbOrderTotal = new System.Windows.Forms.Label();
             this.btnFreeOrder = new System.Windows.Forms.Button();
-            this.txtComment = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnOrder = new System.Windows.Forms.Button();
             this.dgvOrderItems = new System.Windows.Forms.DataGridView();
@@ -65,16 +63,14 @@
             // 
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.btnFreeOrder);
-            this.panel1.Controls.Add(this.txtComment);
-            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnReset);
             this.panel1.Controls.Add(this.btnOrder);
             this.panel1.Controls.Add(this.dgvOrderItems);
-            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(910, 75);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1001, 583);
+            this.panel1.Size = new System.Drawing.Size(1001, 887);
             this.panel1.TabIndex = 11;
             // 
             // groupBox1
@@ -251,27 +247,6 @@
             this.btnFreeOrder.UseVisualStyleBackColor = false;
             this.btnFreeOrder.Click += new System.EventHandler(this.btnFreeOrder_Click);
             // 
-            // txtComment
-            // 
-            this.txtComment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtComment.Location = new System.Drawing.Point(3, 447);
-            this.txtComment.Multiline = true;
-            this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(567, 123);
-            this.txtComment.TabIndex = 16;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(16, 424);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 20);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "Comment";
-            // 
             // btnReset
             // 
             this.btnReset.Location = new System.Drawing.Point(632, 25);
@@ -285,7 +260,7 @@
             // btnOrder
             // 
             this.btnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrder.Location = new System.Drawing.Point(818, 447);
+            this.btnOrder.Location = new System.Drawing.Point(818, 796);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(178, 77);
             this.btnOrder.TabIndex = 13;
@@ -303,7 +278,7 @@
             this.dgvOrderItems.Name = "dgvOrderItems";
             this.dgvOrderItems.RowHeadersWidth = 62;
             this.dgvOrderItems.RowTemplate.Height = 28;
-            this.dgvOrderItems.Size = new System.Drawing.Size(995, 229);
+            this.dgvOrderItems.Size = new System.Drawing.Size(995, 609);
             this.dgvOrderItems.TabIndex = 12;
             this.dgvOrderItems.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderItems_CellValueChanged);
             // 
@@ -313,12 +288,12 @@
             this.contextMenuStripOrderItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItemDeleteOrderItem});
             this.contextMenuStripOrderItems.Name = "contextMenuStripOrderItems";
-            this.contextMenuStripOrderItems.Size = new System.Drawing.Size(241, 69);
+            this.contextMenuStripOrderItems.Size = new System.Drawing.Size(135, 36);
             // 
             // toolStripMenuItemDeleteOrderItem
             // 
             this.toolStripMenuItemDeleteOrderItem.Name = "toolStripMenuItemDeleteOrderItem";
-            this.toolStripMenuItemDeleteOrderItem.Size = new System.Drawing.Size(152, 32);
+            this.toolStripMenuItemDeleteOrderItem.Size = new System.Drawing.Size(134, 32);
             this.toolStripMenuItemDeleteOrderItem.Text = "Delete";
             this.toolStripMenuItemDeleteOrderItem.Click += new System.EventHandler(this.toolStripMenuItemDeleteOrderItem_Click);
             // 
@@ -342,7 +317,7 @@
             this.dgvListItems.ReadOnly = true;
             this.dgvListItems.RowHeadersWidth = 62;
             this.dgvListItems.RowTemplate.Height = 28;
-            this.dgvListItems.Size = new System.Drawing.Size(726, 567);
+            this.dgvListItems.Size = new System.Drawing.Size(726, 887);
             this.dgvListItems.TabIndex = 12;
             this.dgvListItems.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvListItems_CellMouseDoubleClick);
             // 
@@ -350,7 +325,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 678);
+            this.ClientSize = new System.Drawing.Size(1924, 1014);
             this.Controls.Add(this.dgvListItems);
             this.Controls.Add(this.lbMode);
             this.Controls.Add(this.panel1);
@@ -361,7 +336,6 @@
             this.Text = "Add/Edit Order";
             this.Load += new System.EventHandler(this.FormAddEditOrder_Load);
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).EndInit();
@@ -384,8 +358,6 @@
         private System.Windows.Forms.Label lbMode;
         private System.Windows.Forms.DataGridView dgvListItems;
         private System.Windows.Forms.DataGridView dgvOrderItems;
-        private System.Windows.Forms.TextBox txtComment;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnOrder;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripOrderItems;

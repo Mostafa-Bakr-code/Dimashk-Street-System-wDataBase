@@ -123,7 +123,7 @@ namespace DataAccessLayer
             return ID;
         }
 
-        public static bool UpdateOrderItem(int ID, int OrderID, int itemID, int quantity, decimal price, decimal totalItemsPrice)
+        public static bool UpdateOrderItem(int ID, int OrderID, int itemID, int quantity, decimal price, decimal totalItemsPrice, string comment)
 
         {
 
@@ -157,7 +157,8 @@ namespace DataAccessLayer
                                    ItemID = @ItemID, 
                                    Quantity = @quantity, 
                                    Price = @price, 
-                                   TotalItemsPrice = @totalItemsPrice
+                                   TotalItemsPrice = @totalItemsPrice,
+                                   Comment = @comment
                                WHERE ID = @ID";
 
                 SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
@@ -167,6 +168,7 @@ namespace DataAccessLayer
                 updateCommand.Parameters.AddWithValue("@quantity", quantity);
                 updateCommand.Parameters.AddWithValue("@price", itemPrice);
                 updateCommand.Parameters.AddWithValue("@totalItemsPrice", totalItemsPrice);
+                updateCommand.Parameters.AddWithValue("@comment", comment ?? (object)DBNull.Value);
 
                 int rowsAffected = updateCommand.ExecuteNonQuery();
                 updateSuccessful = (rowsAffected > 0);
@@ -233,8 +235,8 @@ namespace DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = "SELECT OrderItems.ID, OrderItems.OrderID, Items.ItemName, OrderItems.Quantity, " +
-                           "OrderItems.Price, OrderItems.TotalItemsPrice " +
+            string query = "SELECT OrderItems.ID, /*OrderItems.OrderID,*/ Items.ItemName, OrderItems.Quantity, " +
+                           "OrderItems.Price, OrderItems.TotalItemsPrice, OrderItems.Comment " +
                            "FROM Items INNER JOIN OrderItems ON Items.ItemID = OrderItems.ItemID " +
                            "WHERE OrderItems.OrderID = @OrderID";
 

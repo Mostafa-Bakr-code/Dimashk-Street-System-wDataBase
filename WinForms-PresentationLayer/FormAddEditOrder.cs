@@ -10,12 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using System.Data.Common;
 
 namespace WinForms_PresentationLayer
 {
     public partial class FormAddEditOrder : Form
     {
 
+
+        private BindingSource bindingSource = new BindingSource();
         public enum enMode { AddNew = 0, Update = 1 };
         private enMode _Mode;
 
@@ -51,21 +54,82 @@ namespace WinForms_PresentationLayer
         private void listOrderItems(int orderID)
         {
 
-            dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItemsbyID(orderID);
+            //dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItemsbyID(orderID);
 
-            
+            //// Make the DataGridView editable
+            //dgvOrderItems.ReadOnly = false;
+
+            //// Loop through each column to set ReadOnly property
+            //foreach (DataGridViewColumn column in dgvOrderItems.Columns)
+            //{
+            //    // Allow editing only for the Quantity and Comment columns
+            //    if (column.Name == "Quantity" || column.Name == "Comment")
+            //    {
+            //        column.ReadOnly = false;
+            //    }
+            //    else
+            //    {
+            //        column.ReadOnly = true;
+            //    }
+            //}
+
+            //HideIDColumn();
+
+
+            // i used the binding source because when i set the comment it works but when i delete it and leave it empty i get an error
+            // Set data to the BindingSource
+            bindingSource.DataSource = clsOrderItemsBusiness.GetAllOrderItemsbyID(orderID);
+
+            // Bind the BindingSource to the DataGridView
+            dgvOrderItems.DataSource = bindingSource;
+
+            // Make the DataGridView editable
             dgvOrderItems.ReadOnly = false;
 
-          
+            // Loop through each column to set ReadOnly property
             foreach (DataGridViewColumn column in dgvOrderItems.Columns)
             {
-                if (column.Name != "Quantity")
+                // Allow editing only for the Quantity and Comment columns
+                if (column.Name == "Quantity" || column.Name == "Comment")
+                {
+                    column.ReadOnly = false;
+                }
+                else
                 {
                     column.ReadOnly = true;
                 }
+
+
+                switch (column.Name)
+                {
+                    case "Quantity":
+                        column.Width = 60; // Short width for Quantity
+                        break;
+                    case "Comment":
+                        column.Width = 300; // Larger width for Comment
+                        break;
+                    case "ID":
+                        column.Width = 30; // Adjust as needed
+                        break;
+                    case "ItemName":
+                        column.Width = 90; // Adjust as needed
+                        break;
+                    case "Price":
+                        column.Width = 50; // Adjust as needed
+                        break;
+                    case "TotalItemsPrice":
+                        column.Width = 90; // Adjust as needed
+                        break;
+                    default:
+                        column.Width = 100; // Default width for other columns
+                        break;
+                }
             }
 
-            //HideIDColumn();
+
+
+
+
         }
 
         private void updateOrderDataDisplay()
@@ -184,17 +248,42 @@ namespace WinForms_PresentationLayer
 
         private void dgvOrderItems_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            //if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            //{
+            //    DataGridViewCell cell = dgvOrderItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //    object cellValue = cell.Value;
+
+
+            //    if (e.ColumnIndex == dgvOrderItems.Columns["Quantity"].Index)
+            //    {
+            //        int orderItemID = Convert.ToInt32(dgvOrderItems.Rows[e.RowIndex].Cells[0].Value); // Assuming ID is in column 0
+
+
+            //        int newQuantity = Convert.ToInt32(cellValue);
+
+            //        // Update the quantity in the business logic
+            //        clsOrderItemsBusiness orderItem = clsOrderItemsBusiness.Find(orderItemID);
+            //        orderItem.Quantity = newQuantity;
+            //        orderItem.Save();
+
+            //        _Order = clsOrderBusiness.Find(_Order.ID);
+
+
+            //        listOrderItems(_Order.ID);
+            //        updateOrderDataDisplay();
+            //    }
+            //}
+
+
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 DataGridViewCell cell = dgvOrderItems.Rows[e.RowIndex].Cells[e.ColumnIndex];
                 object cellValue = cell.Value;
 
-                // Assuming the column for Quantity is index 1
+                // Check if the cell's column is the Quantity column
                 if (e.ColumnIndex == dgvOrderItems.Columns["Quantity"].Index)
                 {
                     int orderItemID = Convert.ToInt32(dgvOrderItems.Rows[e.RowIndex].Cells[0].Value); // Assuming ID is in column 0
-
-
                     int newQuantity = Convert.ToInt32(cellValue);
 
                     // Update the quantity in the business logic
@@ -204,17 +293,32 @@ namespace WinForms_PresentationLayer
 
                     _Order = clsOrderBusiness.Find(_Order.ID);
 
+                    listOrderItems(_Order.ID);
+                    updateOrderDataDisplay();
+                }
+                // Check if the cell's column is the Comment column
+                else if (e.ColumnIndex == dgvOrderItems.Columns["Comment"].Index)
+                {
+                    int orderItemID = Convert.ToInt32(dgvOrderItems.Rows[e.RowIndex].Cells[0].Value); // Assuming ID is in column 0
+                    string newComment = cellValue?.ToString(); // Convert cell value to string
+
+                    // Update the comment in the business logic
+                    clsOrderItemsBusiness orderItem = clsOrderItemsBusiness.Find(orderItemID);
+                    orderItem.Comment = newComment;
+                    orderItem.Save();
+
+                    _Order = clsOrderBusiness.Find(_Order.ID);
 
                     listOrderItems(_Order.ID);
                     updateOrderDataDisplay();
                 }
             }
 
-
         }
 
         private void FormAddEditOrder_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             LoadData(); 
         }
 
@@ -345,7 +449,8 @@ namespace WinForms_PresentationLayer
                 }
             }
 
-            PrintOrderInfo();
+            PrintOrderInfoForUser();
+            PrintOrderInfoForChief();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -450,7 +555,7 @@ namespace WinForms_PresentationLayer
             }
         }
 
-        private void PrintOrderInfo()
+        private void PrintOrderInfoForUser()
         {
             if (_Order == null)
             {
@@ -460,9 +565,10 @@ namespace WinForms_PresentationLayer
 
             // Start creating the order info string
             StringBuilder orderInfo = new StringBuilder();
-            orderInfo.AppendLine($"Dimashk Street\n\n ");
-            orderInfo.AppendLine($"Order ID: {_Order.SerialNumber}");
-            orderInfo.AppendLine($"Order Date: {_Order.date}");
+            orderInfo.AppendLine($"....FROM DIMASHK .... \n\n ");
+            orderInfo.AppendLine($"{_Order.date}");
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+
 
             orderInfo.AppendLine("\nItems:");
 
@@ -472,19 +578,22 @@ namespace WinForms_PresentationLayer
             {
                 string itemName = row.Cells["ItemName"].Value.ToString();
                 string quantity = row.Cells["Quantity"].Value.ToString();
-                string price = row.Cells["Price"].Value.ToString();
-                string total = row.Cells["TotalItemsPrice"].Value.ToString();
+                string price = Convert.ToDecimal(row.Cells["Price"].Value).ToString("F2");
+                string total = Convert.ToDecimal(row.Cells["TotalItemsPrice"].Value).ToString("F2");
+
+                string comment = row.Cells["Comment"].Value.ToString();
+                
 
                 orderInfo.AppendLine($"{itemName}, Quantity: {quantity}, Price: {price}, Total: {total}");
             }
 
-
-            orderInfo.AppendLine($"\n\nSubTotal: {lbSubTotal.Text}");
-            orderInfo.AppendLine($"Tax Value: {lbTaxValue.Text}");
+            orderInfo.AppendLine($"\n\nSubTotal: {decimal.Parse(lbSubTotal.Text).ToString("F2")}");
+            orderInfo.AppendLine($"Tax Value: {decimal.Parse(lbTaxValue.Text).ToString("F2")}");
             orderInfo.AppendLine($"Vat: {lbVat.Text}");
-            orderInfo.AppendLine($"Order Total: {_Order.Total}");
-            orderInfo.AppendLine($"\n\nThank you for your trust :) ");
-            orderInfo.AppendLine($"\nComment: {txtComment.Text}");
+            orderInfo.AppendLine($"Total: {_Order.Total.ToString("F2")}");
+
+            orderInfo.AppendLine($"\n\nThanks for your trust :) ");
+            //orderInfo.AppendLine($"\nComment: {txtComment.Text}");
 
             // Display the formatted string in a MessageBox
             MessageBox.Show(orderInfo.ToString(), "Order Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -495,7 +604,7 @@ namespace WinForms_PresentationLayer
             printDoc.PrintPage += (sender, e) =>
             {
                 // Define font and position
-                Font font = new Font("Arial", 12);
+                Font font = new Font("Courier New", 8);
                 float x = e.MarginBounds.Left;
                 float y = e.MarginBounds.Top;
 
@@ -513,6 +622,97 @@ namespace WinForms_PresentationLayer
                 printDoc.Print();
             }
 
+
+            // Directly print without showing the PrintDialog
+            //try
+            //{
+            //    printDoc.Print();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("An error occurred while printing: " + ex.Message);
+            //}
+
+
+        }
+
+        private void PrintOrderInfoForChief()
+        {
+            if (_Order == null)
+            {
+                MessageBox.Show("Order data is not available.");
+                return;
+            }
+
+            // Start creating the order info string
+            StringBuilder orderInfo = new StringBuilder();
+            //orderInfo.AppendLine($"....FROM DIMASHK Chief.... \n\n ");
+            orderInfo.AppendLine($"{_Order.date}");
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+
+
+            orderInfo.AppendLine("\nItems:\n ________________________________________________\n");
+
+
+            // Loop through order items and add them to the string
+            foreach (DataGridViewRow row in dgvOrderItems.Rows)
+            {
+                string itemName = row.Cells["ItemName"].Value.ToString();
+                string quantity = row.Cells["Quantity"].Value.ToString();
+                //string price = row.Cells["Price"].Value.ToString();
+                //string total = row.Cells["TotalItemsPrice"].Value.ToString();
+
+                string comment = row.Cells["Comment"].Value.ToString();
+
+
+                orderInfo.AppendLine($"{itemName}, Quantity: {quantity},\nComment: {comment}\n ________________________________________________\n");
+            }
+
+
+            //orderInfo.AppendLine($"\n\nSubTotal: {lbSubTotal.Text}");
+            //orderInfo.AppendLine($"Tax Value: {lbTaxValue.Text}");
+            //orderInfo.AppendLine($"Vat: {lbVat.Text}");
+            //orderInfo.AppendLine($"Total: {_Order.Total}");
+            //orderInfo.AppendLine($"\n\nThanks for your trust :) ");
+            //orderInfo.AppendLine($"\nComment: {txtComment.Text}");
+
+            // Display the formatted string in a MessageBox
+            MessageBox.Show(orderInfo.ToString(), "Order Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            // Create a PrintDocument object
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.PrintPage += (sender, e) =>
+            {
+                // Define font and position
+                Font font = new Font("Courier New", 8);
+                float x = e.MarginBounds.Left;
+                float y = e.MarginBounds.Top;
+
+                // Print the order info string
+                e.Graphics.DrawString(orderInfo.ToString(), font, Brushes.Black, new RectangleF(x, y, e.PageBounds.Width, e.PageBounds.Height));
+            };
+
+            // Create a PrintDialog object
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = printDoc;
+
+            // Show the print dialog to the user
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDoc.Print();
+            }
+
+
+            // Directly print without showing the PrintDialog
+            //try
+            //{
+            //    printDoc.Print();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("An error occurred while printing: " + ex.Message);
+            //}
 
         }
 
@@ -555,14 +755,7 @@ namespace WinForms_PresentationLayer
 
 
 
-        //private void HideIDColumn()
-        //{
-        //    if (dgvOrderItems.Columns.Contains("ID") || dgvOrderItems.Columns.Contains("OrderID"))
-        //    {
-        //        dgvOrderItems.Columns["ID"].Visible = false;
-        //        dgvOrderItems.Columns["OrderID"].Visible = false;
-        //    }
-        //}
+
 
 
     }

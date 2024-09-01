@@ -22,6 +22,8 @@ namespace BuisnessLayer
 
         public decimal TotalItemsPrice { set; get; }
 
+        public string Comment { set; get; }
+
 
         public clsOrderItemsBusiness()
 
@@ -64,7 +66,7 @@ namespace BuisnessLayer
             //call DataAccess Layer 
 
 
-            return clsOrderItemsData.UpdateOrderItem(this.ID, this.OrderID, this.ItemID, this.Quantity, this.Price, this.TotalItemsPrice);
+            return clsOrderItemsData.UpdateOrderItem(this.ID, this.OrderID, this.ItemID, this.Quantity, this.Price, this.TotalItemsPrice, this.Comment);
 
         }
 

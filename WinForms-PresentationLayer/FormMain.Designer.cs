@@ -315,7 +315,7 @@
             this.dgvOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrderItems.ContextMenuStrip = this.contextMenuOrderItems;
             this.dgvOrderItems.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvOrderItems.Location = new System.Drawing.Point(161, 265);
+            this.dgvOrderItems.Location = new System.Drawing.Point(163, 164);
             this.dgvOrderItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvOrderItems.Name = "dgvOrderItems";
             this.dgvOrderItems.ReadOnly = true;

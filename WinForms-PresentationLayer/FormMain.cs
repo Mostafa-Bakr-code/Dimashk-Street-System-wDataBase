@@ -11,9 +11,9 @@ namespace WinForms_PresentationLayer
         public FormMain()
         {
 
-
             InitializeComponent();
-           
+            this.WindowState = FormWindowState.Maximized;
+
         }
 
         private void _RefreshItemsList()
