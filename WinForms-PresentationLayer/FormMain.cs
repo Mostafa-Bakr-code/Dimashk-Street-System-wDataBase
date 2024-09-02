@@ -16,6 +16,7 @@ namespace WinForms_PresentationLayer
 
         }
 
+
         private void _RefreshItemsList()
         {
 
@@ -46,6 +47,7 @@ namespace WinForms_PresentationLayer
             _RefreshItemsList();
             _FillCategoriesInComoboBox();
             _FillItemsNameInComoboBox();
+            
         }
 
         private void btnItemsMenu_Click(object sender, EventArgs e)

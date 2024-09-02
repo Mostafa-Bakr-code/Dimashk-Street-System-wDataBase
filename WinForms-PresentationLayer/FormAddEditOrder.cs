@@ -27,7 +27,6 @@ namespace WinForms_PresentationLayer
 
         private bool _orderPlaced = false;
 
-
         public FormAddEditOrder(int orderID)
         {
             InitializeComponent();
@@ -360,7 +359,7 @@ namespace WinForms_PresentationLayer
 
                 if (success)
                 {
-                    MessageBox.Show("Order deleted successfully.");
+                    //MessageBox.Show("Order deleted successfully.");
                 }
                 else
                 {
@@ -382,7 +381,7 @@ namespace WinForms_PresentationLayer
 
                 if (success)
                 {
-                    MessageBox.Show("OrderItems deleted successfully.");
+                    //MessageBox.Show("OrderItems deleted successfully.");
                 }
                 else
                 {
@@ -407,7 +406,7 @@ namespace WinForms_PresentationLayer
 
             if (dgvOrderItems.Rows.Count == 0)
             {
-                MessageBox.Show("You must add at least one item to the order.");
+                MessageBox.Show("يجب اضافة منتج واحد علي الاقل");
                 return;
             }
 
@@ -422,7 +421,7 @@ namespace WinForms_PresentationLayer
 
                 if (success)
                 {
-                    MessageBox.Show("Order placed successfully!");
+                    //MessageBox.Show("Order placed successfully!");
                     _orderPlaced = true;
 
                     this.Close();
@@ -469,17 +468,17 @@ namespace WinForms_PresentationLayer
 
             //MessageBox.Show(orderItemID);
 
-            DialogResult result =
-            MessageBox.Show($"Are you sure you want to delete this Order Item {orderItemID}",
-                "Delete Order Item", MessageBoxButtons.OKCancel);
+            //DialogResult result =
+            //MessageBox.Show($"Are you sure you want to delete this Order Item {orderItemID}",
+            //    "Delete Order Item", MessageBoxButtons.OKCancel);
 
-            if (result == DialogResult.OK)
-            {
+            //if (result == DialogResult.OK)
+            //{
                 if (clsOrderItemsBusiness.DeleteOrderItem(int.Parse(orderItemID),_Order.ID))
                     //MessageBox.Show("Deleted Sucssefully");
 
                     _Order = clsOrderBusiness.Find(_Order.ID);
-                    //_Order.Total = 0;
+                   
                     listOrderItems(_Order.ID);
 
 
@@ -490,7 +489,7 @@ namespace WinForms_PresentationLayer
                 }
 
                 updateOrderDataDisplay();
-            }
+            //}
 
         }
 
@@ -566,9 +565,13 @@ namespace WinForms_PresentationLayer
             // Start creating the order info string
             StringBuilder orderInfo = new StringBuilder();
 
+            orderInfo.AppendLine("******************************\n");
+            orderInfo.AppendLine("******************************\n");
+            orderInfo.AppendLine("******************************\n");
             orderInfo.AppendLine("\n\n....FROM DIMASHK .... \n\n");
-            orderInfo.AppendLine($"{_Order.date}\n\n");
+            orderInfo.AppendLine($"{_Order.date.ToString("yyyy-dd-MM")}\n\n");
             orderInfo.AppendLine($"ID: {_Order.SerialNumber}\n\n");
+            orderInfo.AppendLine("\n\n _______________________\n");
 
             // Loop through order items and add them to the string
             foreach (DataGridViewRow row in dgvOrderItems.Rows)
@@ -581,22 +584,30 @@ namespace WinForms_PresentationLayer
                 orderInfo.AppendLine($"{itemName}, Quantity: {quantity}, Price: {price}, Total: {total}");
             }
 
-
-            orderInfo.AppendLine("\nItems:\n _________________________\n");
+            orderInfo.AppendLine("\n\n _________________________\n");
             orderInfo.AppendLine($"\n\nSubTotal: {decimal.Parse(lbSubTotal.Text).ToString("F2")}");
             orderInfo.AppendLine($"\n\nTax Value: {decimal.Parse(lbTaxValue.Text).ToString("F2")}");
             orderInfo.AppendLine($"\n\nVat: {lbVat.Text}");
             orderInfo.AppendLine($"\n\nTotal: {_Order.Total.ToString("F2")}");
             orderInfo.AppendLine($"\n\nThank you for choosing us!");
             orderInfo.AppendLine("\n\n....FROM DIMASHK .... \n\n");
-            orderInfo.AppendLine($"\n\n{_Order.date}\n");
+            orderInfo.AppendLine($"{_Order.date.ToString("yyyy-dd-MM")}\n\n");
             orderInfo.AppendLine($"\n\nID: {_Order.SerialNumber}\n");
+            orderInfo.AppendLine("******************************\n");
+            orderInfo.AppendLine("******************************\n");
+            orderInfo.AppendLine("******************************\n");
+            orderInfo.AppendLine("******************************\n");
+            orderInfo.AppendLine("******************************\n");
+            orderInfo.AppendLine("******************************\n");
 
             // Convert the StringBuilder to a string for printing
             string orderInfoText = orderInfo.ToString();
 
             // Create a PrintDocument object
             PrintDocument printDoc = new PrintDocument();
+
+            // Set the printer name directly
+            printDoc.PrinterSettings.PrinterName = "XP-76";
 
             // Adjust margins to reduce top space and add a buffer at the bottom
             printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10); // Adjusted top margin to 20 and bottom margin to 40
@@ -639,97 +650,15 @@ namespace WinForms_PresentationLayer
                 }
             };
 
-            // Create a PrintDialog object
-            PrintDialog printDialog = new PrintDialog
+            try
             {
-                Document = printDoc
-            };
-
-            // Show the print dialog to the user
-            if (printDialog.ShowDialog() == DialogResult.OK)
-            {
+                // Print directly to the specified printer without showing the PrintDialog
                 printDoc.Print();
             }
-        }
-
-        private void PrintOrderInfoForChiefV1()
-        {
-            if (_Order == null)
+            catch (Exception ex)
             {
-                MessageBox.Show("Order data is not available.");
-                return;
+                MessageBox.Show("An error occurred while printing: " + ex.Message);
             }
-
-            // Start creating the order info string
-            StringBuilder orderInfo = new StringBuilder();
-            //orderInfo.AppendLine($"....FROM DIMASHK Chief.... \n\n ");
-            orderInfo.AppendLine($"{_Order.date}");
-            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
-
-
-            orderInfo.AppendLine("\nItems:\n ________________________________________________\n");
-
-
-            // Loop through order items and add them to the string
-            foreach (DataGridViewRow row in dgvOrderItems.Rows)
-            {
-                string itemName = row.Cells["ItemName"].Value.ToString();
-                string quantity = row.Cells["Quantity"].Value.ToString();
-                //string price = row.Cells["Price"].Value.ToString();
-                //string total = row.Cells["TotalItemsPrice"].Value.ToString();
-
-                string comment = row.Cells["Comment"].Value.ToString();
-
-
-                orderInfo.AppendLine($"{itemName}, Quantity: {quantity},\nComment: {comment}\n ________________________________________________\n");
-            }
-
-
-            //orderInfo.AppendLine($"\n\nSubTotal: {lbSubTotal.Text}");
-            //orderInfo.AppendLine($"Tax Value: {lbTaxValue.Text}");
-            //orderInfo.AppendLine($"Vat: {lbVat.Text}");
-            //orderInfo.AppendLine($"Total: {_Order.Total}");
-            //orderInfo.AppendLine($"\n\nThanks for your trust :) ");
-            //orderInfo.AppendLine($"\nComment: {txtComment.Text}");
-
-            // Display the formatted string in a MessageBox
-            MessageBox.Show(orderInfo.ToString(), "Order Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-
-            // Create a PrintDocument object
-            PrintDocument printDoc = new PrintDocument();
-            printDoc.PrintPage += (sender, e) =>
-            {
-                // Define font and position
-                Font font = new Font("Arial", 14);
-                float x = e.MarginBounds.Left;
-                float y = e.MarginBounds.Top;
-
-                // Print the order info string
-                e.Graphics.DrawString(orderInfo.ToString(), font, Brushes.Black, new RectangleF(x, y, e.PageBounds.Width, e.PageBounds.Height));
-            };
-
-            // Create a PrintDialog object
-            PrintDialog printDialog = new PrintDialog();
-            printDialog.Document = printDoc;
-
-            // Show the print dialog to the user
-            if (printDialog.ShowDialog() == DialogResult.OK)
-            {
-                printDoc.Print();
-            }
-
-
-            // Directly print without showing the PrintDialog
-            //try
-            //{
-            //    printDoc.Print();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("An error occurred while printing: " + ex.Message);
-            //}
-
         }
 
         private void PrintOrderInfoForChief()
@@ -742,10 +671,11 @@ namespace WinForms_PresentationLayer
 
             // Start creating the order info string
             StringBuilder orderInfo = new StringBuilder();
-            //orderInfo.AppendLine($"....FROM DIMASHK Chief.... \n\n ");
+            orderInfo.AppendLine("******************************\n");
+            orderInfo.AppendLine("******************************\n");
+            orderInfo.AppendLine("******************************\n");
             orderInfo.AppendLine($"\n\n{_Order.date}");
             orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
-
             orderInfo.AppendLine("\nItems:\n _________________________\n");
 
             // Loop through order items and add them to the string
@@ -758,17 +688,23 @@ namespace WinForms_PresentationLayer
 
                 string comment = row.Cells["Comment"].Value.ToString();
 
-                orderInfo.AppendLine($"{itemName}, Quantity: {quantity},\nComment: {comment}\n_________________________\n");
+                orderInfo.AppendLine($"{itemName}, Quan: {quantity},\n {comment}\n_________________________\n");
             }
 
             orderInfo.AppendLine($"\n\n{_Order.date}");
             orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+            orderInfo.AppendLine("******************************\n");
+            orderInfo.AppendLine("******************************\n");
+            orderInfo.AppendLine("******************************\n");
 
-            // Display the formatted string in a MessageBox
-            MessageBox.Show(orderInfo.ToString(), "Order Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Convert the StringBuilder to a string for printing
+            string orderInfoText = orderInfo.ToString();
 
             // Create a PrintDocument object
             PrintDocument printDoc = new PrintDocument();
+
+            // Set the printer name directly
+            printDoc.PrinterSettings.PrinterName = "XP-76";
 
             // Set custom margins (minimal margins)
             printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10);
@@ -785,28 +721,18 @@ namespace WinForms_PresentationLayer
                 float height = e.PageBounds.Height;
 
                 // Print the order info string
-                e.Graphics.DrawString(orderInfo.ToString(), font, Brushes.Black, new RectangleF(x, y, width, height));
+                e.Graphics.DrawString(orderInfoText, font, Brushes.Black, new RectangleF(x, y, width, height));
             };
 
-            // Create a PrintDialog object
-            PrintDialog printDialog = new PrintDialog();
-            printDialog.Document = printDoc;
-
-            // Show the print dialog to the user
-            if (printDialog.ShowDialog() == DialogResult.OK)
+            try
             {
+                // Print directly to the specified printer
                 printDoc.Print();
             }
-
-            // Directly print without showing the PrintDialog
-            //try
-            //{
-            //    printDoc.Print();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("An error occurred while printing: " + ex.Message);
-            //}
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while printing: " + ex.Message);
+            }
         }
 
         private void CategoryButton_Click(object sender, EventArgs e, string categoryName)
