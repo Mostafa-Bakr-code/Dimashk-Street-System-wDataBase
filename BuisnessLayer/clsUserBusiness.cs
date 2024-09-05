@@ -15,6 +15,7 @@ namespace BuisnessLayer
         public string password { set; get; }
         public int permissions { set; get; }
 
+        public static clsUserBusiness ActiveUser { get; private set; }
 
         public clsUserBusiness()
 
@@ -63,6 +64,17 @@ namespace BuisnessLayer
                 return null;
         }
 
+
+        public static void SetActiveUser(clsUserBusiness user)
+        {
+            ActiveUser = user;
+        }
+
+        public static void ClearActiveUser()
+        {
+            ActiveUser = null;
+        }
+
         public bool Save()
         {
 
@@ -100,7 +112,6 @@ namespace BuisnessLayer
 
         }
 
-
         public static bool DeleteUser(int ID)
         {
 
@@ -112,6 +123,13 @@ namespace BuisnessLayer
         {
 
             return clsUsersData.IsUserExist(ID);
+
+        }
+
+        public static bool ValidateUserCredentials(int ID, string password)
+        {
+
+            return clsUsersData.ValidateUserCredentials(ID, password);
 
         }
 

@@ -95,6 +95,11 @@
             this.contextMenuUsers = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripEditUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDeleteUsers = new System.Windows.Forms.ToolStripMenuItem();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lbActiveUserName = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -112,6 +117,7 @@
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsersMenu)).BeginInit();
             this.contextMenuUsers.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripItems
@@ -160,58 +166,69 @@
             // 
             // btnAddItem
             // 
-            this.btnAddItem.Location = new System.Drawing.Point(1, 193);
+            this.btnAddItem.BackColor = System.Drawing.Color.MintCream;
+            this.btnAddItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddItem.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnAddItem.Location = new System.Drawing.Point(1, 166);
             this.btnAddItem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(152, 52);
             this.btnAddItem.TabIndex = 2;
             this.btnAddItem.Text = "Add Item";
-            this.btnAddItem.UseVisualStyleBackColor = true;
+            this.btnAddItem.UseVisualStyleBackColor = false;
             this.btnAddItem.Visible = false;
             this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
             // 
             // btnCategoriesMenu
             // 
+            this.btnCategoriesMenu.BackColor = System.Drawing.Color.MintCream;
+            this.btnCategoriesMenu.ForeColor = System.Drawing.Color.DarkGreen;
             this.btnCategoriesMenu.Location = new System.Drawing.Point(7, 37);
             this.btnCategoriesMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCategoriesMenu.Name = "btnCategoriesMenu";
             this.btnCategoriesMenu.Size = new System.Drawing.Size(152, 52);
             this.btnCategoriesMenu.TabIndex = 3;
             this.btnCategoriesMenu.Text = "Categories Menu";
-            this.btnCategoriesMenu.UseVisualStyleBackColor = true;
+            this.btnCategoriesMenu.UseVisualStyleBackColor = false;
             this.btnCategoriesMenu.Click += new System.EventHandler(this.btnCategoriesMenu_Click);
             // 
             // btnItemsMenu
             // 
+            this.btnItemsMenu.BackColor = System.Drawing.Color.MintCream;
+            this.btnItemsMenu.ForeColor = System.Drawing.Color.DarkGreen;
             this.btnItemsMenu.Location = new System.Drawing.Point(177, 37);
             this.btnItemsMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnItemsMenu.Name = "btnItemsMenu";
             this.btnItemsMenu.Size = new System.Drawing.Size(152, 52);
             this.btnItemsMenu.TabIndex = 4;
             this.btnItemsMenu.Text = "Items Menu";
-            this.btnItemsMenu.UseVisualStyleBackColor = true;
+            this.btnItemsMenu.UseVisualStyleBackColor = false;
             this.btnItemsMenu.Click += new System.EventHandler(this.btnItemsMenu_Click);
             // 
             // btnOrdersMenu
             // 
+            this.btnOrdersMenu.BackColor = System.Drawing.Color.MintCream;
+            this.btnOrdersMenu.ForeColor = System.Drawing.Color.DarkGreen;
             this.btnOrdersMenu.Location = new System.Drawing.Point(348, 37);
             this.btnOrdersMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnOrdersMenu.Name = "btnOrdersMenu";
             this.btnOrdersMenu.Size = new System.Drawing.Size(152, 52);
             this.btnOrdersMenu.TabIndex = 5;
             this.btnOrdersMenu.Text = "Orders Menu";
-            this.btnOrdersMenu.UseVisualStyleBackColor = true;
+            this.btnOrdersMenu.UseVisualStyleBackColor = false;
             this.btnOrdersMenu.Click += new System.EventHandler(this.btnOrdersMenu_Click);
             // 
             // btnOrderItems
             // 
+            this.btnOrderItems.BackColor = System.Drawing.Color.MintCream;
+            this.btnOrderItems.ForeColor = System.Drawing.Color.DarkGreen;
             this.btnOrderItems.Location = new System.Drawing.Point(517, 37);
             this.btnOrderItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnOrderItems.Name = "btnOrderItems";
             this.btnOrderItems.Size = new System.Drawing.Size(152, 52);
             this.btnOrderItems.TabIndex = 6;
             this.btnOrderItems.Text = "OrderItems Menu";
-            this.btnOrderItems.UseVisualStyleBackColor = true;
+            this.btnOrderItems.UseVisualStyleBackColor = false;
             this.btnOrderItems.Click += new System.EventHandler(this.btnOrderItems_Click);
             // 
             // dgvOrders
@@ -355,24 +372,28 @@
             // 
             // btnAddCategory
             // 
-            this.btnAddCategory.Location = new System.Drawing.Point(3, 193);
+            this.btnAddCategory.BackColor = System.Drawing.Color.MintCream;
+            this.btnAddCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddCategory.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnAddCategory.Location = new System.Drawing.Point(1, 166);
             this.btnAddCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddCategory.Name = "btnAddCategory";
             this.btnAddCategory.Size = new System.Drawing.Size(152, 52);
             this.btnAddCategory.TabIndex = 20;
             this.btnAddCategory.Text = "Add Category";
-            this.btnAddCategory.UseVisualStyleBackColor = true;
+            this.btnAddCategory.UseVisualStyleBackColor = false;
             this.btnAddCategory.Visible = false;
             this.btnAddCategory.Click += new System.EventHandler(this.btnAddCategory_Click);
             // 
             // btnAddOrder
             // 
             this.btnAddOrder.BackColor = System.Drawing.Color.Turquoise;
-            this.btnAddOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOrder.Location = new System.Drawing.Point(1306, 65);
+            this.btnAddOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddOrder.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnAddOrder.Location = new System.Drawing.Point(1234, 65);
             this.btnAddOrder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddOrder.Name = "btnAddOrder";
-            this.btnAddOrder.Size = new System.Drawing.Size(241, 91);
+            this.btnAddOrder.Size = new System.Drawing.Size(506, 91);
             this.btnAddOrder.TabIndex = 23;
             this.btnAddOrder.Text = "Add Order";
             this.btnAddOrder.UseVisualStyleBackColor = false;
@@ -380,14 +401,14 @@
             // 
             // dateTimePickerStart
             // 
-            this.dateTimePickerStart.Location = new System.Drawing.Point(16, 55);
+            this.dateTimePickerStart.Location = new System.Drawing.Point(16, 57);
             this.dateTimePickerStart.Name = "dateTimePickerStart";
             this.dateTimePickerStart.Size = new System.Drawing.Size(300, 26);
             this.dateTimePickerStart.TabIndex = 25;
             // 
             // dateTimePickerEnd
             // 
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(464, 55);
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(465, 57);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
             this.dateTimePickerEnd.Size = new System.Drawing.Size(300, 26);
             this.dateTimePickerEnd.TabIndex = 26;
@@ -395,20 +416,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(11, 29);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 20);
+            this.label1.Size = new System.Drawing.Size(109, 25);
             this.label1.TabIndex = 27;
             this.label1.Text = "Start Date";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(460, 29);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 20);
+            this.label2.Size = new System.Drawing.Size(101, 25);
             this.label2.TabIndex = 28;
             this.label2.Text = "End Date";
             // 
@@ -754,32 +777,39 @@
             this.groupBox5.Controls.Add(this.btnOrdersMenu);
             this.groupBox5.Controls.Add(this.btnItemsMenu);
             this.groupBox5.Controls.Add(this.btnOrderItems);
-            this.groupBox5.Location = new System.Drawing.Point(163, 59);
+            this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.ForeColor = System.Drawing.Color.DarkSeaGreen;
+            this.groupBox5.Location = new System.Drawing.Point(163, 28);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(965, 97);
+            this.groupBox5.Size = new System.Drawing.Size(855, 130);
             this.groupBox5.TabIndex = 33;
             this.groupBox5.TabStop = false;
             // 
             // btnUsersMenu
             // 
+            this.btnUsersMenu.BackColor = System.Drawing.Color.MintCream;
+            this.btnUsersMenu.ForeColor = System.Drawing.Color.DarkGreen;
             this.btnUsersMenu.Location = new System.Drawing.Point(691, 37);
             this.btnUsersMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUsersMenu.Name = "btnUsersMenu";
             this.btnUsersMenu.Size = new System.Drawing.Size(152, 52);
             this.btnUsersMenu.TabIndex = 7;
             this.btnUsersMenu.Text = "Users Menu";
-            this.btnUsersMenu.UseVisualStyleBackColor = true;
+            this.btnUsersMenu.UseVisualStyleBackColor = false;
             this.btnUsersMenu.Click += new System.EventHandler(this.btnUsersMenu_Click);
             // 
             // btnAddUser
             // 
-            this.btnAddUser.Location = new System.Drawing.Point(1, 193);
+            this.btnAddUser.BackColor = System.Drawing.Color.MintCream;
+            this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddUser.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnAddUser.Location = new System.Drawing.Point(1, 166);
             this.btnAddUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(152, 52);
             this.btnAddUser.TabIndex = 34;
             this.btnAddUser.Text = "Add User";
-            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.UseVisualStyleBackColor = false;
             this.btnAddUser.Visible = false;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
             // 
@@ -816,22 +846,76 @@
             // toolStripEditUsers
             // 
             this.toolStripEditUsers.Name = "toolStripEditUsers";
-            this.toolStripEditUsers.Size = new System.Drawing.Size(240, 32);
+            this.toolStripEditUsers.Size = new System.Drawing.Size(134, 32);
             this.toolStripEditUsers.Text = "Edit";
             this.toolStripEditUsers.Click += new System.EventHandler(this.toolStripEditUsers_Click);
             // 
             // toolStripDeleteUsers
             // 
             this.toolStripDeleteUsers.Name = "toolStripDeleteUsers";
-            this.toolStripDeleteUsers.Size = new System.Drawing.Size(240, 32);
+            this.toolStripDeleteUsers.Size = new System.Drawing.Size(134, 32);
             this.toolStripDeleteUsers.Text = "Delete";
             this.toolStripDeleteUsers.Click += new System.EventHandler(this.toolStripDeleteUsers_Click);
+            // 
+            // label16
+            // 
+            this.label16.Location = new System.Drawing.Point(10, 14);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(138, 32);
+            this.label16.TabIndex = 37;
+            this.label16.Text = "Welcome back ";
+            // 
+            // lbActiveUserName
+            // 
+            this.lbActiveUserName.AutoSize = true;
+            this.lbActiveUserName.Location = new System.Drawing.Point(183, 12);
+            this.lbActiveUserName.Name = "lbActiveUserName";
+            this.lbActiveUserName.Size = new System.Drawing.Size(39, 20);
+            this.lbActiveUserName.TabIndex = 38;
+            this.lbActiveUserName.Text = "???";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label17);
+            this.panel2.Controls.Add(this.label16);
+            this.panel2.Controls.Add(this.lbActiveUserName);
+            this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.panel2.ForeColor = System.Drawing.Color.White;
+            this.panel2.Location = new System.Drawing.Point(1220, 2);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(410, 43);
+            this.panel2.TabIndex = 39;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(147, 12);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(25, 20);
+            this.label17.TabIndex = 39;
+            this.label17.Text = ": )";
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.BackColor = System.Drawing.Color.Gold;
+            this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogOut.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnLogOut.Location = new System.Drawing.Point(1636, 2);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(104, 32);
+            this.btnLogOut.TabIndex = 40;
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = false;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(1743, 952);
+            this.Controls.Add(this.btnLogOut);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.dgvUsersMenu);
             this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.groupBox5);
@@ -870,6 +954,8 @@
             this.groupBox5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsersMenu)).EndInit();
             this.contextMenuUsers.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -941,6 +1027,11 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuUsers;
         private System.Windows.Forms.ToolStripMenuItem toolStripEditUsers;
         private System.Windows.Forms.ToolStripMenuItem toolStripDeleteUsers;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label lbActiveUserName;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button btnLogOut;
     }
 }
 

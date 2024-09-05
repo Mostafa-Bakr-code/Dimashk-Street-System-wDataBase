@@ -272,6 +272,7 @@
             // 
             this.dgvOrderItems.AllowUserToAddRows = false;
             this.dgvOrderItems.AllowUserToDeleteRows = false;
+            this.dgvOrderItems.BackgroundColor = System.Drawing.Color.Honeydew;
             this.dgvOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrderItems.ContextMenuStrip = this.contextMenuStripOrderItems;
             this.dgvOrderItems.Location = new System.Drawing.Point(1, 172);
@@ -300,6 +301,7 @@
             // lbMode
             // 
             this.lbMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMode.ForeColor = System.Drawing.Color.White;
             this.lbMode.Location = new System.Drawing.Point(244, 19);
             this.lbMode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMode.Name = "lbMode";
@@ -311,6 +313,7 @@
             // 
             this.dgvListItems.AllowUserToAddRows = false;
             this.dgvListItems.AllowUserToDeleteRows = false;
+            this.dgvListItems.BackgroundColor = System.Drawing.Color.Honeydew;
             this.dgvListItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListItems.Location = new System.Drawing.Point(167, 75);
             this.dgvListItems.Name = "dgvListItems";
@@ -325,6 +328,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(1924, 1014);
             this.Controls.Add(this.dgvListItems);
             this.Controls.Add(this.lbMode);

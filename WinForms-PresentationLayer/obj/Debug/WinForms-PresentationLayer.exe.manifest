@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>e5ObXrD/Zlr1T+jy5WSsATCLhN6eUl9G7YLUV6RZqHE=</dsig:DigestValue>
+        <dsig:DigestValue>TSUpS2uiUC/nFTSxqZQSKLfS+3zWJmy/6P5vgCeDANQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -61,19 +61,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Hh8ZC4Ck+TziyRUhIkLeEjGqKeFSAYx5PJsiRIrgpEI=</dsig:DigestValue>
+        <dsig:DigestValue>AaQv8JFEMbVfJZapwBedBpTIEXxPI6xC9gLfqumVH78=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WinForms-PresentationLayer.exe" size="68576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WinForms-PresentationLayer.exe" size="73696">
       <assemblyIdentity name="WinForms-PresentationLayer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qe0z4JUYHUJkNF7Znfn6RPb12HtkGZ4VsqbJ74o0ozc=</dsig:DigestValue>
+        <dsig:DigestValue>CzdQjUlmzAonR4MX9W1J99zA5heXIZ/dn6M1qY0xCAs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -54,7 +54,16 @@ namespace WinForms_PresentationLayer
             _RefreshItemsList();
             _FillCategoriesInComoboBox();
             _FillItemsNameInComoboBox();
-            
+
+            if (clsUserBusiness.ActiveUser != null)
+            {
+                lbActiveUserName.Text = clsUserBusiness.ActiveUser.userName;
+            }
+            else
+            {
+                lbActiveUserName.Text = "???"; // Set the text to "???" if ActiveUser is null
+            }
+
         }
 
         private void btnItemsMenu_Click(object sender, EventArgs e)
@@ -578,6 +587,24 @@ namespace WinForms_PresentationLayer
                                 "Order Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void btnLogIN_Click(object sender, EventArgs e)
+        {
+            FormLogIn frm = new FormLogIn();
+            frm.ShowDialog();
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+          
+            clsUserBusiness.ClearActiveUser();
+
+            FormLogIn loginForm = new FormLogIn();
+            loginForm.Show();
+            this.Close(); 
+        }
+
+
 
 
 
