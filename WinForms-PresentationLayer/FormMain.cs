@@ -42,6 +42,13 @@ namespace WinForms_PresentationLayer
             dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItems();
         }
 
+        private void _RefreshUsersList()
+        {
+
+            dgvUsersMenu.DataSource = clsUserBusiness.GetAllUsers();
+
+        }
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             _RefreshItemsList();
@@ -56,11 +63,13 @@ namespace WinForms_PresentationLayer
             dgvOrderItems.Visible = false;
             dgvCategories.Visible = false;
             dgvListItems.Visible = true;
+            dgvUsersMenu.Visible = false;
             dgvListItems.DataSource = clsItemBusiness.GetAllItems();
             panelOrdersTotal.Visible = false;
 
             btnAddItem.Visible = true;
             btnAddCategory.Visible = false;
+            btnAddUser.Visible = false;
         }
 
         private void btnOrdersMenu_Click(object sender, EventArgs e)
@@ -69,11 +78,13 @@ namespace WinForms_PresentationLayer
             dgvOrderItems.Visible = false;
             dgvCategories.Visible = false;
             dgvOrders.Visible = true;
+            dgvUsersMenu.Visible = false;
             dgvOrders.DataSource = clsOrderBusiness.GetAllOrders();
             panelOrdersTotal.Visible = true;
 
             btnAddItem.Visible = false;
             btnAddCategory.Visible = false;
+            btnAddUser.Visible = false;
 
         }
 
@@ -83,11 +94,13 @@ namespace WinForms_PresentationLayer
             dgvCategories.Visible = false;
             dgvOrders.Visible = false;
             dgvOrderItems.Visible = true;
+            dgvUsersMenu.Visible = false;
             dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItems();
             panelOrdersTotal.Visible = false;
 
             btnAddItem.Visible = false;
             btnAddCategory.Visible = false;
+            btnAddUser.Visible = false;
         }
 
         private void btnCategoriesMenu_Click(object sender, EventArgs e)
@@ -96,11 +109,30 @@ namespace WinForms_PresentationLayer
             dgvOrderItems.Visible = false;
             dgvOrders.Visible = false;
             dgvCategories.Visible = true;
+            dgvUsersMenu.Visible = false;
             dgvCategories.DataSource = clsCategoryBusiness.GetAllCategories();
             panelOrdersTotal.Visible = false;
+         
 
             btnAddItem.Visible = false;
+            btnAddUser.Visible = false;
             btnAddCategory.Visible = true;
+        }
+
+        private void btnUsersMenu_Click(object sender, EventArgs e)
+        {
+            dgvListItems.Visible = false;
+            dgvOrderItems.Visible = false;
+            dgvOrders.Visible = false;
+            dgvCategories.Visible = false;
+            dgvUsersMenu.Visible = true;
+            panelOrdersTotal.Visible = false;
+
+            dgvUsersMenu.DataSource = clsUserBusiness.GetAllUsers();
+
+            btnAddItem.Visible = false;
+            btnAddCategory.Visible = false;
+            btnAddUser.Visible = true;
         }
 
         private void btnAddCategory_Click(object sender, EventArgs e)
@@ -118,6 +150,13 @@ namespace WinForms_PresentationLayer
             _RefreshItemsList();
 
       
+        }
+
+        private void btnAddUser_Click(object sender, EventArgs e)
+        {
+            FormAddEditUser frm = new FormAddEditUser(-1);
+            frm.ShowDialog();
+            _RefreshItemsList();
         }
 
         private void btnAllTimeTotal_Click(object sender, EventArgs e)
@@ -410,6 +449,29 @@ namespace WinForms_PresentationLayer
 
         }
 
+        private void toolStripDeleteUsers_Click(object sender, EventArgs e)
+        {
+            string userID = dgvUsersMenu.CurrentRow.Cells[0].Value.ToString();
+
+            DialogResult result =
+            MessageBox.Show($"Are you sure you want to delete user {userID}",
+                "Delete User", MessageBoxButtons.OKCancel);
+
+            if (result == DialogResult.OK)
+            {
+                if (clsUserBusiness.DeleteUser(int.Parse(userID)))
+                    MessageBox.Show("Deleted Sucssefully");
+                _RefreshUsersList();
+            }
+        }
+
+        private void toolStripEditUsers_Click(object sender, EventArgs e)
+        {
+            FormAddEditUser frm = new FormAddEditUser((int)dgvUsersMenu.CurrentRow.Cells[0].Value);
+            frm.ShowDialog();
+            _RefreshUsersList();
+        }
+
         private void _FillCategoriesInComoboBox()
         {
             DataTable dtCategories = clsCategoryBusiness.GetAllCategories();
@@ -516,6 +578,18 @@ namespace WinForms_PresentationLayer
                                 "Order Details", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

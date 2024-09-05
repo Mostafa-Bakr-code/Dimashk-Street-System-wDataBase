@@ -35,3 +35,8 @@ C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLaye
 C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.exe
 C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.pdb
 C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms_PresentationLayer.FormViewOrderItems.resources
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\bin\Debug\WinForms-PresentationLayer.exe.manifest
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\bin\Debug\WinForms-PresentationLayer.application
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.exe.manifest
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms-PresentationLayer.application
+C:\Users\Ahmed\Desktop\Dimashk-Street-System-wDataBase\WinForms-PresentationLayer\obj\Debug\WinForms_PresentationLayer.FormAddEditUser.resources

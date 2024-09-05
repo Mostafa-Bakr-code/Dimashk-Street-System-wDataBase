@@ -7,6 +7,7 @@ namespace DataAccessLayer
     public class clsItemDataAccess
     {
 
+
         public static bool GetItemInfoByID(int ID, ref string Name, ref int CategoryID, ref decimal Price, ref decimal InitialPrice, ref decimal TaxValue, ref decimal TaxRate)
         {
             bool isFound = false;
@@ -265,7 +266,6 @@ namespace DataAccessLayer
             return dt;
         }
 
-
         public static bool DeleteItem(int ID)
         {
 
@@ -335,14 +335,6 @@ namespace DataAccessLayer
 
             return isFound;
         }
-
-        public static decimal CalculateInitialPrice(decimal price)
-        {
-            decimal taxRate = 0.14m; // 14% tax rate
-            return price / (1 + taxRate); // Price before tax
-        }
-
-
 
 
     }

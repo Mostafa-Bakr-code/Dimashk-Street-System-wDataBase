@@ -89,6 +89,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnTotalbyCategoryAndDateRange = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnUsersMenu = new System.Windows.Forms.Button();
+            this.btnAddUser = new System.Windows.Forms.Button();
+            this.dgvUsersMenu = new System.Windows.Forms.DataGridView();
+            this.contextMenuUsers = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripEditUsers = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDeleteUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -104,6 +110,8 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsersMenu)).BeginInit();
+            this.contextMenuUsers.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripItems
@@ -152,7 +160,7 @@
             // 
             // btnAddItem
             // 
-            this.btnAddItem.Location = new System.Drawing.Point(3, 193);
+            this.btnAddItem.Location = new System.Drawing.Point(1, 193);
             this.btnAddItem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(152, 52);
@@ -218,7 +226,7 @@
             this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrders.ContextMenuStrip = this.contextMenuOrders;
             this.dgvOrders.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvOrders.Location = new System.Drawing.Point(161, 219);
+            this.dgvOrders.Location = new System.Drawing.Point(163, 164);
             this.dgvOrders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvOrders.Name = "dgvOrders";
             this.dgvOrders.ReadOnly = true;
@@ -271,7 +279,7 @@
             this.dgvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCategories.ContextMenuStrip = this.contextMenuCategories;
             this.dgvCategories.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvCategories.Location = new System.Drawing.Point(163, 237);
+            this.dgvCategories.Location = new System.Drawing.Point(163, 164);
             this.dgvCategories.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvCategories.Name = "dgvCategories";
             this.dgvCategories.ReadOnly = true;
@@ -741,21 +749,91 @@
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.Turquoise;
+            this.groupBox5.Controls.Add(this.btnUsersMenu);
             this.groupBox5.Controls.Add(this.btnCategoriesMenu);
             this.groupBox5.Controls.Add(this.btnOrdersMenu);
             this.groupBox5.Controls.Add(this.btnItemsMenu);
             this.groupBox5.Controls.Add(this.btnOrderItems);
             this.groupBox5.Location = new System.Drawing.Point(163, 59);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(676, 97);
+            this.groupBox5.Size = new System.Drawing.Size(965, 97);
             this.groupBox5.TabIndex = 33;
             this.groupBox5.TabStop = false;
+            // 
+            // btnUsersMenu
+            // 
+            this.btnUsersMenu.Location = new System.Drawing.Point(691, 37);
+            this.btnUsersMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnUsersMenu.Name = "btnUsersMenu";
+            this.btnUsersMenu.Size = new System.Drawing.Size(152, 52);
+            this.btnUsersMenu.TabIndex = 7;
+            this.btnUsersMenu.Text = "Users Menu";
+            this.btnUsersMenu.UseVisualStyleBackColor = true;
+            this.btnUsersMenu.Click += new System.EventHandler(this.btnUsersMenu_Click);
+            // 
+            // btnAddUser
+            // 
+            this.btnAddUser.Location = new System.Drawing.Point(1, 193);
+            this.btnAddUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAddUser.Name = "btnAddUser";
+            this.btnAddUser.Size = new System.Drawing.Size(152, 52);
+            this.btnAddUser.TabIndex = 34;
+            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Visible = false;
+            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            // 
+            // dgvUsersMenu
+            // 
+            this.dgvUsersMenu.AllowUserToAddRows = false;
+            this.dgvUsersMenu.AllowUserToDeleteRows = false;
+            this.dgvUsersMenu.AllowUserToOrderColumns = true;
+            this.dgvUsersMenu.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvUsersMenu.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvUsersMenu.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvUsersMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvUsersMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsersMenu.ContextMenuStrip = this.contextMenuUsers;
+            this.dgvUsersMenu.GridColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvUsersMenu.Location = new System.Drawing.Point(163, 164);
+            this.dgvUsersMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvUsersMenu.Name = "dgvUsersMenu";
+            this.dgvUsersMenu.ReadOnly = true;
+            this.dgvUsersMenu.RowHeadersWidth = 62;
+            this.dgvUsersMenu.Size = new System.Drawing.Size(534, 784);
+            this.dgvUsersMenu.TabIndex = 35;
+            this.dgvUsersMenu.Visible = false;
+            // 
+            // contextMenuUsers
+            // 
+            this.contextMenuUsers.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.contextMenuUsers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripEditUsers,
+            this.toolStripDeleteUsers});
+            this.contextMenuUsers.Name = "contextMenuOrders";
+            this.contextMenuUsers.Size = new System.Drawing.Size(135, 68);
+            // 
+            // toolStripEditUsers
+            // 
+            this.toolStripEditUsers.Name = "toolStripEditUsers";
+            this.toolStripEditUsers.Size = new System.Drawing.Size(240, 32);
+            this.toolStripEditUsers.Text = "Edit";
+            this.toolStripEditUsers.Click += new System.EventHandler(this.toolStripEditUsers_Click);
+            // 
+            // toolStripDeleteUsers
+            // 
+            this.toolStripDeleteUsers.Name = "toolStripDeleteUsers";
+            this.toolStripDeleteUsers.Size = new System.Drawing.Size(240, 32);
+            this.toolStripDeleteUsers.Text = "Delete";
+            this.toolStripDeleteUsers.Click += new System.EventHandler(this.toolStripDeleteUsers_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1743, 952);
+            this.Controls.Add(this.dgvUsersMenu);
+            this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.panelOrdersTotal);
             this.Controls.Add(this.dgvOrderItems);
@@ -790,6 +868,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsersMenu)).EndInit();
+            this.contextMenuUsers.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -855,6 +935,12 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button btnUsersMenu;
+        private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.DataGridView dgvUsersMenu;
+        private System.Windows.Forms.ContextMenuStrip contextMenuUsers;
+        private System.Windows.Forms.ToolStripMenuItem toolStripEditUsers;
+        private System.Windows.Forms.ToolStripMenuItem toolStripDeleteUsers;
     }
 }
 
