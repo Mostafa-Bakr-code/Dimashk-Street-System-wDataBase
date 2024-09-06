@@ -106,11 +106,11 @@ namespace WinForms_PresentationLayer
                     int permissions = _user.permissions;
 
                     checkBoxFullAccess.Checked = false;
-                    checkBoxCategories.Checked = (permissions & (int)checkBoxCategories.Tag) != 0;
-                    checkBoxOrders.Checked = (permissions & (int)checkBoxOrders.Tag) != 0;
-                    checkBoxOrderItems.Checked = (permissions & (int)checkBoxOrderItems.Tag) != 0;
-                    checkBoxUsers.Checked = (permissions & (int)checkBoxUsers.Tag) != 0;
-                    checkBoxItems.Checked = (permissions & (int)checkBoxItems.Tag) != 0;
+                    checkBoxCategories.Checked = (permissions & Convert.ToInt32(checkBoxCategories.Tag)) != 0;
+                    checkBoxOrders.Checked = (permissions & Convert.ToInt32(checkBoxOrders.Tag)) != 0;
+                    checkBoxOrderItems.Checked = (permissions & Convert.ToInt32(checkBoxOrderItems.Tag)) != 0;
+                    checkBoxUsers.Checked = (permissions & Convert.ToInt32(checkBoxUsers.Tag)) != 0;
+                    checkBoxItems.Checked = (permissions & Convert.ToInt32(checkBoxItems.Tag)) != 0;
                 }
 
 

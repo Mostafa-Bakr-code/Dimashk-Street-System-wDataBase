@@ -66,82 +66,126 @@ namespace WinForms_PresentationLayer
 
         }
 
+        private void CheckPermissionsAndExecute(Button clickedButton, Action action)
+        {
+            int requiredPermission = Convert.ToInt32(clickedButton.Tag);
+
+            if ((clsUserBusiness.ActiveUser.permissions & requiredPermission) == requiredPermission)
+            {
+                action(); 
+            }
+            else
+            {
+                MessageBox.Show("Access Denied");
+            }
+        }
+
         private void btnItemsMenu_Click(object sender, EventArgs e)
         {
-            dgvOrders.Visible = false;
-            dgvOrderItems.Visible = false;
-            dgvCategories.Visible = false;
-            dgvListItems.Visible = true;
-            dgvUsersMenu.Visible = false;
-            dgvListItems.DataSource = clsItemBusiness.GetAllItems();
-            panelOrdersTotal.Visible = false;
+            CheckPermissionsAndExecute((Button)sender, () =>
+            {
+                dgvOrders.Visible = false;
+                dgvOrderItems.Visible = false;
+                dgvCategories.Visible = false;
+                dgvListItems.Visible = true;
+                dgvUsersMenu.Visible = false;
+                dgvListItems.DataSource = clsItemBusiness.GetAllItems();
+                panelOrdersTotal.Visible = false;
 
-            btnAddItem.Visible = true;
-            btnAddCategory.Visible = false;
-            btnAddUser.Visible = false;
+                btnAddItem.Visible = true;
+                btnAddCategory.Visible = false;
+                btnAddUser.Visible = false;
+            });
         }
 
         private void btnOrdersMenu_Click(object sender, EventArgs e)
         {
-            dgvListItems.Visible=false;
-            dgvOrderItems.Visible = false;
-            dgvCategories.Visible = false;
-            dgvOrders.Visible = true;
-            dgvUsersMenu.Visible = false;
-            dgvOrders.DataSource = clsOrderBusiness.GetAllOrders();
-            panelOrdersTotal.Visible = true;
 
-            btnAddItem.Visible = false;
-            btnAddCategory.Visible = false;
-            btnAddUser.Visible = false;
+            CheckPermissionsAndExecute((Button)sender, () =>
+            {
+                dgvListItems.Visible = false;
+                dgvOrderItems.Visible = false;
+                dgvCategories.Visible = false;
+                dgvOrders.Visible = true;
+                dgvUsersMenu.Visible = false;
+                dgvOrders.DataSource = clsOrderBusiness.GetAllOrders();
+                panelOrdersTotal.Visible = true;
+
+                btnAddItem.Visible = false;
+                btnAddCategory.Visible = false;
+                btnAddUser.Visible = false;
+            });
+
+
 
         }
 
         private void btnOrderItems_Click(object sender, EventArgs e)
         {
-            dgvListItems.Visible = false;
-            dgvCategories.Visible = false;
-            dgvOrders.Visible = false;
-            dgvOrderItems.Visible = true;
-            dgvUsersMenu.Visible = false;
-            dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItems();
-            panelOrdersTotal.Visible = false;
 
-            btnAddItem.Visible = false;
-            btnAddCategory.Visible = false;
-            btnAddUser.Visible = false;
+
+            CheckPermissionsAndExecute((Button)sender, () =>
+            {
+                dgvListItems.Visible = false;
+                dgvCategories.Visible = false;
+                dgvOrders.Visible = false;
+                dgvOrderItems.Visible = true;
+                dgvUsersMenu.Visible = false;
+                dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItems();
+                panelOrdersTotal.Visible = false;
+
+                btnAddItem.Visible = false;
+                btnAddCategory.Visible = false;
+                btnAddUser.Visible = false;
+            });
+
+
         }
 
         private void btnCategoriesMenu_Click(object sender, EventArgs e)
         {
-            dgvListItems.Visible = false;
-            dgvOrderItems.Visible = false;
-            dgvOrders.Visible = false;
-            dgvCategories.Visible = true;
-            dgvUsersMenu.Visible = false;
-            dgvCategories.DataSource = clsCategoryBusiness.GetAllCategories();
-            panelOrdersTotal.Visible = false;
-         
 
-            btnAddItem.Visible = false;
-            btnAddUser.Visible = false;
-            btnAddCategory.Visible = true;
+            CheckPermissionsAndExecute((Button)sender, () =>
+            {
+                dgvListItems.Visible = false;
+                dgvOrderItems.Visible = false;
+                dgvOrders.Visible = false;
+                dgvCategories.Visible = true;
+                dgvUsersMenu.Visible = false;
+                dgvCategories.DataSource = clsCategoryBusiness.GetAllCategories();
+                panelOrdersTotal.Visible = false;
+
+
+                btnAddItem.Visible = false;
+                btnAddUser.Visible = false;
+                btnAddCategory.Visible = true;
+            });
+
+
+
         }
 
         private void btnUsersMenu_Click(object sender, EventArgs e)
         {
-            dgvListItems.Visible = false;
-            dgvOrderItems.Visible = false;
-            dgvOrders.Visible = false;
-            dgvCategories.Visible = false;
-            dgvUsersMenu.Visible = true;
-            panelOrdersTotal.Visible = false;
 
-            dgvUsersMenu.DataSource = clsUserBusiness.GetAllUsers();
 
-            btnAddItem.Visible = false;
-            btnAddCategory.Visible = false;
-            btnAddUser.Visible = true;
+            CheckPermissionsAndExecute((Button)sender, () =>
+            {
+                dgvListItems.Visible = false;
+                dgvOrderItems.Visible = false;
+                dgvOrders.Visible = false;
+                dgvCategories.Visible = false;
+                dgvUsersMenu.Visible = true;
+                panelOrdersTotal.Visible = false;
+
+                dgvUsersMenu.DataSource = clsUserBusiness.GetAllUsers();
+
+                btnAddItem.Visible = false;
+                btnAddCategory.Visible = false;
+                btnAddUser.Visible = true;
+            });
+
+
         }
 
         private void btnAddCategory_Click(object sender, EventArgs e)

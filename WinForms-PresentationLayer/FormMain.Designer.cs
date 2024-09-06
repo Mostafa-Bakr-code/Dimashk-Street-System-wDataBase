@@ -188,6 +188,7 @@
             this.btnCategoriesMenu.Name = "btnCategoriesMenu";
             this.btnCategoriesMenu.Size = new System.Drawing.Size(152, 52);
             this.btnCategoriesMenu.TabIndex = 3;
+            this.btnCategoriesMenu.Tag = "1";
             this.btnCategoriesMenu.Text = "Categories Menu";
             this.btnCategoriesMenu.UseVisualStyleBackColor = false;
             this.btnCategoriesMenu.Click += new System.EventHandler(this.btnCategoriesMenu_Click);
@@ -201,6 +202,7 @@
             this.btnItemsMenu.Name = "btnItemsMenu";
             this.btnItemsMenu.Size = new System.Drawing.Size(152, 52);
             this.btnItemsMenu.TabIndex = 4;
+            this.btnItemsMenu.Tag = "2";
             this.btnItemsMenu.Text = "Items Menu";
             this.btnItemsMenu.UseVisualStyleBackColor = false;
             this.btnItemsMenu.Click += new System.EventHandler(this.btnItemsMenu_Click);
@@ -214,6 +216,7 @@
             this.btnOrdersMenu.Name = "btnOrdersMenu";
             this.btnOrdersMenu.Size = new System.Drawing.Size(152, 52);
             this.btnOrdersMenu.TabIndex = 5;
+            this.btnOrdersMenu.Tag = "4";
             this.btnOrdersMenu.Text = "Orders Menu";
             this.btnOrdersMenu.UseVisualStyleBackColor = false;
             this.btnOrdersMenu.Click += new System.EventHandler(this.btnOrdersMenu_Click);
@@ -227,6 +230,7 @@
             this.btnOrderItems.Name = "btnOrderItems";
             this.btnOrderItems.Size = new System.Drawing.Size(152, 52);
             this.btnOrderItems.TabIndex = 6;
+            this.btnOrderItems.Tag = "8";
             this.btnOrderItems.Text = "OrderItems Menu";
             this.btnOrderItems.UseVisualStyleBackColor = false;
             this.btnOrderItems.Click += new System.EventHandler(this.btnOrderItems_Click);
@@ -794,6 +798,7 @@
             this.btnUsersMenu.Name = "btnUsersMenu";
             this.btnUsersMenu.Size = new System.Drawing.Size(152, 52);
             this.btnUsersMenu.TabIndex = 7;
+            this.btnUsersMenu.Tag = "16";
             this.btnUsersMenu.Text = "Users Menu";
             this.btnUsersMenu.UseVisualStyleBackColor = false;
             this.btnUsersMenu.Click += new System.EventHandler(this.btnUsersMenu_Click);
@@ -825,7 +830,7 @@
             this.dgvUsersMenu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsersMenu.ContextMenuStrip = this.contextMenuUsers;
             this.dgvUsersMenu.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvUsersMenu.Location = new System.Drawing.Point(163, 164);
+            this.dgvUsersMenu.Location = new System.Drawing.Point(161, 164);
             this.dgvUsersMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvUsersMenu.Name = "dgvUsersMenu";
             this.dgvUsersMenu.ReadOnly = true;
@@ -900,7 +905,7 @@
             this.btnLogOut.BackColor = System.Drawing.Color.Gold;
             this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogOut.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnLogOut.Location = new System.Drawing.Point(1636, 2);
+            this.btnLogOut.Location = new System.Drawing.Point(1636, 10);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(104, 32);
             this.btnLogOut.TabIndex = 40;
