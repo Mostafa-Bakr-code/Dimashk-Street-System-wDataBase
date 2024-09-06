@@ -58,10 +58,11 @@ namespace WinForms_PresentationLayer
             if (clsUserBusiness.ActiveUser != null)
             {
                 lbActiveUserName.Text = clsUserBusiness.ActiveUser.userName;
+                lbActiveTime.Text = clsUserBusiness.ActiveUser.LogInTime.ToString("hh:mm tt");
             }
             else
             {
-                lbActiveUserName.Text = "???"; // Set the text to "???" if ActiveUser is null
+                lbActiveUserName.Text = "???"; 
             }
 
         }

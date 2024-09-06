@@ -99,10 +99,11 @@
             this.label16 = new System.Windows.Forms.Label();
             this.lbActiveUserName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label17 = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.dgvLogs = new System.Windows.Forms.DataGridView();
             this.dgvTodaysLogs = new System.Windows.Forms.DataGridView();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lbActiveTime = new System.Windows.Forms.Label();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -399,7 +400,7 @@
             this.btnAddOrder.BackColor = System.Drawing.Color.Turquoise;
             this.btnAddOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddOrder.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnAddOrder.Location = new System.Drawing.Point(1234, 65);
+            this.btnAddOrder.Location = new System.Drawing.Point(1340, 56);
             this.btnAddOrder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddOrder.Name = "btnAddOrder";
             this.btnAddOrder.Size = new System.Drawing.Size(506, 91);
@@ -477,7 +478,7 @@
             this.panelOrdersTotal.Controls.Add(this.dateTimePickerStart);
             this.panelOrdersTotal.Location = new System.Drawing.Point(789, 164);
             this.panelOrdersTotal.Name = "panelOrdersTotal";
-            this.panelOrdersTotal.Size = new System.Drawing.Size(951, 779);
+            this.panelOrdersTotal.Size = new System.Drawing.Size(1057, 779);
             this.panelOrdersTotal.TabIndex = 32;
             this.panelOrdersTotal.Visible = false;
             // 
@@ -886,14 +887,14 @@
             // 
             this.label16.Location = new System.Drawing.Point(10, 14);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(138, 32);
+            this.label16.Size = new System.Drawing.Size(138, 44);
             this.label16.TabIndex = 37;
             this.label16.Text = "Welcome back ";
             // 
             // lbActiveUserName
             // 
             this.lbActiveUserName.AutoSize = true;
-            this.lbActiveUserName.Location = new System.Drawing.Point(183, 12);
+            this.lbActiveUserName.Location = new System.Drawing.Point(152, 14);
             this.lbActiveUserName.Name = "lbActiveUserName";
             this.lbActiveUserName.Size = new System.Drawing.Size(39, 20);
             this.lbActiveUserName.TabIndex = 38;
@@ -901,31 +902,23 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label17);
+            this.panel2.Controls.Add(this.lbActiveTime);
+            this.panel2.Controls.Add(this.label18);
             this.panel2.Controls.Add(this.label16);
             this.panel2.Controls.Add(this.lbActiveUserName);
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.ForeColor = System.Drawing.Color.White;
             this.panel2.Location = new System.Drawing.Point(1220, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(410, 43);
+            this.panel2.Size = new System.Drawing.Size(506, 43);
             this.panel2.TabIndex = 39;
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(147, 12);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(25, 20);
-            this.label17.TabIndex = 39;
-            this.label17.Text = ": )";
             // 
             // btnLogOut
             // 
             this.btnLogOut.BackColor = System.Drawing.Color.Gold;
             this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogOut.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnLogOut.Location = new System.Drawing.Point(1636, 10);
+            this.btnLogOut.Location = new System.Drawing.Point(1806, 10);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(104, 32);
             this.btnLogOut.TabIndex = 40;
@@ -975,12 +968,30 @@
             this.dgvTodaysLogs.TabIndex = 43;
             this.dgvTodaysLogs.Visible = false;
             // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(345, 14);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(58, 20);
+            this.label18.TabIndex = 40;
+            this.label18.Text = "Active";
+            // 
+            // lbActiveTime
+            // 
+            this.lbActiveTime.AutoSize = true;
+            this.lbActiveTime.Location = new System.Drawing.Point(409, 14);
+            this.lbActiveTime.Name = "lbActiveTime";
+            this.lbActiveTime.Size = new System.Drawing.Size(29, 20);
+            this.lbActiveTime.TabIndex = 41;
+            this.lbActiveTime.Text = "??";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(1743, 952);
+            this.ClientSize = new System.Drawing.Size(1922, 952);
             this.Controls.Add(this.dgvTodaysLogs);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.panel2);
@@ -1102,11 +1113,12 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label lbActiveUserName;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Button btnLogMenu;
         private System.Windows.Forms.DataGridView dgvLogs;
         private System.Windows.Forms.DataGridView dgvTodaysLogs;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lbActiveTime;
     }
 }
 

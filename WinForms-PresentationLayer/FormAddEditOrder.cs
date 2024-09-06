@@ -569,6 +569,8 @@ namespace WinForms_PresentationLayer
             orderInfo.AppendLine("******************************\n");
             orderInfo.AppendLine("******************************\n");
             orderInfo.AppendLine("\n\n....FROM DIMASHK .... \n\n");
+            orderInfo.AppendLine("Invoice Tax\n");
+            orderInfo.AppendLine($"Cashier: {clsUserBusiness.ActiveUser.userName}");
             orderInfo.AppendLine($"{_Order.date.ToString("yyyy-dd-MM")}\n\n");
             orderInfo.AppendLine($"ID: {_Order.SerialNumber}\n\n");
             orderInfo.AppendLine("\n\n _______________________\n");
@@ -593,6 +595,8 @@ namespace WinForms_PresentationLayer
             orderInfo.AppendLine("\n\n....FROM DIMASHK .... \n\n");
             orderInfo.AppendLine($"{_Order.date.ToString("yyyy-dd-MM")}\n\n");
             orderInfo.AppendLine($"\n\nID: {_Order.SerialNumber}\n");
+            orderInfo.AppendLine("Invoice Tax\n");
+            orderInfo.AppendLine($"Cashier: {clsUserBusiness.ActiveUser.userName}");
             orderInfo.AppendLine("******************************\n");
             orderInfo.AppendLine("******************************\n");
             orderInfo.AppendLine("******************************\n");
@@ -674,9 +678,12 @@ namespace WinForms_PresentationLayer
             orderInfo.AppendLine("******************************\n");
             orderInfo.AppendLine("******************************\n");
             orderInfo.AppendLine("******************************\n");
+
             orderInfo.AppendLine($"\n\n{_Order.date}");
             orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
-            orderInfo.AppendLine("\nItems:\n _________________________\n");
+
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+            orderInfo.AppendLine("\n\n _________________________\n");
 
             // Loop through order items and add them to the string
             foreach (DataGridViewRow row in dgvOrderItems.Rows)
@@ -704,7 +711,7 @@ namespace WinForms_PresentationLayer
             PrintDocument printDoc = new PrintDocument();
 
             // Set the printer name directly
-            printDoc.PrinterSettings.PrinterName = "XP-76";
+            printDoc.PrinterSettings.PrinterName = "XP-80";
 
             // Set custom margins (minimal margins)
             printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10);
