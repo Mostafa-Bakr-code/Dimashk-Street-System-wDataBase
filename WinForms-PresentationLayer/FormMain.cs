@@ -89,12 +89,15 @@ namespace WinForms_PresentationLayer
                 dgvCategories.Visible = false;
                 dgvListItems.Visible = true;
                 dgvUsersMenu.Visible = false;
+                dgvLogs.Visible = false;
+                dgvTodaysLogs.Visible = false;
                 dgvListItems.DataSource = clsItemBusiness.GetAllItems();
                 panelOrdersTotal.Visible = false;
 
                 btnAddItem.Visible = true;
                 btnAddCategory.Visible = false;
                 btnAddUser.Visible = false;
+                
             });
         }
 
@@ -108,12 +111,16 @@ namespace WinForms_PresentationLayer
                 dgvCategories.Visible = false;
                 dgvOrders.Visible = true;
                 dgvUsersMenu.Visible = false;
+                dgvLogs.Visible = false;
+                dgvTodaysLogs.Visible = false;
+
                 dgvOrders.DataSource = clsOrderBusiness.GetAllOrders();
                 panelOrdersTotal.Visible = true;
 
                 btnAddItem.Visible = false;
                 btnAddCategory.Visible = false;
                 btnAddUser.Visible = false;
+             
             });
 
 
@@ -131,12 +138,16 @@ namespace WinForms_PresentationLayer
                 dgvOrders.Visible = false;
                 dgvOrderItems.Visible = true;
                 dgvUsersMenu.Visible = false;
+                dgvLogs.Visible = false;
+                dgvTodaysLogs.Visible = false;
+
                 dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItems();
                 panelOrdersTotal.Visible = false;
 
                 btnAddItem.Visible = false;
                 btnAddCategory.Visible = false;
                 btnAddUser.Visible = false;
+             
             });
 
 
@@ -152,12 +163,15 @@ namespace WinForms_PresentationLayer
                 dgvOrders.Visible = false;
                 dgvCategories.Visible = true;
                 dgvUsersMenu.Visible = false;
+                dgvLogs.Visible = false;
+                dgvTodaysLogs.Visible = false;
                 dgvCategories.DataSource = clsCategoryBusiness.GetAllCategories();
                 panelOrdersTotal.Visible = false;
 
 
                 btnAddItem.Visible = false;
                 btnAddUser.Visible = false;
+             
                 btnAddCategory.Visible = true;
             });
 
@@ -177,14 +191,40 @@ namespace WinForms_PresentationLayer
                 dgvCategories.Visible = false;
                 dgvUsersMenu.Visible = true;
                 panelOrdersTotal.Visible = false;
+                dgvLogs.Visible = false;
+                dgvTodaysLogs.Visible = false;
 
                 dgvUsersMenu.DataSource = clsUserBusiness.GetAllUsers();
 
                 btnAddItem.Visible = false;
                 btnAddCategory.Visible = false;
                 btnAddUser.Visible = true;
+             
             });
 
+
+        }
+
+        private void btnLogMenu_Click(object sender, EventArgs e)
+        {
+
+            dgvListItems.Visible = false;
+            dgvOrderItems.Visible = false;
+            dgvOrders.Visible = false;
+            dgvCategories.Visible = false;
+            dgvUsersMenu.Visible = false;
+            dgvLogs.Visible = true;
+            dgvTodaysLogs.Visible = true;
+            panelOrdersTotal.Visible = false;
+
+
+            dgvLogs.DataSource = clsLogsBusiness.GetAllLogs();
+            dgvTodaysLogs.DataSource = clsLogsBusiness.GetTodaysLogs();
+
+            btnAddItem.Visible = false;
+            btnAddCategory.Visible = false;
+            btnAddUser.Visible = false;
+          
 
         }
 
@@ -638,46 +678,39 @@ namespace WinForms_PresentationLayer
             frm.ShowDialog();
         }
 
+        private void LogOutUser()
+        {
+            if (clsUserBusiness.ActiveUser != null)
+            {
+                DateTime logOutTime = DateTime.Now;
+
+                int userID = clsUserBusiness.ActiveUser.ID;
+
+                DateTime logInTime = clsUserBusiness.ActiveUser.LogInTime;
+
+                clsLogsBusiness.AddNewLog(userID, logInTime, logOutTime);
+
+                clsUserBusiness.ClearActiveUser();
+            }
+        }
+
         private void btnLogOut_Click(object sender, EventArgs e)
         {
-          
-            clsUserBusiness.ClearActiveUser();
-
+                           
+            LogOutUser();
+            
             FormLogIn loginForm = new FormLogIn();
             loginForm.Show();
-            this.Close(); 
+            this.Close();
+
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            LogOutUser();
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // modified total to include total count
     }
 }
 

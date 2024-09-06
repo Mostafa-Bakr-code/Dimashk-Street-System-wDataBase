@@ -16,6 +16,7 @@ namespace BuisnessLayer
         public int permissions { set; get; }
 
         public static clsUserBusiness ActiveUser { get; private set; }
+        public DateTime LogInTime { get; set; }
 
         public clsUserBusiness()
 
@@ -28,7 +29,6 @@ namespace BuisnessLayer
             Mode = enMode.AddNew;
 
         }
-
 
         private clsUserBusiness(int ID, string userName, string password, int permissions)
         {
@@ -64,10 +64,10 @@ namespace BuisnessLayer
                 return null;
         }
 
-
         public static void SetActiveUser(clsUserBusiness user)
         {
             ActiveUser = user;
+            ActiveUser.LogInTime = DateTime.Now;
         }
 
         public static void ClearActiveUser()

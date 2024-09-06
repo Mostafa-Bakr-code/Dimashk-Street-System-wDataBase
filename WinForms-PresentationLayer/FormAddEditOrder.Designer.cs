@@ -260,9 +260,9 @@
             // btnOrder
             // 
             this.btnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOrder.Location = new System.Drawing.Point(818, 796);
+            this.btnOrder.Location = new System.Drawing.Point(710, 796);
             this.btnOrder.Name = "btnOrder";
-            this.btnOrder.Size = new System.Drawing.Size(178, 77);
+            this.btnOrder.Size = new System.Drawing.Size(286, 77);
             this.btnOrder.TabIndex = 13;
             this.btnOrder.Text = "Order";
             this.btnOrder.UseVisualStyleBackColor = true;

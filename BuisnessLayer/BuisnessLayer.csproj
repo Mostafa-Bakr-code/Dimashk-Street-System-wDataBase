@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="clsCategoryBusiness.cs" />
     <Compile Include="clsItemBusiness.cs" />
+    <Compile Include="clsLogsBusiness.cs" />
     <Compile Include="clsOrderBusiness.cs" />
     <Compile Include="clsOrderItemsBusiness.cs" />
     <Compile Include="clsUserBusiness.cs" />
