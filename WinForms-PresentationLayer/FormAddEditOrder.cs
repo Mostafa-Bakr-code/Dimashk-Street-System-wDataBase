@@ -136,7 +136,7 @@ namespace WinForms_PresentationLayer
             
 
             lbOrderID.Text = _Order.SerialNumber.ToString();
-            lbOrderDate.Text = _Order.date.ToString();
+            lbOrderDate.Text = _Order.date.ToString("yyyy-MM-dd");
             lbOrderTotal.Text = _Order.Total.ToString();
             updateOrderTax();
 
@@ -151,8 +151,9 @@ namespace WinForms_PresentationLayer
             decimal initialPrice = result.Item1;
             decimal taxValue = result.Item2;
 
-            lbSubTotal.Text = initialPrice.ToString();
-            lbTaxValue.Text = taxValue.ToString();
+            lbSubTotal.Text = Math.Round(initialPrice, 2).ToString("F2");
+            lbTaxValue.Text = Math.Round(taxValue, 2).ToString("F2");
+
         }
 
         private void LoadData()
@@ -385,7 +386,7 @@ namespace WinForms_PresentationLayer
                 }
                 else
                 {
-                    MessageBox.Show("Failed to delete the orderItems.");
+                    //MessageBox.Show("Failed to delete the orderItems.");
                 }
             }
             else
@@ -768,7 +769,9 @@ namespace WinForms_PresentationLayer
                     Text = categoryName,
                     Width = buttonWidth,
                     Height = buttonHeight,
-                    Location = new System.Drawing.Point(buttonX, buttonY)
+                    Location = new System.Drawing.Point(buttonX, buttonY),
+                    ForeColor = System.Drawing.Color.White,
+                    Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold)
                 };
 
                 categoryButton.Click += (sender, e) => CategoryButton_Click(sender, e, categoryName);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Drawing;
+using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
 using BuisnessLayer;
 
@@ -621,7 +622,12 @@ namespace WinForms_PresentationLayer
             DateTime latestDate = clsOrderBusiness.GetLatestOrderDate();
 
 
-            MessageBox.Show($"Tax for all orders: {total}\n" +
+            // Round the total to 2 decimal places
+            decimal roundedTotal = Math.Round(total, 2);
+
+   
+
+            MessageBox.Show($"Tax for all orders: {roundedTotal}\n" +
                            
                             $"Earliest order date: {earliestDate.ToShortDateString()}\n" +
                             $"Latest order date: {latestDate.ToShortDateString()}",
@@ -644,12 +650,16 @@ namespace WinForms_PresentationLayer
 
 
             decimal total = clsOrderBusiness.GetTotalTaxValueByDateRange(startDate, endDate);
-           
 
+            // Round the total to 2 decimal places
+            decimal roundedTotal = Math.Round(total, 2);
 
-            MessageBox.Show($"Tax Value from {startDate.ToShortDateString()} to {endDate.ToShortDateString()}: {total}\n" 
+            MessageBox.Show($"Tax Value from {startDate.ToShortDateString()} to {endDate.ToShortDateString()}: {roundedTotal}\n",
+                            "Total Tax Value",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
 
-                , "Total Tax Value", MessageBoxButtons.OK, MessageBoxIcon.Information);
+ 
         }
 
         private void dgvOrders_CellClick(object sender, DataGridViewCellEventArgs e)

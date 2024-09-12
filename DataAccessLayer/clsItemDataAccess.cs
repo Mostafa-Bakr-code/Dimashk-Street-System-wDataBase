@@ -49,15 +49,21 @@ namespace DataAccessLayer
         {
             int ItemID = -1;
             decimal TaxRate = 14.00m; // Tax rate is 14%
-            decimal TaxValue = Price * (TaxRate / 100);
-            decimal InitialPrice = Price - TaxValue;
+
+            decimal InitialPrice = Price / (1 + (TaxRate / 100));
+            decimal TaxValue = InitialPrice * (TaxRate / 100);
+
+            
+
+            //decimal TaxValue = Price * (TaxRate / 100);
+            //decimal InitialPrice = Price - TaxValue;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
             string query = @"
-        INSERT INTO Items (ItemName, CategoryID, Price, InitialPrice, TaxRate, TaxValue)
-        VALUES (@Name, @CategoryID, @Price, @InitialPrice, @TaxRate, @TaxValue);
-        SELECT SCOPE_IDENTITY();";
+                INSERT INTO Items (ItemName, CategoryID, Price, InitialPrice, TaxRate, TaxValue)
+                 VALUES (@Name, @CategoryID, @Price, @InitialPrice, @TaxRate, @TaxValue);
+                    SELECT SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -94,8 +100,12 @@ namespace DataAccessLayer
         {
             int rowsAffected = 0;
             decimal TaxRate = 14.00m; // Tax rate is 14%
-            decimal TaxValue = Price * (TaxRate / 100);
-            decimal InitialPrice = Price - TaxValue;
+
+            decimal InitialPrice = Price / (1 + (TaxRate / 100));
+            decimal TaxValue = InitialPrice * (TaxRate / 100);
+
+            //decimal TaxValue = Price * (TaxRate / 100);
+            //decimal InitialPrice = Price - TaxValue;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 

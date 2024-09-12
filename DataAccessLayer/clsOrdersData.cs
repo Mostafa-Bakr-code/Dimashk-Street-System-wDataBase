@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 
 namespace DataAccessLayer
@@ -619,14 +620,22 @@ namespace DataAccessLayer
         public static decimal GetTotalTaxValueByDateRange(DateTime startDate, DateTime endDate)
         {
             decimal total = GetTotalByDateRange(startDate, endDate);
-            decimal taxValue = total * 0.14M; // 14% tax rate
+
+            decimal initialPrice = total / 1.14m;
+
+            decimal taxValue = initialPrice * 0.14M; // 14% tax rate
+
             return taxValue;
         }
 
         public static decimal GetTotalTaxValueForAllOrders()
         {
             decimal total = GetTotalForAllOrders();
-            decimal taxValue = total * 0.14M; // 14% tax rate
+
+            decimal initialPrice = total / 1.14m;
+
+            decimal taxValue = initialPrice * 0.14M; // 14% tax rate
+
             return taxValue;
         }
 
@@ -636,7 +645,9 @@ namespace DataAccessLayer
             decimal initialPrice = 0;
             decimal taxValue = 0;
             decimal totalItemsPriceWithTax = 0;
-            const decimal taxRate = 0.14M; // 14%
+            const decimal taxRate = 14M; // 14%
+
+
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
@@ -658,8 +669,14 @@ namespace DataAccessLayer
                         totalItemsPriceWithTax = Convert.ToDecimal(result);
 
                         // Calculate tax value and initial price
-                        taxValue = totalItemsPriceWithTax * taxRate;
-                        initialPrice = totalItemsPriceWithTax - taxValue;
+
+                         initialPrice = totalItemsPriceWithTax / (1 + (taxRate / 100));
+                         taxValue = initialPrice * (taxRate / 100);
+
+                        //taxValue = totalItemsPriceWithTax * taxRate;
+                        //initialPrice = totalItemsPriceWithTax - taxValue;
+
+
                     }
                 }
                 catch (Exception ex)
