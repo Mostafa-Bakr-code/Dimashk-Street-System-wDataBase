@@ -99,11 +99,11 @@
             this.label16 = new System.Windows.Forms.Label();
             this.lbActiveUserName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lbActiveTime = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.dgvLogs = new System.Windows.Forms.DataGridView();
             this.dgvTodaysLogs = new System.Windows.Forms.DataGridView();
-            this.label18 = new System.Windows.Forms.Label();
-            this.lbActiveTime = new System.Windows.Forms.Label();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -348,7 +348,6 @@
             this.dgvOrderItems.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvOrderItems.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvOrderItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrderItems.ContextMenuStrip = this.contextMenuOrderItems;
             this.dgvOrderItems.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvOrderItems.Location = new System.Drawing.Point(161, 165);
             this.dgvOrderItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -913,6 +912,24 @@
             this.panel2.Size = new System.Drawing.Size(506, 43);
             this.panel2.TabIndex = 39;
             // 
+            // lbActiveTime
+            // 
+            this.lbActiveTime.AutoSize = true;
+            this.lbActiveTime.Location = new System.Drawing.Point(409, 14);
+            this.lbActiveTime.Name = "lbActiveTime";
+            this.lbActiveTime.Size = new System.Drawing.Size(29, 20);
+            this.lbActiveTime.TabIndex = 41;
+            this.lbActiveTime.Text = "??";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(345, 14);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(58, 20);
+            this.label18.TabIndex = 40;
+            this.label18.Text = "Active";
+            // 
             // btnLogOut
             // 
             this.btnLogOut.BackColor = System.Drawing.Color.Gold;
@@ -936,7 +953,6 @@
             this.dgvLogs.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvLogs.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLogs.ContextMenuStrip = this.contextMenuUsers;
             this.dgvLogs.GridColor = System.Drawing.SystemColors.ActiveCaption;
             this.dgvLogs.Location = new System.Drawing.Point(163, 164);
             this.dgvLogs.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -968,24 +984,6 @@
             this.dgvTodaysLogs.TabIndex = 43;
             this.dgvTodaysLogs.Visible = false;
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(345, 14);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(58, 20);
-            this.label18.TabIndex = 40;
-            this.label18.Text = "Active";
-            // 
-            // lbActiveTime
-            // 
-            this.lbActiveTime.AutoSize = true;
-            this.lbActiveTime.Location = new System.Drawing.Point(409, 14);
-            this.lbActiveTime.Name = "lbActiveTime";
-            this.lbActiveTime.Size = new System.Drawing.Size(29, 20);
-            this.lbActiveTime.TabIndex = 41;
-            this.lbActiveTime.Text = "??";
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1001,12 +999,12 @@
             this.Controls.Add(this.btnAddOrder);
             this.Controls.Add(this.btnAddItem);
             this.Controls.Add(this.btnAddCategory);
-            this.Controls.Add(this.dgvLogs);
-            this.Controls.Add(this.dgvListItems);
             this.Controls.Add(this.dgvOrderItems);
             this.Controls.Add(this.dgvOrders);
             this.Controls.Add(this.dgvCategories);
             this.Controls.Add(this.dgvUsersMenu);
+            this.Controls.Add(this.dgvLogs);
+            this.Controls.Add(this.dgvListItems);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormMain";
             this.Text = "Dimashk Street";

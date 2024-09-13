@@ -480,9 +480,11 @@ namespace WinForms_PresentationLayer
 
         private void toolStripMenuItemEdit_Click(object sender, EventArgs e)
         {
+           
             FormAddEditItem frm = new FormAddEditItem((int)dgvListItems.CurrentRow.Cells[0].Value);
             frm.ShowDialog();
             _RefreshItemsList();
+
         }
 
         private void toolStripMenuItemDelete_Click(object sender, EventArgs e)

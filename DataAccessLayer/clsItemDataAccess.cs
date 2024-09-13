@@ -23,12 +23,13 @@ namespace DataAccessLayer
                 if (reader.Read())
                 {
                     isFound = true;
-                    Name = (string)reader["ItemName"];
-                    CategoryID = (int)reader["CategoryID"];
-                    Price = (decimal)reader["Price"];
-                    InitialPrice = (decimal)reader["InitialPrice"];
-                    TaxValue = (decimal)reader["TaxValue"];
-                    TaxRate = (decimal)reader["TaxRate"];
+
+                    Name = reader["ItemName"] != DBNull.Value ? (string)reader["ItemName"] : string.Empty;
+                    CategoryID = reader["CategoryID"] != DBNull.Value ? Convert.ToInt32(reader["CategoryID"]) : -1;
+                    Price = reader["Price"] != DBNull.Value ? Convert.ToDecimal(reader["Price"]) : 0m;  // Convert smallmoney to decimal
+                    InitialPrice = reader["InitialPrice"] != DBNull.Value ? Convert.ToDecimal(reader["InitialPrice"]) : 0m;
+                    TaxValue = reader["TaxValue"] != DBNull.Value ? Convert.ToDecimal(reader["TaxValue"]) : 0m;
+                    TaxRate = reader["TaxRate"] != DBNull.Value ? Convert.ToDecimal(reader["TaxRate"]) : 0m;
                 }
                 reader.Close();
             }
