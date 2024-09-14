@@ -220,6 +220,49 @@ namespace DataAccessLayer
 
         }
 
+        public static DataTable GetOrdersByDateRange(DateTime startDate, DateTime endDate)
+        {
+            DataTable dt = new DataTable();
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            
+            string query = @"
+        SELECT * 
+        FROM Orders
+        WHERE CAST(Date AS DATE) BETWEEN @startDate AND @endDate;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // Add parameters to prevent SQL injection and safely pass the date range
+            command.Parameters.AddWithValue("@startDate", startDate);
+            command.Parameters.AddWithValue("@endDate", endDate);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Consider using a logging framework instead of commenting out the error handling
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
+
         public static bool DeleteOrder(int ID)
         {
 

@@ -21,8 +21,18 @@ namespace WinForms_PresentationLayer
         private void _RefreshItemsList()
         {
 
-            dgvListItems.DataSource = clsItemBusiness.GetAllItems();
-       
+            if (cbCategory1.SelectedItem != null)
+            {
+                
+                dgvListItems.DataSource = clsItemBusiness.GetItemsByCategoryName(cbCategory1.SelectedItem.ToString());
+            }
+            else
+            {
+               
+                dgvListItems.DataSource = null;  
+              
+            }
+
 
         }
 
@@ -52,9 +62,10 @@ namespace WinForms_PresentationLayer
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            _RefreshItemsList();
-            _FillCategoriesInComoboBox();
+            //_RefreshItemsList();
+            _FillCategoriesInComboBox(cbCategory);
             _FillItemsNameInComoboBox();
+            panelDateRange.Visible = false;
 
             if (clsUserBusiness.ActiveUser != null)
             {
@@ -93,14 +104,48 @@ namespace WinForms_PresentationLayer
                 dgvUsersMenu.Visible = false;
                 dgvLogs.Visible = false;
                 dgvTodaysLogs.Visible = false;
-                dgvListItems.DataSource = clsItemBusiness.GetAllItems();
                 panelOrdersTotal.Visible = false;
+                panelOrdersBtns.Visible = false;
+                panelLogsBtns.Visible = false;
 
                 btnAddItem.Visible = true;
                 btnAddCategory.Visible = false;
                 btnAddUser.Visible = false;
+                dgvLogs.DataSource = null;
+
+                panelListItemByCategory.Visible = true;
+                _FillCategoriesInComboBox(cbCategory1);
+                panelDateRange.Visible = false;
                 
+
             });
+        }
+
+        private void btnShowItemsByCategory_Click(object sender, EventArgs e)
+        {
+
+            string selectedCategory = "";
+
+            if (cbCategory1.SelectedItem != null)
+            {
+
+                selectedCategory = cbCategory1.SelectedItem.ToString();
+
+            }
+            else
+            {
+
+                MessageBox.Show("Please select a category from the dropdown.", "Category Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+
+            dgvListItems.DataSource = clsItemBusiness.GetItemsByCategoryName(selectedCategory);
+
+        }
+
+        private void btnViewAllItems_Click(object sender, EventArgs e)
+        {
+            dgvListItems.DataSource = clsItemBusiness.GetAllItems();
         }
 
         private void btnOrdersMenu_Click(object sender, EventArgs e)
@@ -116,41 +161,73 @@ namespace WinForms_PresentationLayer
                 dgvLogs.Visible = false;
                 dgvTodaysLogs.Visible = false;
 
-                dgvOrders.DataSource = clsOrderBusiness.GetAllOrders();
+                panelOrdersBtns.Visible = true;
+                panelLogsBtns.Visible = false;
+
+                //dgvOrders.DataSource = clsOrderBusiness.GetAllOrders();
+
+
+
                 panelOrdersTotal.Visible = true;
 
                 btnAddItem.Visible = false;
                 btnAddCategory.Visible = false;
                 btnAddUser.Visible = false;
-             
+                panelListItemByCategory.Visible = false;
+                dgvListItems.DataSource = null;
+                dgvLogs.DataSource = null;
+                panelDateRange.Visible = true;
+               
+
             });
 
 
 
         }
 
+        private void btnshowOrdersByDate_Click(object sender, EventArgs e)
+        {
+
+            DateTime startDate = dateTimePickerStart.Value.Date;
+            DateTime endDate = dateTimePickerEnd.Value.Date;
+
+            if (endDate < startDate)
+            {
+                MessageBox.Show("End date cannot be before start date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            dgvOrders.DataSource = clsOrderBusiness.GetOrdersByDateRange(startDate, endDate);
+        }
+
         private void btnOrderItems_Click(object sender, EventArgs e)
         {
 
 
-            CheckPermissionsAndExecute((Button)sender, () =>
-            {
-                dgvListItems.Visible = false;
-                dgvCategories.Visible = false;
-                dgvOrders.Visible = false;
-                dgvOrderItems.Visible = true;
-                dgvUsersMenu.Visible = false;
-                dgvLogs.Visible = false;
-                dgvTodaysLogs.Visible = false;
+            //CheckPermissionsAndExecute((Button)sender, () =>
+            //{
+            //    dgvListItems.Visible = false;
+            //    dgvCategories.Visible = false;
+            //    dgvOrders.Visible = false;
+            //    dgvOrderItems.Visible = true;
+            //    dgvUsersMenu.Visible = false;
+            //    dgvLogs.Visible = false;
+            //    dgvTodaysLogs.Visible = false;
 
-                dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItems();
-                panelOrdersTotal.Visible = false;
+            //    dgvOrderItems.DataSource = clsOrderItemsBusiness.GetAllOrderItems();
+            //    panelOrdersTotal.Visible = false;
+            //panelOrdersBtns.Visible = false;
 
-                btnAddItem.Visible = false;
-                btnAddCategory.Visible = false;
-                btnAddUser.Visible = false;
-             
-            });
+            //    btnAddItem.Visible = false;
+            //    btnAddCategory.Visible = false;
+            //    btnAddUser.Visible = false;
+            //    panelListItemByCategory.Visible = false;
+            //    dgvListItems.DataSource = null;
+            //panelDateRange.Visible = false;
+            //panelLogsBtns.Visible = false;
+            //dgvLogs.DataSource = null;
+
+            //});
 
 
         }
@@ -169,12 +246,18 @@ namespace WinForms_PresentationLayer
                 dgvTodaysLogs.Visible = false;
                 dgvCategories.DataSource = clsCategoryBusiness.GetAllCategories();
                 panelOrdersTotal.Visible = false;
-
+                panelOrdersBtns.Visible = false;
+                panelLogsBtns.Visible = false;
 
                 btnAddItem.Visible = false;
                 btnAddUser.Visible = false;
-             
                 btnAddCategory.Visible = true;
+                panelListItemByCategory.Visible = false;
+                dgvListItems.DataSource = null;
+                panelDateRange.Visible = false;
+                
+                dgvLogs.DataSource = null;
+
             });
 
 
@@ -195,13 +278,20 @@ namespace WinForms_PresentationLayer
                 panelOrdersTotal.Visible = false;
                 dgvLogs.Visible = false;
                 dgvTodaysLogs.Visible = false;
+                panelOrdersBtns.Visible = false;
+                panelLogsBtns.Visible = false;
 
                 dgvUsersMenu.DataSource = clsUserBusiness.GetAllUsers();
 
                 btnAddItem.Visible = false;
                 btnAddCategory.Visible = false;
                 btnAddUser.Visible = true;
-             
+                panelListItemByCategory.Visible = false;
+                dgvListItems.DataSource = null;
+                panelDateRange.Visible = false;
+               
+                dgvLogs.DataSource = null;
+
             });
 
 
@@ -220,14 +310,34 @@ namespace WinForms_PresentationLayer
             panelOrdersTotal.Visible = false;
 
 
-            dgvLogs.DataSource = clsLogsBusiness.GetAllLogs();
+            panelDateRange.Visible = true;
+            panelOrdersBtns.Visible = false;
+            panelLogsBtns.Visible=true;
+            
             dgvTodaysLogs.DataSource = clsLogsBusiness.GetTodaysLogs();
 
             btnAddItem.Visible = false;
             btnAddCategory.Visible = false;
             btnAddUser.Visible = false;
+            panelListItemByCategory.Visible = false;
+            dgvListItems.DataSource = null;
           
 
+
+        }
+
+        private void btnShowLogsByDate_Click(object sender, EventArgs e)
+        {
+            DateTime startDate = dateTimePickerStart.Value.Date;
+            DateTime endDate = dateTimePickerEnd.Value.Date;
+
+            if (endDate < startDate)
+            {
+                MessageBox.Show("End date cannot be before start date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            dgvLogs.DataSource = clsLogsBusiness.GetLogsByDateRange(startDate,endDate);
         }
 
         private void btnAddCategory_Click(object sender, EventArgs e)
@@ -297,13 +407,13 @@ namespace WinForms_PresentationLayer
         private void btnTotalbyCategory_Click(object sender, EventArgs e)
         {
 
-            if (cbItemCategory.SelectedItem != null)
+            if (cbCategory.SelectedItem != null)
             {
 
                 DateTime earliestDate = clsOrderBusiness.GetEarliestOrderDate();
                 DateTime latestDate = clsOrderBusiness.GetLatestOrderDate();
 
-                string selectedCategory = cbItemCategory.SelectedItem.ToString();
+                string selectedCategory = cbCategory.SelectedItem.ToString();
 
 
                 decimal total = clsOrderItemsBusiness.GetTotalByCategoryName(selectedCategory);
@@ -398,10 +508,10 @@ namespace WinForms_PresentationLayer
 
             string selectedCategory = "";
 
-            if (cbItemCategory.SelectedItem != null)
+            if (cbCategory.SelectedItem != null)
             {
 
-                selectedCategory = cbItemCategory.SelectedItem.ToString();
+                selectedCategory = cbCategory.SelectedItem.ToString();
 
             }
             else
@@ -569,17 +679,19 @@ namespace WinForms_PresentationLayer
             _RefreshUsersList();
         }
 
-        private void _FillCategoriesInComoboBox()
+        private void _FillCategoriesInComboBox(ComboBox comboBox)
         {
+            
+            comboBox.Items.Clear();
+
+            
             DataTable dtCategories = clsCategoryBusiness.GetAllCategories();
 
+            
             foreach (DataRow row in dtCategories.Rows)
             {
-
-                cbItemCategory.Items.Add(row["CategoryName"]);
-
+                comboBox.Items.Add(row["CategoryName"]);
             }
-
         }
 
         private void _FillItemsNameInComoboBox()

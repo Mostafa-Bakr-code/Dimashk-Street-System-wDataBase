@@ -114,6 +114,11 @@ namespace BuisnessLayer
 
         }
 
+        public static DataTable GetOrdersByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return clsOrdersData.GetOrdersByDateRange(startDate, endDate);
+        }
+
         public static bool DeleteOrder(int ID)
         {
 

@@ -140,6 +140,56 @@ namespace DataAccessLayer
             return dt;
         }
 
+        public static DataTable GetLogsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            DataTable dt = new DataTable();
+            string connectionString = clsDataAccessSettings.ConnectionString;
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            // Modify query to include filtering by date range (assuming Logs.LogIn is a DateTime field)
+            string query = @"
+        SELECT 
+            Users.UserName, 
+            Logs.LogIn, 
+            Logs.LogOut
+        FROM 
+            Logs
+        INNER JOIN 
+            Users ON Logs.UserID = Users.ID
+        WHERE 
+            CAST(Logs.LogIn AS DATE) BETWEEN @startDate AND @endDate;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            // Add parameters to prevent SQL injection and safely pass the date range
+            command.Parameters.AddWithValue("@startDate", startDate);
+            command.Parameters.AddWithValue("@endDate", endDate);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    dt.Load(reader);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                // Consider using a logging framework or mechanism instead of Console.WriteLine in production code
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return dt;
+        }
+
+
 
     }
 }

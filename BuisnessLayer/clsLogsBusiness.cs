@@ -39,5 +39,10 @@ namespace BuisnessLayer
             return clsLogsData.GetTodaysLogs();
         }
 
+        public static DataTable GetLogsByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return clsLogsData.GetLogsByDateRange(startDate, endDate);
+        }
+
     }
 }

@@ -242,7 +242,10 @@ namespace DataAccessLayer
             Items.ItemID, 
             Items.ItemName, 
             Categories.CategoryName, 
-            Items.Price
+            Items.Price,
+            Items.InitialPrice,
+            Items.TaxValue,
+            Items.TaxRate
 
         FROM Items 
         INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID

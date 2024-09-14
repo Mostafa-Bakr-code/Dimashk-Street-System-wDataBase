@@ -83,7 +83,7 @@
             this.btnTotalbyItemName = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbItemCategory = new System.Windows.Forms.ComboBox();
+            this.cbCategory = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnTotalbyCategory = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -104,6 +104,19 @@
             this.btnLogOut = new System.Windows.Forms.Button();
             this.dgvLogs = new System.Windows.Forms.DataGridView();
             this.dgvTodaysLogs = new System.Windows.Forms.DataGridView();
+            this.cbCategory1 = new System.Windows.Forms.ComboBox();
+            this.lbItemCategory = new System.Windows.Forms.Label();
+            this.btnShowItemsByCategory = new System.Windows.Forms.Button();
+            this.panelListItemByCategory = new System.Windows.Forms.Panel();
+            this.btnViewAllItems = new System.Windows.Forms.Button();
+            this.label17 = new System.Windows.Forms.Label();
+            this.panelDateRange = new System.Windows.Forms.Panel();
+            this.panelOrdersBtns = new System.Windows.Forms.Panel();
+            this.label19 = new System.Windows.Forms.Label();
+            this.btnShowLogsByDate = new System.Windows.Forms.Button();
+            this.panelLogsBtns = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.btnshowOrdersByDate = new System.Windows.Forms.Button();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -124,6 +137,10 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogs)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTodaysLogs)).BeginInit();
+            this.panelListItemByCategory.SuspendLayout();
+            this.panelDateRange.SuspendLayout();
+            this.panelOrdersBtns.SuspendLayout();
+            this.panelLogsBtns.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStripItems
@@ -410,14 +427,14 @@
             // 
             // dateTimePickerStart
             // 
-            this.dateTimePickerStart.Location = new System.Drawing.Point(16, 57);
+            this.dateTimePickerStart.Location = new System.Drawing.Point(10, 38);
             this.dateTimePickerStart.Name = "dateTimePickerStart";
             this.dateTimePickerStart.Size = new System.Drawing.Size(300, 26);
             this.dateTimePickerStart.TabIndex = 25;
             // 
             // dateTimePickerEnd
             // 
-            this.dateTimePickerEnd.Location = new System.Drawing.Point(465, 57);
+            this.dateTimePickerEnd.Location = new System.Drawing.Point(471, 38);
             this.dateTimePickerEnd.Name = "dateTimePickerEnd";
             this.dateTimePickerEnd.Size = new System.Drawing.Size(300, 26);
             this.dateTimePickerEnd.TabIndex = 26;
@@ -427,7 +444,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(11, 29);
+            this.label1.Location = new System.Drawing.Point(8, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(109, 25);
             this.label1.TabIndex = 27;
@@ -438,7 +455,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(460, 29);
+            this.label2.Location = new System.Drawing.Point(466, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 25);
             this.label2.TabIndex = 28;
@@ -470,14 +487,10 @@
             this.panelOrdersTotal.Controls.Add(this.groupBox3);
             this.panelOrdersTotal.Controls.Add(this.groupBox4);
             this.panelOrdersTotal.Controls.Add(this.groupBox2);
-            this.panelOrdersTotal.Controls.Add(this.label2);
             this.panelOrdersTotal.Controls.Add(this.groupBox1);
-            this.panelOrdersTotal.Controls.Add(this.label1);
-            this.panelOrdersTotal.Controls.Add(this.dateTimePickerEnd);
-            this.panelOrdersTotal.Controls.Add(this.dateTimePickerStart);
-            this.panelOrdersTotal.Location = new System.Drawing.Point(789, 164);
+            this.panelOrdersTotal.Location = new System.Drawing.Point(782, 253);
             this.panelOrdersTotal.Name = "panelOrdersTotal";
-            this.panelOrdersTotal.Size = new System.Drawing.Size(1057, 779);
+            this.panelOrdersTotal.Size = new System.Drawing.Size(1057, 675);
             this.panelOrdersTotal.TabIndex = 32;
             this.panelOrdersTotal.Visible = false;
             // 
@@ -488,7 +501,7 @@
             this.panel1.Controls.Add(this.btnTaxValueDateRange);
             this.panel1.Controls.Add(this.label14);
             this.panel1.Controls.Add(this.btnTaxValue);
-            this.panel1.Location = new System.Drawing.Point(526, 102);
+            this.panel1.Location = new System.Drawing.Point(526, 7);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(411, 124);
             this.panel1.TabIndex = 54;
@@ -548,7 +561,7 @@
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.btnFreeOrdersTotal);
-            this.groupBox3.Location = new System.Drawing.Point(15, 668);
+            this.groupBox3.Location = new System.Drawing.Point(14, 554);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(489, 96);
             this.groupBox3.TabIndex = 50;
@@ -600,7 +613,7 @@
             this.groupBox4.Controls.Add(this.btnAllTimeTotal);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.btnTotalRange);
-            this.groupBox4.Location = new System.Drawing.Point(16, 101);
+            this.groupBox4.Location = new System.Drawing.Point(14, 3);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(489, 128);
             this.groupBox4.TabIndex = 51;
@@ -645,7 +658,7 @@
             this.groupBox2.Controls.Add(this.btnTotalbyItemNameAndDateRange);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.btnTotalbyItemName);
-            this.groupBox2.Location = new System.Drawing.Point(15, 454);
+            this.groupBox2.Location = new System.Drawing.Point(14, 339);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(488, 191);
             this.groupBox2.TabIndex = 51;
@@ -711,12 +724,12 @@
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Turquoise;
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.cbItemCategory);
+            this.groupBox1.Controls.Add(this.cbCategory);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnTotalbyCategory);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.btnTotalbyCategoryAndDateRange);
-            this.groupBox1.Location = new System.Drawing.Point(15, 256);
+            this.groupBox1.Location = new System.Drawing.Point(14, 140);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(489, 179);
             this.groupBox1.TabIndex = 50;
@@ -732,13 +745,13 @@
             this.label3.TabIndex = 33;
             this.label3.Text = "Category";
             // 
-            // cbItemCategory
+            // cbCategory
             // 
-            this.cbItemCategory.FormattingEnabled = true;
-            this.cbItemCategory.Location = new System.Drawing.Point(110, 22);
-            this.cbItemCategory.Name = "cbItemCategory";
-            this.cbItemCategory.Size = new System.Drawing.Size(210, 28);
-            this.cbItemCategory.TabIndex = 32;
+            this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.Location = new System.Drawing.Point(110, 22);
+            this.cbCategory.Name = "cbCategory";
+            this.cbCategory.Size = new System.Drawing.Size(210, 28);
+            this.cbCategory.TabIndex = 32;
             // 
             // label5
             // 
@@ -984,12 +997,152 @@
             this.dgvTodaysLogs.TabIndex = 43;
             this.dgvTodaysLogs.Visible = false;
             // 
+            // cbCategory1
+            // 
+            this.cbCategory1.FormattingEnabled = true;
+            this.cbCategory1.Location = new System.Drawing.Point(4, 49);
+            this.cbCategory1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.cbCategory1.Name = "cbCategory1";
+            this.cbCategory1.Size = new System.Drawing.Size(151, 28);
+            this.cbCategory1.TabIndex = 44;
+            // 
+            // lbItemCategory
+            // 
+            this.lbItemCategory.AutoSize = true;
+            this.lbItemCategory.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbItemCategory.Location = new System.Drawing.Point(41, 11);
+            this.lbItemCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lbItemCategory.Name = "lbItemCategory";
+            this.lbItemCategory.Size = new System.Drawing.Size(73, 20);
+            this.lbItemCategory.TabIndex = 45;
+            this.lbItemCategory.Text = "Category";
+            // 
+            // btnShowItemsByCategory
+            // 
+            this.btnShowItemsByCategory.Location = new System.Drawing.Point(34, 89);
+            this.btnShowItemsByCategory.Name = "btnShowItemsByCategory";
+            this.btnShowItemsByCategory.Size = new System.Drawing.Size(80, 31);
+            this.btnShowItemsByCategory.TabIndex = 51;
+            this.btnShowItemsByCategory.Text = "View";
+            this.btnShowItemsByCategory.UseVisualStyleBackColor = true;
+            this.btnShowItemsByCategory.Click += new System.EventHandler(this.btnShowItemsByCategory_Click);
+            // 
+            // panelListItemByCategory
+            // 
+            this.panelListItemByCategory.Controls.Add(this.label17);
+            this.panelListItemByCategory.Controls.Add(this.btnViewAllItems);
+            this.panelListItemByCategory.Controls.Add(this.lbItemCategory);
+            this.panelListItemByCategory.Controls.Add(this.btnShowItemsByCategory);
+            this.panelListItemByCategory.Controls.Add(this.cbCategory1);
+            this.panelListItemByCategory.Location = new System.Drawing.Point(1, 257);
+            this.panelListItemByCategory.Name = "panelListItemByCategory";
+            this.panelListItemByCategory.Size = new System.Drawing.Size(151, 286);
+            this.panelListItemByCategory.TabIndex = 52;
+            this.panelListItemByCategory.Visible = false;
+            // 
+            // btnViewAllItems
+            // 
+            this.btnViewAllItems.Location = new System.Drawing.Point(34, 225);
+            this.btnViewAllItems.Name = "btnViewAllItems";
+            this.btnViewAllItems.Size = new System.Drawing.Size(80, 31);
+            this.btnViewAllItems.TabIndex = 52;
+            this.btnViewAllItems.Text = "View";
+            this.btnViewAllItems.UseVisualStyleBackColor = true;
+            this.btnViewAllItems.Click += new System.EventHandler(this.btnViewAllItems_Click);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label17.Location = new System.Drawing.Point(30, 193);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(74, 20);
+            this.label17.TabIndex = 53;
+            this.label17.Text = " All Items";
+            // 
+            // panelDateRange
+            // 
+            this.panelDateRange.Controls.Add(this.label1);
+            this.panelDateRange.Controls.Add(this.dateTimePickerStart);
+            this.panelDateRange.Controls.Add(this.label2);
+            this.panelDateRange.Controls.Add(this.dateTimePickerEnd);
+            this.panelDateRange.Location = new System.Drawing.Point(782, 169);
+            this.panelDateRange.Name = "panelDateRange";
+            this.panelDateRange.Size = new System.Drawing.Size(786, 78);
+            this.panelDateRange.TabIndex = 55;
+            // 
+            // panelOrdersBtns
+            // 
+            this.panelOrdersBtns.Controls.Add(this.label19);
+            this.panelOrdersBtns.Controls.Add(this.btnshowOrdersByDate);
+            this.panelOrdersBtns.Location = new System.Drawing.Point(12, 167);
+            this.panelOrdersBtns.Name = "panelOrdersBtns";
+            this.panelOrdersBtns.Size = new System.Drawing.Size(128, 98);
+            this.panelOrdersBtns.TabIndex = 54;
+            this.panelOrdersBtns.Visible = false;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label19.Location = new System.Drawing.Point(4, 12);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(118, 20);
+            this.label19.TabIndex = 53;
+            this.label19.Text = "Orders By Date";
+            // 
+            // btnShowLogsByDate
+            // 
+            this.btnShowLogsByDate.Location = new System.Drawing.Point(28, 40);
+            this.btnShowLogsByDate.Name = "btnShowLogsByDate";
+            this.btnShowLogsByDate.Size = new System.Drawing.Size(80, 31);
+            this.btnShowLogsByDate.TabIndex = 52;
+            this.btnShowLogsByDate.Text = "View";
+            this.btnShowLogsByDate.UseVisualStyleBackColor = true;
+            this.btnShowLogsByDate.Click += new System.EventHandler(this.btnShowLogsByDate_Click);
+            // 
+            // panelLogsBtns
+            // 
+            this.panelLogsBtns.Controls.Add(this.label20);
+            this.panelLogsBtns.Controls.Add(this.btnShowLogsByDate);
+            this.panelLogsBtns.Location = new System.Drawing.Point(14, 167);
+            this.panelLogsBtns.Name = "panelLogsBtns";
+            this.panelLogsBtns.Size = new System.Drawing.Size(128, 98);
+            this.panelLogsBtns.TabIndex = 55;
+            this.panelLogsBtns.Visible = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label20.Location = new System.Drawing.Point(19, 12);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(105, 20);
+            this.label20.TabIndex = 53;
+            this.label20.Text = "Logs By Date";
+            // 
+            // btnshowOrdersByDate
+            // 
+            this.btnshowOrdersByDate.Location = new System.Drawing.Point(16, 48);
+            this.btnshowOrdersByDate.Name = "btnshowOrdersByDate";
+            this.btnshowOrdersByDate.Size = new System.Drawing.Size(80, 31);
+            this.btnshowOrdersByDate.TabIndex = 52;
+            this.btnshowOrdersByDate.Text = "View";
+            this.btnshowOrdersByDate.UseVisualStyleBackColor = true;
+            this.btnshowOrdersByDate.Click += new System.EventHandler(this.btnshowOrdersByDate_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(1922, 952);
+            this.Controls.Add(this.panelOrdersBtns);
+            this.Controls.Add(this.panelDateRange);
+            this.Controls.Add(this.panelListItemByCategory);
             this.Controls.Add(this.dgvTodaysLogs);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.panel2);
@@ -1005,6 +1158,7 @@
             this.Controls.Add(this.dgvUsersMenu);
             this.Controls.Add(this.dgvLogs);
             this.Controls.Add(this.dgvListItems);
+            this.Controls.Add(this.panelLogsBtns);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormMain";
             this.Text = "Dimashk Street";
@@ -1019,7 +1173,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderItems)).EndInit();
             this.contextMenuOrderItems.ResumeLayout(false);
             this.panelOrdersTotal.ResumeLayout(false);
-            this.panelOrdersTotal.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -1037,6 +1190,14 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogs)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTodaysLogs)).EndInit();
+            this.panelListItemByCategory.ResumeLayout(false);
+            this.panelListItemByCategory.PerformLayout();
+            this.panelDateRange.ResumeLayout(false);
+            this.panelDateRange.PerformLayout();
+            this.panelOrdersBtns.ResumeLayout(false);
+            this.panelOrdersBtns.PerformLayout();
+            this.panelLogsBtns.ResumeLayout(false);
+            this.panelLogsBtns.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1073,7 +1234,7 @@
         private System.Windows.Forms.Button btnTotalRange;
         private System.Windows.Forms.Button btnAllTimeTotal;
         private System.Windows.Forms.Panel panelOrdersTotal;
-        private System.Windows.Forms.ComboBox cbItemCategory;
+        private System.Windows.Forms.ComboBox cbCategory;
         private System.Windows.Forms.Button btnTotalbyCategory;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnTotalbyItemName;
@@ -1117,6 +1278,19 @@
         private System.Windows.Forms.DataGridView dgvTodaysLogs;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label lbActiveTime;
+        private System.Windows.Forms.ComboBox cbCategory1;
+        private System.Windows.Forms.Label lbItemCategory;
+        private System.Windows.Forms.Button btnShowItemsByCategory;
+        private System.Windows.Forms.Panel panelListItemByCategory;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Button btnViewAllItems;
+        private System.Windows.Forms.Panel panelDateRange;
+        private System.Windows.Forms.Panel panelOrdersBtns;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button btnShowLogsByDate;
+        private System.Windows.Forms.Button btnshowOrdersByDate;
+        private System.Windows.Forms.Panel panelLogsBtns;
+        private System.Windows.Forms.Label label20;
     }
 }
 
