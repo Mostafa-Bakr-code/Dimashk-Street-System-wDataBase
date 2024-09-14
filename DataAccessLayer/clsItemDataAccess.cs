@@ -237,19 +237,29 @@ namespace DataAccessLayer
             DataTable dt = new DataTable();
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
 
-            string query = @"
-        SELECT 
-            Items.ItemID, 
-            Items.ItemName, 
-            Categories.CategoryName, 
-            Items.Price,
-            Items.InitialPrice,
-            Items.TaxValue,
-            Items.TaxRate
+            //    string query = @"
+            //SELECT 
+            //    Items.ItemID, 
+            //    Items.ItemName, 
+            //    Categories.CategoryName, 
+            //    Items.Price,
+            //    Items.InitialPrice,
+            //    Items.TaxValue,
+            //    Items.TaxRate
 
-        FROM Items 
-        INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
-        WHERE Categories.CategoryName = @CategoryName";
+            //FROM Items 
+            //INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+            //WHERE Categories.CategoryName = @CategoryName";
+
+            string query = @"
+    SELECT 
+        Items.ItemID, 
+        Items.ItemName, 
+        Categories.CategoryName, 
+        Items.Price
+    FROM Items 
+    INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+    WHERE Categories.CategoryName = @CategoryName";
 
             SqlCommand command = new SqlCommand(query, connection);
 

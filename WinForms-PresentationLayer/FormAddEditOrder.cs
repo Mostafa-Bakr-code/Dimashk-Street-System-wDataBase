@@ -569,15 +569,15 @@ namespace WinForms_PresentationLayer
             // Start creating the order info string
             StringBuilder orderInfo = new StringBuilder();
 
-            orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine("******************************\n");
             orderInfo.AppendLine("\n\n....FROM DIMASHK .... \n\n");
-            orderInfo.AppendLine("Invoice Tax\n");
+            //orderInfo.AppendLine("Invoice Tax\n");
             orderInfo.AppendLine($"Cashier: {clsUserBusiness.ActiveUser.userName}");
             orderInfo.AppendLine($"{_Order.date.ToString("yyyy-dd-MM")}\n\n");
             orderInfo.AppendLine($"ID: {_Order.SerialNumber}\n\n");
-            orderInfo.AppendLine("\n\n _______________________\n");
+            orderInfo.AppendLine("\n _______________________\n");
 
             // Loop through order items and add them to the string
             foreach (DataGridViewRow row in dgvOrderItems.Rows)
@@ -590,21 +590,21 @@ namespace WinForms_PresentationLayer
                 orderInfo.AppendLine($"{itemName}, Quantity: {quantity}, Price: {price}, Total: {total}");
             }
 
-            orderInfo.AppendLine("\n\n _________________________\n");
+            orderInfo.AppendLine("\n _________________________\n");
             orderInfo.AppendLine($"\n\nSubTotal: {decimal.Parse(lbSubTotal.Text).ToString("F2")}");
             orderInfo.AppendLine($"\n\nTax Value: {decimal.Parse(lbTaxValue.Text).ToString("F2")}");
             orderInfo.AppendLine($"\n\nVat: {lbVat.Text}");
             orderInfo.AppendLine($"\n\nTotal: {_Order.Total.ToString("F2")}");
             orderInfo.AppendLine($"\n\nThank you for choosing us!");
             orderInfo.AppendLine("\n\n....FROM DIMASHK .... \n\n");
-            orderInfo.AppendLine($"{_Order.date.ToString("yyyy-dd-MM")}\n\n");
-            orderInfo.AppendLine($"\n\nID: {_Order.SerialNumber}\n");
-            orderInfo.AppendLine("Invoice Tax\n");
-            orderInfo.AppendLine($"Cashier: {clsUserBusiness.ActiveUser.userName}");
-            orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine($"{_Order.date.ToString("yyyy-dd-MM")}\n\n");
+            //orderInfo.AppendLine($"\n\nID: {_Order.SerialNumber}\n");
+            //orderInfo.AppendLine("Invoice Tax\n");
+            //orderInfo.AppendLine($"Cashier: {clsUserBusiness.ActiveUser.userName}");
+            //orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine("******************************\n");
             orderInfo.AppendLine("******************************\n");
             orderInfo.AppendLine("******************************\n");
 
@@ -615,7 +615,7 @@ namespace WinForms_PresentationLayer
             PrintDocument printDoc = new PrintDocument();
 
             // Set the printer name directly
-            printDoc.PrinterSettings.PrinterName = "XP-76";
+            printDoc.PrinterSettings.PrinterName = "XP-80";
 
             // Adjust margins to reduce top space and add a buffer at the bottom
             printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10); // Adjusted top margin to 20 and bottom margin to 40
@@ -679,9 +679,9 @@ namespace WinForms_PresentationLayer
 
             // Start creating the order info string
             StringBuilder orderInfo = new StringBuilder();
-            orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine("******************************\n");
 
             orderInfo.AppendLine($"\n\n{_Order.date}");
             orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
@@ -705,8 +705,8 @@ namespace WinForms_PresentationLayer
             orderInfo.AppendLine($"\n\n{_Order.date}");
             orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
             orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine("******************************\n");
+            //orderInfo.AppendLine("******************************\n");
 
             // Convert the StringBuilder to a string for printing
             string orderInfoText = orderInfo.ToString();
@@ -715,7 +715,7 @@ namespace WinForms_PresentationLayer
             PrintDocument printDoc = new PrintDocument();
 
             // Set the printer name directly
-            printDoc.PrinterSettings.PrinterName = "XP-80";
+            printDoc.PrinterSettings.PrinterName = "XP-80.51";
 
             // Set custom margins (minimal margins)
             printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10);
