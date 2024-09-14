@@ -198,6 +198,8 @@ namespace WinForms_PresentationLayer
             }
 
             dgvOrders.DataSource = clsOrderBusiness.GetOrdersByDateRange(startDate, endDate);
+
+          
         }
 
         private void btnOrderItems_Click(object sender, EventArgs e)
@@ -583,9 +585,10 @@ namespace WinForms_PresentationLayer
 
         private void toolStripEditOrder_Click(object sender, EventArgs e)
         {
+            // function works but on hold for now
 
-            FormAddEditOrder frm = new FormAddEditOrder((int)dgvOrders.CurrentRow.Cells[0].Value);
-            frm.ShowDialog();
+            //FormAddEditOrder frm = new FormAddEditOrder((int)dgvOrders.CurrentRow.Cells[0].Value);
+            //frm.ShowDialog();
         }
 
         private void toolStripMenuItemEdit_Click(object sender, EventArgs e)

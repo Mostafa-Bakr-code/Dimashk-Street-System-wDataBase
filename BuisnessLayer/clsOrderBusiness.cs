@@ -14,8 +14,9 @@ namespace BuisnessLayer
         public int ID { set; get; }
         public DateTime date { set; get; }
         public decimal Total { set; get; }
-
         public int SerialNumber { get; set; }
+
+        public string ActiveUser { get; set; }
 
 
         public clsOrderBusiness()
@@ -26,6 +27,8 @@ namespace BuisnessLayer
             this.date = DateTime.Now;
 
             this.Total = 0;
+
+            this.ActiveUser =   clsUserBusiness.ActiveUser.userName;
 
             Mode = enMode.AddNew;
 
@@ -48,7 +51,7 @@ namespace BuisnessLayer
            
             this.SerialNumber = clsOrdersData.GetNextSerialNumber(this.date);
 
-            this.ID = clsOrdersData.AddNewOrder(this.date, this.Total, this.SerialNumber);
+            this.ID = clsOrdersData.AddNewOrder(this.date, this.Total, this.SerialNumber, this.ActiveUser);
 
             return (this.ID != -1);
         }

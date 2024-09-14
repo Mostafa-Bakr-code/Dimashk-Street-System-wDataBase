@@ -553,6 +553,9 @@ namespace WinForms_PresentationLayer
                     MessageBox.Show("Failed to update the order. Please try again.");
                 }
             }
+
+            PrintOrderInfoForUser();
+            PrintOrderInfoForChief();
         }
 
         private void PrintOrderInfoForUser()

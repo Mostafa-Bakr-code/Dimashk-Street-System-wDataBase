@@ -108,15 +108,15 @@
             this.lbItemCategory = new System.Windows.Forms.Label();
             this.btnShowItemsByCategory = new System.Windows.Forms.Button();
             this.panelListItemByCategory = new System.Windows.Forms.Panel();
-            this.btnViewAllItems = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
+            this.btnViewAllItems = new System.Windows.Forms.Button();
             this.panelDateRange = new System.Windows.Forms.Panel();
             this.panelOrdersBtns = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
+            this.btnshowOrdersByDate = new System.Windows.Forms.Button();
             this.btnShowLogsByDate = new System.Windows.Forms.Button();
             this.panelLogsBtns = new System.Windows.Forms.Panel();
             this.label20 = new System.Windows.Forms.Label();
-            this.btnshowOrdersByDate = new System.Windows.Forms.Button();
             this.contextMenuStripItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
@@ -1040,16 +1040,6 @@
             this.panelListItemByCategory.TabIndex = 52;
             this.panelListItemByCategory.Visible = false;
             // 
-            // btnViewAllItems
-            // 
-            this.btnViewAllItems.Location = new System.Drawing.Point(34, 225);
-            this.btnViewAllItems.Name = "btnViewAllItems";
-            this.btnViewAllItems.Size = new System.Drawing.Size(80, 31);
-            this.btnViewAllItems.TabIndex = 52;
-            this.btnViewAllItems.Text = "View";
-            this.btnViewAllItems.UseVisualStyleBackColor = true;
-            this.btnViewAllItems.Click += new System.EventHandler(this.btnViewAllItems_Click);
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -1060,6 +1050,16 @@
             this.label17.Size = new System.Drawing.Size(74, 20);
             this.label17.TabIndex = 53;
             this.label17.Text = " All Items";
+            // 
+            // btnViewAllItems
+            // 
+            this.btnViewAllItems.Location = new System.Drawing.Point(34, 225);
+            this.btnViewAllItems.Name = "btnViewAllItems";
+            this.btnViewAllItems.Size = new System.Drawing.Size(80, 31);
+            this.btnViewAllItems.TabIndex = 52;
+            this.btnViewAllItems.Text = "View";
+            this.btnViewAllItems.UseVisualStyleBackColor = true;
+            this.btnViewAllItems.Click += new System.EventHandler(this.btnViewAllItems_Click);
             // 
             // panelDateRange
             // 
@@ -1093,6 +1093,16 @@
             this.label19.TabIndex = 53;
             this.label19.Text = "Orders By Date";
             // 
+            // btnshowOrdersByDate
+            // 
+            this.btnshowOrdersByDate.Location = new System.Drawing.Point(16, 48);
+            this.btnshowOrdersByDate.Name = "btnshowOrdersByDate";
+            this.btnshowOrdersByDate.Size = new System.Drawing.Size(80, 31);
+            this.btnshowOrdersByDate.TabIndex = 52;
+            this.btnshowOrdersByDate.Text = "View";
+            this.btnshowOrdersByDate.UseVisualStyleBackColor = true;
+            this.btnshowOrdersByDate.Click += new System.EventHandler(this.btnshowOrdersByDate_Click);
+            // 
             // btnShowLogsByDate
             // 
             this.btnShowLogsByDate.Location = new System.Drawing.Point(28, 40);
@@ -1124,16 +1134,6 @@
             this.label20.TabIndex = 53;
             this.label20.Text = "Logs By Date";
             // 
-            // btnshowOrdersByDate
-            // 
-            this.btnshowOrdersByDate.Location = new System.Drawing.Point(16, 48);
-            this.btnshowOrdersByDate.Name = "btnshowOrdersByDate";
-            this.btnshowOrdersByDate.Size = new System.Drawing.Size(80, 31);
-            this.btnshowOrdersByDate.TabIndex = 52;
-            this.btnshowOrdersByDate.Text = "View";
-            this.btnshowOrdersByDate.UseVisualStyleBackColor = true;
-            this.btnshowOrdersByDate.Click += new System.EventHandler(this.btnshowOrdersByDate_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1152,13 +1152,13 @@
             this.Controls.Add(this.btnAddOrder);
             this.Controls.Add(this.btnAddItem);
             this.Controls.Add(this.btnAddCategory);
-            this.Controls.Add(this.dgvOrderItems);
             this.Controls.Add(this.dgvOrders);
             this.Controls.Add(this.dgvCategories);
             this.Controls.Add(this.dgvUsersMenu);
             this.Controls.Add(this.dgvLogs);
             this.Controls.Add(this.dgvListItems);
             this.Controls.Add(this.panelLogsBtns);
+            this.Controls.Add(this.dgvOrderItems);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormMain";
             this.Text = "Dimashk Street";

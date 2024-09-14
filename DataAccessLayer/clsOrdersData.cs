@@ -46,21 +46,22 @@ namespace DataAccessLayer
             return isFound;
         }
 
-        public static int AddNewOrder(DateTime date, decimal Total, int serialNumber)
+        public static int AddNewOrder(DateTime date, decimal Total, int serialNumber, string activeUser)
         {
             int ID = -1;
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
                 string query = @"
-            INSERT INTO Orders (Date, Total, SerialNumber)
-            VALUES (@date, @Total, @serialNumber);
+            INSERT INTO Orders (Date, Total, SerialNumber, ActiveUser)
+            VALUES (@date, @Total, @serialNumber, @activeUser);
             SELECT SCOPE_IDENTITY();";
 
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@date", date);
                 command.Parameters.AddWithValue("@Total", Total);
                 command.Parameters.AddWithValue("@serialNumber", serialNumber);
+                command.Parameters.AddWithValue("@activeUser", activeUser);
 
                 try
                 {
