@@ -45,7 +45,7 @@ namespace WinForms_PresentationLayer
             // Add Mode
             if (_Mode == enMode.AddNew)
             {
-                lbMode.Text = "Add Category";
+                lbMode.Text = "اضف صنف";
                 _Category = new clsCategoryBusiness();
                 return;
             }
@@ -55,7 +55,7 @@ namespace WinForms_PresentationLayer
             else
             {
 
-                lbMode.Text = $"Update Category {_categoryID}";
+                lbMode.Text = $"تعديل صنف {_categoryID}";
 
                 _Category = clsCategoryBusiness.Find(_categoryID);
 
@@ -87,14 +87,14 @@ namespace WinForms_PresentationLayer
 
             if (string.IsNullOrEmpty(_Category.Name))
             {
-                MessageBox.Show("Category Name cannot be empty. Please enter a valid name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("يجب اضافه اسم للصنف", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
 
             if (_Category.Save())
             {
-                MessageBox.Show("Saved Succssefully");
+                MessageBox.Show("تم بنجاح");
                 lbCategoryID.Text = _Category.ID.ToString();
 
 
@@ -102,11 +102,11 @@ namespace WinForms_PresentationLayer
 
             else
             {
-                MessageBox.Show("Save Failed");
+                MessageBox.Show("لم يتم الحفظ");
             }
 
             _Mode = enMode.Update;
-            lbMode.Text = "Update Mode";
+            lbMode.Text = "تعديل الاصناف";
         }
 
         private void btnClose_Click(object sender, EventArgs e)

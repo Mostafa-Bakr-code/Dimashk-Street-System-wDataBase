@@ -37,7 +37,6 @@
             this.btnCategoriesMenu = new System.Windows.Forms.Button();
             this.btnItemsMenu = new System.Windows.Forms.Button();
             this.btnOrdersMenu = new System.Windows.Forms.Button();
-            this.btnOrderItems = new System.Windows.Forms.Button();
             this.dgvOrders = new System.Windows.Forms.DataGridView();
             this.contextMenuOrders = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripEditOrder = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,6 +88,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnTotalbyCategoryAndDateRange = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnPrintOrder = new System.Windows.Forms.Button();
             this.btnLogMenu = new System.Windows.Forms.Button();
             this.btnUsersMenu = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
@@ -150,20 +150,20 @@
             this.toolStripMenuItemEdit,
             this.toolStripMenuItemDelete});
             this.contextMenuStripItems.Name = "contextMenuStrip1";
-            this.contextMenuStripItems.Size = new System.Drawing.Size(135, 68);
+            this.contextMenuStripItems.Size = new System.Drawing.Size(129, 68);
             // 
             // toolStripMenuItemEdit
             // 
             this.toolStripMenuItemEdit.Name = "toolStripMenuItemEdit";
-            this.toolStripMenuItemEdit.Size = new System.Drawing.Size(134, 32);
-            this.toolStripMenuItemEdit.Text = "Edit";
+            this.toolStripMenuItemEdit.Size = new System.Drawing.Size(128, 32);
+            this.toolStripMenuItemEdit.Text = "تعديل";
             this.toolStripMenuItemEdit.Click += new System.EventHandler(this.toolStripMenuItemEdit_Click);
             // 
             // toolStripMenuItemDelete
             // 
             this.toolStripMenuItemDelete.Name = "toolStripMenuItemDelete";
-            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(134, 32);
-            this.toolStripMenuItemDelete.Text = "Delete";
+            this.toolStripMenuItemDelete.Size = new System.Drawing.Size(128, 32);
+            this.toolStripMenuItemDelete.Text = "مسح";
             this.toolStripMenuItemDelete.Click += new System.EventHandler(this.toolStripMenuItemDelete_Click);
             // 
             // dgvListItems
@@ -192,12 +192,12 @@
             this.btnAddItem.BackColor = System.Drawing.Color.MintCream;
             this.btnAddItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddItem.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnAddItem.Location = new System.Drawing.Point(1, 166);
+            this.btnAddItem.Location = new System.Drawing.Point(1, 179);
             this.btnAddItem.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddItem.Name = "btnAddItem";
             this.btnAddItem.Size = new System.Drawing.Size(152, 52);
             this.btnAddItem.TabIndex = 2;
-            this.btnAddItem.Text = "Add Item";
+            this.btnAddItem.Text = "اضافة طبق";
             this.btnAddItem.UseVisualStyleBackColor = false;
             this.btnAddItem.Visible = false;
             this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
@@ -212,7 +212,7 @@
             this.btnCategoriesMenu.Size = new System.Drawing.Size(152, 52);
             this.btnCategoriesMenu.TabIndex = 3;
             this.btnCategoriesMenu.Tag = "1";
-            this.btnCategoriesMenu.Text = "Categories Menu";
+            this.btnCategoriesMenu.Text = "اصناف";
             this.btnCategoriesMenu.UseVisualStyleBackColor = false;
             this.btnCategoriesMenu.Click += new System.EventHandler(this.btnCategoriesMenu_Click);
             // 
@@ -226,7 +226,7 @@
             this.btnItemsMenu.Size = new System.Drawing.Size(152, 52);
             this.btnItemsMenu.TabIndex = 4;
             this.btnItemsMenu.Tag = "2";
-            this.btnItemsMenu.Text = "Items Menu";
+            this.btnItemsMenu.Text = "اطباق";
             this.btnItemsMenu.UseVisualStyleBackColor = false;
             this.btnItemsMenu.Click += new System.EventHandler(this.btnItemsMenu_Click);
             // 
@@ -240,23 +240,9 @@
             this.btnOrdersMenu.Size = new System.Drawing.Size(152, 52);
             this.btnOrdersMenu.TabIndex = 5;
             this.btnOrdersMenu.Tag = "4";
-            this.btnOrdersMenu.Text = "Orders Menu";
+            this.btnOrdersMenu.Text = "الميعات";
             this.btnOrdersMenu.UseVisualStyleBackColor = false;
             this.btnOrdersMenu.Click += new System.EventHandler(this.btnOrdersMenu_Click);
-            // 
-            // btnOrderItems
-            // 
-            this.btnOrderItems.BackColor = System.Drawing.Color.MintCream;
-            this.btnOrderItems.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnOrderItems.Location = new System.Drawing.Point(517, 37);
-            this.btnOrderItems.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnOrderItems.Name = "btnOrderItems";
-            this.btnOrderItems.Size = new System.Drawing.Size(152, 52);
-            this.btnOrderItems.TabIndex = 6;
-            this.btnOrderItems.Tag = "8";
-            this.btnOrderItems.Text = "OrderItems Menu";
-            this.btnOrderItems.UseVisualStyleBackColor = false;
-            this.btnOrderItems.Click += new System.EventHandler(this.btnOrderItems_Click);
             // 
             // dgvOrders
             // 
@@ -270,7 +256,7 @@
             this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrders.ContextMenuStrip = this.contextMenuOrders;
             this.dgvOrders.GridColor = System.Drawing.SystemColors.ActiveCaption;
-            this.dgvOrders.Location = new System.Drawing.Point(164, 166);
+            this.dgvOrders.Location = new System.Drawing.Point(154, 169);
             this.dgvOrders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvOrders.Name = "dgvOrders";
             this.dgvOrders.ReadOnly = true;
@@ -289,26 +275,26 @@
             this.toolStripDeleteOrder,
             this.toolStripShowOrderItems});
             this.contextMenuOrders.Name = "contextMenuOrders";
-            this.contextMenuOrders.Size = new System.Drawing.Size(222, 100);
+            this.contextMenuOrders.Size = new System.Drawing.Size(241, 100);
             // 
             // toolStripEditOrder
             // 
             this.toolStripEditOrder.Name = "toolStripEditOrder";
-            this.toolStripEditOrder.Size = new System.Drawing.Size(221, 32);
-            this.toolStripEditOrder.Text = "Edit";
+            this.toolStripEditOrder.Size = new System.Drawing.Size(240, 32);
+            this.toolStripEditOrder.Text = "تعديل";
             this.toolStripEditOrder.Click += new System.EventHandler(this.toolStripEditOrder_Click);
             // 
             // toolStripDeleteOrder
             // 
             this.toolStripDeleteOrder.Name = "toolStripDeleteOrder";
-            this.toolStripDeleteOrder.Size = new System.Drawing.Size(221, 32);
-            this.toolStripDeleteOrder.Text = "Delete";
+            this.toolStripDeleteOrder.Size = new System.Drawing.Size(240, 32);
+            this.toolStripDeleteOrder.Text = "مسح";
             // 
             // toolStripShowOrderItems
             // 
             this.toolStripShowOrderItems.Name = "toolStripShowOrderItems";
-            this.toolStripShowOrderItems.Size = new System.Drawing.Size(221, 32);
-            this.toolStripShowOrderItems.Text = "View Order Items";
+            this.toolStripShowOrderItems.Size = new System.Drawing.Size(240, 32);
+            this.toolStripShowOrderItems.Text = "عرض منتجات الطلب";
             this.toolStripShowOrderItems.Click += new System.EventHandler(this.toolStripShowOrderItems_Click);
             // 
             // dgvCategories
@@ -339,20 +325,20 @@
             this.toolStripMenuEditCategory,
             this.toolStripMenuDeleteCategory});
             this.contextMenuCategories.Name = "contextMenuCategories";
-            this.contextMenuCategories.Size = new System.Drawing.Size(135, 68);
+            this.contextMenuCategories.Size = new System.Drawing.Size(129, 68);
             // 
             // toolStripMenuEditCategory
             // 
             this.toolStripMenuEditCategory.Name = "toolStripMenuEditCategory";
-            this.toolStripMenuEditCategory.Size = new System.Drawing.Size(134, 32);
-            this.toolStripMenuEditCategory.Text = "Edit";
+            this.toolStripMenuEditCategory.Size = new System.Drawing.Size(128, 32);
+            this.toolStripMenuEditCategory.Text = "تعديل";
             this.toolStripMenuEditCategory.Click += new System.EventHandler(this.toolStripMenuEditCategory_Click);
             // 
             // toolStripMenuDeleteCategory
             // 
             this.toolStripMenuDeleteCategory.Name = "toolStripMenuDeleteCategory";
-            this.toolStripMenuDeleteCategory.Size = new System.Drawing.Size(134, 32);
-            this.toolStripMenuDeleteCategory.Text = "Delete";
+            this.toolStripMenuDeleteCategory.Size = new System.Drawing.Size(128, 32);
+            this.toolStripMenuDeleteCategory.Text = "مسح";
             this.toolStripMenuDeleteCategory.Click += new System.EventHandler(this.toolStripMenuDeleteCategory_Click);
             // 
             // dgvOrderItems
@@ -401,12 +387,12 @@
             this.btnAddCategory.BackColor = System.Drawing.Color.MintCream;
             this.btnAddCategory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddCategory.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnAddCategory.Location = new System.Drawing.Point(1, 166);
+            this.btnAddCategory.Location = new System.Drawing.Point(4, 179);
             this.btnAddCategory.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddCategory.Name = "btnAddCategory";
             this.btnAddCategory.Size = new System.Drawing.Size(152, 52);
             this.btnAddCategory.TabIndex = 20;
-            this.btnAddCategory.Text = "Add Category";
+            this.btnAddCategory.Text = "اضافة صنف";
             this.btnAddCategory.UseVisualStyleBackColor = false;
             this.btnAddCategory.Visible = false;
             this.btnAddCategory.Click += new System.EventHandler(this.btnAddCategory_Click);
@@ -421,7 +407,7 @@
             this.btnAddOrder.Name = "btnAddOrder";
             this.btnAddOrder.Size = new System.Drawing.Size(506, 91);
             this.btnAddOrder.TabIndex = 23;
-            this.btnAddOrder.Text = "Add Order";
+            this.btnAddOrder.Text = "الطلبات";
             this.btnAddOrder.UseVisualStyleBackColor = false;
             this.btnAddOrder.Click += new System.EventHandler(this.btnAddOrder_Click);
             // 
@@ -446,9 +432,9 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(8, 10);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(109, 25);
+            this.label1.Size = new System.Drawing.Size(90, 25);
             this.label1.TabIndex = 27;
-            this.label1.Text = "Start Date";
+            this.label1.Text = "التاريخ من";
             // 
             // label2
             // 
@@ -457,9 +443,9 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(466, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 25);
+            this.label2.Size = new System.Drawing.Size(92, 25);
             this.label2.TabIndex = 28;
-            this.label2.Text = "End Date";
+            this.label2.Text = "التاريخ الي";
             // 
             // btnTotalRange
             // 
@@ -513,9 +499,9 @@
             this.label15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label15.Location = new System.Drawing.Point(17, 80);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(79, 20);
+            this.label15.Size = new System.Drawing.Size(143, 20);
             this.label15.TabIndex = 51;
-            this.label15.Text = "Tax Value";
+            this.label15.Text = "اجمالي الضرائب المستحقه";
             // 
             // btnTaxValueDateRange
             // 
@@ -537,9 +523,9 @@
             this.label14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label14.Location = new System.Drawing.Point(17, 24);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(190, 20);
+            this.label14.Size = new System.Drawing.Size(187, 20);
             this.label14.TabIndex = 51;
-            this.label14.Text = "Tax Value by Date Range";
+            this.label14.Text = "اجمالي الضرائب المستحقه بالتاريخ";
             // 
             // btnTaxValue
             // 
@@ -582,18 +568,18 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(8, 62);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(244, 20);
+            this.label11.Size = new System.Drawing.Size(172, 20);
             this.label11.TabIndex = 48;
-            this.label11.Text = "Free Orders Total by Date Range";
+            this.label11.Text = "اجمالي الاوردر المجاني بالتاريخ";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(8, 22);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(192, 20);
+            this.label10.Size = new System.Drawing.Size(128, 20);
             this.label10.TabIndex = 47;
-            this.label10.Text = "Free Orders All Time Total";
+            this.label10.Text = "اجمالي الاوردر المجاني";
             // 
             // btnFreeOrdersTotal
             // 
@@ -636,18 +622,18 @@
             this.label12.AutoSize = true;
             this.label12.Location = new System.Drawing.Point(4, 22);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(155, 20);
+            this.label12.Size = new System.Drawing.Size(95, 20);
             this.label12.TabIndex = 49;
-            this.label12.Text = "Total by Date Range";
+            this.label12.Text = "الاجمالي بالتاريخ";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(4, 76);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(103, 20);
+            this.label9.Size = new System.Drawing.Size(77, 20);
             this.label9.TabIndex = 46;
-            this.label9.Text = "All Time Total";
+            this.label9.Text = "الاجمالي العام";
             // 
             // groupBox2
             // 
@@ -670,9 +656,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(7, 22);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 20);
+            this.label4.Size = new System.Drawing.Size(69, 20);
             this.label4.TabIndex = 35;
-            this.label4.Text = "Item Name";
+            this.label4.Text = "اسم الطبق";
             // 
             // cbItemName
             // 
@@ -685,15 +671,15 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(8, 102);
+            this.label8.Location = new System.Drawing.Point(9, 137);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(268, 20);
+            this.label8.Size = new System.Drawing.Size(119, 20);
             this.label8.TabIndex = 45;
-            this.label8.Text = "Total by Item Name and Date Range";
+            this.label8.Text = "اجمالي الطبق بالتاريخ";
             // 
             // btnTotalbyItemNameAndDateRange
             // 
-            this.btnTotalbyItemNameAndDateRange.Location = new System.Drawing.Point(365, 102);
+            this.btnTotalbyItemNameAndDateRange.Location = new System.Drawing.Point(364, 126);
             this.btnTotalbyItemNameAndDateRange.Name = "btnTotalbyItemNameAndDateRange";
             this.btnTotalbyItemNameAndDateRange.Size = new System.Drawing.Size(80, 31);
             this.btnTotalbyItemNameAndDateRange.TabIndex = 39;
@@ -704,15 +690,15 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(6, 153);
+            this.label7.Location = new System.Drawing.Point(8, 86);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(205, 20);
+            this.label7.Size = new System.Drawing.Size(114, 20);
             this.label7.TabIndex = 44;
-            this.label7.Text = "All Time Total by Item Name";
+            this.label7.Text = "الاجمالي العام بالطبق";
             // 
             // btnTotalbyItemName
             // 
-            this.btnTotalbyItemName.Location = new System.Drawing.Point(365, 148);
+            this.btnTotalbyItemName.Location = new System.Drawing.Point(364, 86);
             this.btnTotalbyItemName.Name = "btnTotalbyItemName";
             this.btnTotalbyItemName.Size = new System.Drawing.Size(80, 31);
             this.btnTotalbyItemName.TabIndex = 37;
@@ -741,9 +727,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(6, 22);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 20);
+            this.label3.Size = new System.Drawing.Size(78, 20);
             this.label3.TabIndex = 33;
-            this.label3.Text = "Category";
+            this.label3.Text = "اسم الصنف";
             // 
             // cbCategory
             // 
@@ -758,9 +744,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(9, 92);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(191, 20);
+            this.label5.Size = new System.Drawing.Size(123, 20);
             this.label5.TabIndex = 42;
-            this.label5.Text = "All Time Total by Category";
+            this.label5.Text = "الاجمالي العام بالصنف";
             // 
             // btnTotalbyCategory
             // 
@@ -777,9 +763,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(9, 147);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(254, 20);
+            this.label6.Size = new System.Drawing.Size(128, 20);
             this.label6.TabIndex = 43;
-            this.label6.Text = "Total by Category and Date Range";
+            this.label6.Text = "اجمالي الصنف بالتاريخ";
             // 
             // btnTotalbyCategoryAndDateRange
             // 
@@ -794,12 +780,12 @@
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.Turquoise;
+            this.groupBox5.Controls.Add(this.btnPrintOrder);
             this.groupBox5.Controls.Add(this.btnLogMenu);
             this.groupBox5.Controls.Add(this.btnUsersMenu);
             this.groupBox5.Controls.Add(this.btnCategoriesMenu);
             this.groupBox5.Controls.Add(this.btnOrdersMenu);
             this.groupBox5.Controls.Add(this.btnItemsMenu);
-            this.groupBox5.Controls.Add(this.btnOrderItems);
             this.groupBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox5.ForeColor = System.Drawing.Color.DarkSeaGreen;
             this.groupBox5.Location = new System.Drawing.Point(163, 28);
@@ -808,17 +794,31 @@
             this.groupBox5.TabIndex = 33;
             this.groupBox5.TabStop = false;
             // 
+            // btnPrintOrder
+            // 
+            this.btnPrintOrder.BackColor = System.Drawing.Color.MintCream;
+            this.btnPrintOrder.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnPrintOrder.Location = new System.Drawing.Point(878, 37);
+            this.btnPrintOrder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPrintOrder.Name = "btnPrintOrder";
+            this.btnPrintOrder.Size = new System.Drawing.Size(152, 52);
+            this.btnPrintOrder.TabIndex = 9;
+            this.btnPrintOrder.Tag = "4";
+            this.btnPrintOrder.Text = "طباعة";
+            this.btnPrintOrder.UseVisualStyleBackColor = false;
+            this.btnPrintOrder.Click += new System.EventHandler(this.btnPrintOrder_Click);
+            // 
             // btnLogMenu
             // 
             this.btnLogMenu.BackColor = System.Drawing.Color.MintCream;
             this.btnLogMenu.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnLogMenu.Location = new System.Drawing.Point(863, 37);
+            this.btnLogMenu.Location = new System.Drawing.Point(707, 37);
             this.btnLogMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLogMenu.Name = "btnLogMenu";
             this.btnLogMenu.Size = new System.Drawing.Size(152, 52);
             this.btnLogMenu.TabIndex = 8;
             this.btnLogMenu.Tag = "16";
-            this.btnLogMenu.Text = "Logs Menu";
+            this.btnLogMenu.Text = "تسجيلات الدخول";
             this.btnLogMenu.UseVisualStyleBackColor = false;
             this.btnLogMenu.Click += new System.EventHandler(this.btnLogMenu_Click);
             // 
@@ -826,13 +826,13 @@
             // 
             this.btnUsersMenu.BackColor = System.Drawing.Color.MintCream;
             this.btnUsersMenu.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnUsersMenu.Location = new System.Drawing.Point(691, 37);
+            this.btnUsersMenu.Location = new System.Drawing.Point(526, 37);
             this.btnUsersMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnUsersMenu.Name = "btnUsersMenu";
             this.btnUsersMenu.Size = new System.Drawing.Size(152, 52);
             this.btnUsersMenu.TabIndex = 7;
             this.btnUsersMenu.Tag = "16";
-            this.btnUsersMenu.Text = "Users Menu";
+            this.btnUsersMenu.Text = "المستخدمين";
             this.btnUsersMenu.UseVisualStyleBackColor = false;
             this.btnUsersMenu.Click += new System.EventHandler(this.btnUsersMenu_Click);
             // 
@@ -841,12 +841,12 @@
             this.btnAddUser.BackColor = System.Drawing.Color.MintCream;
             this.btnAddUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddUser.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnAddUser.Location = new System.Drawing.Point(1, 166);
+            this.btnAddUser.Location = new System.Drawing.Point(5, 179);
             this.btnAddUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(152, 52);
             this.btnAddUser.TabIndex = 34;
-            this.btnAddUser.Text = "Add User";
+            this.btnAddUser.Text = "اضافة مستخدم";
             this.btnAddUser.UseVisualStyleBackColor = false;
             this.btnAddUser.Visible = false;
             this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
@@ -879,20 +879,20 @@
             this.toolStripEditUsers,
             this.toolStripDeleteUsers});
             this.contextMenuUsers.Name = "contextMenuOrders";
-            this.contextMenuUsers.Size = new System.Drawing.Size(135, 68);
+            this.contextMenuUsers.Size = new System.Drawing.Size(129, 68);
             // 
             // toolStripEditUsers
             // 
             this.toolStripEditUsers.Name = "toolStripEditUsers";
-            this.toolStripEditUsers.Size = new System.Drawing.Size(134, 32);
-            this.toolStripEditUsers.Text = "Edit";
+            this.toolStripEditUsers.Size = new System.Drawing.Size(128, 32);
+            this.toolStripEditUsers.Text = "تعديل";
             this.toolStripEditUsers.Click += new System.EventHandler(this.toolStripEditUsers_Click);
             // 
             // toolStripDeleteUsers
             // 
             this.toolStripDeleteUsers.Name = "toolStripDeleteUsers";
-            this.toolStripDeleteUsers.Size = new System.Drawing.Size(134, 32);
-            this.toolStripDeleteUsers.Text = "Delete";
+            this.toolStripDeleteUsers.Size = new System.Drawing.Size(128, 32);
+            this.toolStripDeleteUsers.Text = "مسح";
             this.toolStripDeleteUsers.Click += new System.EventHandler(this.toolStripDeleteUsers_Click);
             // 
             // label16
@@ -1010,12 +1010,12 @@
             // 
             this.lbItemCategory.AutoSize = true;
             this.lbItemCategory.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbItemCategory.Location = new System.Drawing.Point(41, 11);
+            this.lbItemCategory.Location = new System.Drawing.Point(47, 24);
             this.lbItemCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbItemCategory.Name = "lbItemCategory";
-            this.lbItemCategory.Size = new System.Drawing.Size(73, 20);
+            this.lbItemCategory.Size = new System.Drawing.Size(57, 20);
             this.lbItemCategory.TabIndex = 45;
-            this.lbItemCategory.Text = "Category";
+            this.lbItemCategory.Text = "الاصناف";
             // 
             // btnShowItemsByCategory
             // 
@@ -1044,12 +1044,12 @@
             // 
             this.label17.AutoSize = true;
             this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label17.Location = new System.Drawing.Point(30, 193);
+            this.label17.Location = new System.Drawing.Point(32, 202);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(74, 20);
+            this.label17.Size = new System.Drawing.Size(76, 20);
             this.label17.TabIndex = 53;
-            this.label17.Text = " All Items";
+            this.label17.Text = "جميع الاطباق";
             // 
             // btnViewAllItems
             // 
@@ -1076,7 +1076,7 @@
             // 
             this.panelOrdersBtns.Controls.Add(this.label19);
             this.panelOrdersBtns.Controls.Add(this.btnshowOrdersByDate);
-            this.panelOrdersBtns.Location = new System.Drawing.Point(12, 167);
+            this.panelOrdersBtns.Location = new System.Drawing.Point(12, 73);
             this.panelOrdersBtns.Name = "panelOrdersBtns";
             this.panelOrdersBtns.Size = new System.Drawing.Size(128, 98);
             this.panelOrdersBtns.TabIndex = 54;
@@ -1086,12 +1086,12 @@
             // 
             this.label19.AutoSize = true;
             this.label19.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label19.Location = new System.Drawing.Point(4, 12);
+            this.label19.Location = new System.Drawing.Point(12, 21);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(118, 20);
+            this.label19.Size = new System.Drawing.Size(94, 20);
             this.label19.TabIndex = 53;
-            this.label19.Text = "Orders By Date";
+            this.label19.Text = "المبيعات بالتاريخ";
             // 
             // btnshowOrdersByDate
             // 
@@ -1117,22 +1117,23 @@
             // 
             this.panelLogsBtns.Controls.Add(this.label20);
             this.panelLogsBtns.Controls.Add(this.btnShowLogsByDate);
-            this.panelLogsBtns.Location = new System.Drawing.Point(14, 167);
+            this.panelLogsBtns.Location = new System.Drawing.Point(4, 573);
             this.panelLogsBtns.Name = "panelLogsBtns";
-            this.panelLogsBtns.Size = new System.Drawing.Size(128, 98);
+            this.panelLogsBtns.Size = new System.Drawing.Size(140, 98);
             this.panelLogsBtns.TabIndex = 55;
             this.panelLogsBtns.Visible = false;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label20.Location = new System.Drawing.Point(19, 12);
+            this.label20.Location = new System.Drawing.Point(9, 19);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(105, 20);
+            this.label20.Size = new System.Drawing.Size(108, 15);
             this.label20.TabIndex = 53;
-            this.label20.Text = "Logs By Date";
+            this.label20.Text = "تسجيلات الدخول بالتاريخ";
             // 
             // FormMain
             // 
@@ -1140,25 +1141,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(1922, 952);
-            this.Controls.Add(this.panelOrdersBtns);
+            this.Controls.Add(this.panelLogsBtns);
+            this.Controls.Add(this.btnAddItem);
+            this.Controls.Add(this.btnAddCategory);
+            this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.panelDateRange);
             this.Controls.Add(this.panelListItemByCategory);
             this.Controls.Add(this.dgvTodaysLogs);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.panel2);
-            this.Controls.Add(this.btnAddUser);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.panelOrdersTotal);
             this.Controls.Add(this.btnAddOrder);
-            this.Controls.Add(this.btnAddItem);
-            this.Controls.Add(this.btnAddCategory);
             this.Controls.Add(this.dgvOrders);
             this.Controls.Add(this.dgvCategories);
             this.Controls.Add(this.dgvUsersMenu);
             this.Controls.Add(this.dgvLogs);
             this.Controls.Add(this.dgvListItems);
-            this.Controls.Add(this.panelLogsBtns);
             this.Controls.Add(this.dgvOrderItems);
+            this.Controls.Add(this.panelOrdersBtns);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormMain";
             this.Text = "Dimashk Street";
@@ -1211,7 +1212,6 @@
         private System.Windows.Forms.Button btnCategoriesMenu;
         private System.Windows.Forms.Button btnItemsMenu;
         private System.Windows.Forms.Button btnOrdersMenu;
-        private System.Windows.Forms.Button btnOrderItems;
         private System.Windows.Forms.DataGridView dgvOrders;
         private System.Windows.Forms.DataGridView dgvCategories;
         private System.Windows.Forms.DataGridView dgvOrderItems;
@@ -1291,6 +1291,7 @@
         private System.Windows.Forms.Button btnshowOrdersByDate;
         private System.Windows.Forms.Panel panelLogsBtns;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button btnPrintOrder;
     }
 }
 

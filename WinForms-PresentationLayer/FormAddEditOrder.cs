@@ -329,7 +329,7 @@ namespace WinForms_PresentationLayer
             if (_Mode == enMode.AddNew && !_orderPlaced) // Only prompt for deletion if in AddNew mode
             {
                 DialogResult result = MessageBox.Show(
-                    "Are you sure you want to delete this order and all its items?",
+                    "هل تريد اغلاق الصفحه ومسح الطلب الحالي?",
                     "Confirm Delete",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning
@@ -450,7 +450,7 @@ namespace WinForms_PresentationLayer
             }
 
             PrintOrderInfoForUser();
-            PrintOrderInfoForChief();
+            //PrintOrderInfoForChief();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -512,7 +512,7 @@ namespace WinForms_PresentationLayer
 
             if (dgvOrderItems.Rows.Count == 0)
             {
-                MessageBox.Show("You must add at least one item to the order.");
+                MessageBox.Show("يجب اضافة منتج واحد علي الاقل");
                 return;
             }
 
@@ -527,14 +527,14 @@ namespace WinForms_PresentationLayer
 
                 if (success)
                 {
-                    MessageBox.Show("Order placed successfully!");
+                    MessageBox.Show("تم اضافة الاوردر بنجاح");
                     _orderPlaced = true;
 
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Failed to place the order. Please try again.");
+                    MessageBox.Show("هناك خطأ اعد المحاولة");
                 }
             }
             else if (_Mode == enMode.Update)
@@ -544,7 +544,7 @@ namespace WinForms_PresentationLayer
 
                 if (success)
                 {
-                    MessageBox.Show("Order updated successfully!");
+                    MessageBox.Show("تم اضافة الاوردر بنجاح");
 
                     this.Close();
                 }
@@ -555,8 +555,124 @@ namespace WinForms_PresentationLayer
             }
 
             PrintOrderInfoForUser();
-            PrintOrderInfoForChief();
+            //PrintOrderInfoForChief();
         }
+
+        //private void PrintOrderInfoForUser()
+        //{
+        //    if (_Order == null)
+        //    {
+        //        MessageBox.Show("Order data is not available.");
+        //        return;
+        //    }
+
+        //    Start creating the order info string
+        //   StringBuilder orderInfo = new StringBuilder();
+
+        //    orderInfo.AppendLine("******************************\n");
+        //    orderInfo.AppendLine("******************************\n");
+        //    orderInfo.AppendLine("******************************\n");
+        //    orderInfo.AppendLine("....أكلة كبده.... \n");
+        //    orderInfo.AppendLine("Invoice Tax\n");
+        //    orderInfo.AppendLine($"Cashier: {clsUserBusiness.ActiveUser.userName}");
+        //    orderInfo.AppendLine($"{_Order.date.ToString("yyyy-dd-MM")}\n");
+        //    orderInfo.AppendLine($"ID: {_Order.SerialNumber}\n");
+        //    orderInfo.AppendLine(" _______________________\n");
+
+        //    Loop through order items and add them to the string
+        //    foreach (DataGridViewRow row in dgvOrderItems.Rows)
+        //    {
+        //        string itemName = row.Cells["ItemName"].Value.ToString();
+        //        string quantity = row.Cells["Quantity"].Value.ToString();
+        //        string price = Convert.ToDecimal(row.Cells["Price"].Value).ToString("F2");
+        //        string total = Convert.ToDecimal(row.Cells["TotalItemsPrice"].Value).ToString("F2");
+
+        //        orderInfo.AppendLine($"{itemName}, الكميه: {quantity}, السعر: {price}, الاجمالي: {total}");
+        //    }
+
+        //    orderInfo.AppendLine("\n _________________________\n");
+        //    orderInfo.AppendLine($"\n\nSubTotal: {decimal.Parse(lbSubTotal.Text).ToString("F2")}");
+        //    orderInfo.AppendLine($"\n\nTax Value: {decimal.Parse(lbTaxValue.Text).ToString("F2")}");
+        //    orderInfo.AppendLine($"\n\nVat: {lbVat.Text}");
+        //    orderInfo.AppendLine($"\nTotal: {_Order.Total.ToString("F2")}");
+        //    orderInfo.AppendLine($"\n\nأكلة كبده");
+        //    orderInfo.AppendLine("\n\n....FROM DIMASHK .... \n\n");
+        //    orderInfo.AppendLine($"{_Order.date.ToString("yyyy-dd-MM")}\n\n");
+        //    orderInfo.AppendLine($"\n\nID: {_Order.SerialNumber}\n");
+        //    orderInfo.AppendLine("Invoice Tax\n");
+        //    orderInfo.AppendLine($"Cashier: {clsUserBusiness.ActiveUser.userName}");
+        //    orderInfo.AppendLine("******************************\n");
+        //    orderInfo.AppendLine("******************************\n");
+        //    orderInfo.AppendLine("******************************\n");
+        //    orderInfo.AppendLine("******************************\n");
+        //    orderInfo.AppendLine("******************************\n");
+        //    orderInfo.AppendLine("******************************\n");
+
+        //    Convert the StringBuilder to a string for printing
+
+        //   string orderInfoText = orderInfo.ToString();
+
+        //    Create a PrintDocument object
+
+        //   PrintDocument printDoc = new PrintDocument();
+
+        //    Set the printer name directly
+        //    printDoc.PrinterSettings.PrinterName = "XP-76";
+
+        //    Adjust margins to reduce top space and add a buffer at the bottom
+        //    printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10); // Adjusted top margin to 20 and bottom margin to 40
+
+        //    printDoc.PrintPage += (sender, e) =>
+        //    {
+        //        Font font = new Font("Arial", 12);
+        //        float x = e.MarginBounds.Left;
+        //        float y = e.MarginBounds.Top - 50;
+
+        //        Define the maximum width and height for the text
+
+        //       float width = e.MarginBounds.Width;
+        //        float height = e.MarginBounds.Height - 40; // Adjust height to reserve space for the last line
+
+        //        Create a StringFormat object to handle text wrapping
+        //       StringFormat stringFormat = new StringFormat
+        //       {
+        //           LineAlignment = StringAlignment.Near,
+        //           Alignment = StringAlignment.Near,
+        //           FormatFlags = StringFormatFlags.LineLimit
+        //       };
+
+        //        Calculate how many characters will fit on the page
+        //        int charsFitted, linesFilled;
+        //        e.Graphics.MeasureString(orderInfoText, font, new SizeF(width, height), stringFormat, out charsFitted, out linesFilled);
+
+        //        Print the current page's content
+        //        e.Graphics.DrawString(orderInfoText, font, Brushes.Black, new RectangleF(x, y, width, height), stringFormat);
+
+        //        Remove the printed content from the orderInfo string
+        //        orderInfoText = orderInfoText.Substring(charsFitted);
+
+        //        Check if there's more content to print
+        //        e.HasMorePages = orderInfoText.Length > 0;
+
+        //        If more pages exist, store the remaining text for the next page
+        //        if (e.HasMorePages)
+        //            {
+        //                e.Graphics.DrawString("Continued on next page...", font, Brushes.Black, new RectangleF(x, y + height - 20, width, 20), stringFormat);
+        //            }
+        //    };
+
+        //    try
+        //    {
+        //        Print directly to the specified printer without showing the PrintDialog
+        //        printDoc.Print();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("هناك خطأ اثناء الطباعه: " + ex.Message);
+        //    }
+        //}
+
+
 
         private void PrintOrderInfoForUser()
         {
@@ -566,108 +682,100 @@ namespace WinForms_PresentationLayer
                 return;
             }
 
-            // Start creating the order info string
-            StringBuilder orderInfo = new StringBuilder();
-
-            //orderInfo.AppendLine("******************************\n");
-            //orderInfo.AppendLine("******************************\n");
-            //orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("\n\n....FROM DIMASHK .... \n\n");
-            //orderInfo.AppendLine("Invoice Tax\n");
-            orderInfo.AppendLine($"Cashier: {clsUserBusiness.ActiveUser.userName}");
-            orderInfo.AppendLine($"{_Order.date.ToString("yyyy-dd-MM")}\n\n");
-            orderInfo.AppendLine($"ID: {_Order.SerialNumber}\n\n");
-            orderInfo.AppendLine("\n _______________________\n");
-
-            // Loop through order items and add them to the string
-            foreach (DataGridViewRow row in dgvOrderItems.Rows)
-            {
-                string itemName = row.Cells["ItemName"].Value.ToString();
-                string quantity = row.Cells["Quantity"].Value.ToString();
-                string price = Convert.ToDecimal(row.Cells["Price"].Value).ToString("F2");
-                string total = Convert.ToDecimal(row.Cells["TotalItemsPrice"].Value).ToString("F2");
-
-                orderInfo.AppendLine($"{itemName}, Quantity: {quantity}, Price: {price}, Total: {total}");
-            }
-
-            orderInfo.AppendLine("\n _________________________\n");
-            orderInfo.AppendLine($"\n\nSubTotal: {decimal.Parse(lbSubTotal.Text).ToString("F2")}");
-            orderInfo.AppendLine($"\n\nTax Value: {decimal.Parse(lbTaxValue.Text).ToString("F2")}");
-            orderInfo.AppendLine($"\n\nVat: {lbVat.Text}");
-            orderInfo.AppendLine($"\n\nTotal: {_Order.Total.ToString("F2")}");
-            orderInfo.AppendLine($"\n\nThank you for choosing us!");
-            orderInfo.AppendLine("\n\n....FROM DIMASHK .... \n\n");
-            //orderInfo.AppendLine($"{_Order.date.ToString("yyyy-dd-MM")}\n\n");
-            //orderInfo.AppendLine($"\n\nID: {_Order.SerialNumber}\n");
-            //orderInfo.AppendLine("Invoice Tax\n");
-            //orderInfo.AppendLine($"Cashier: {clsUserBusiness.ActiveUser.userName}");
-            //orderInfo.AppendLine("******************************\n");
-            //orderInfo.AppendLine("******************************\n");
-            //orderInfo.AppendLine("******************************\n");
-            //orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("******************************\n");
-            orderInfo.AppendLine("******************************\n");
-
-            // Convert the StringBuilder to a string for printing
-            string orderInfoText = orderInfo.ToString();
-
-            // Create a PrintDocument object
+            // Initialize the PrintDocument object
             PrintDocument printDoc = new PrintDocument();
+            printDoc.PrinterSettings.PrinterName = "XP-76";
+            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0); // Set all margins to zero
 
-            // Set the printer name directly
-            printDoc.PrinterSettings.PrinterName = "XP-80";
-
-            // Adjust margins to reduce top space and add a buffer at the bottom
-            printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10); // Adjusted top margin to 20 and bottom margin to 40
-
+            // Event handler for PrintPage to define the table format
             printDoc.PrintPage += (sender, e) =>
             {
-                Font font = new Font("Arial", 12);
+                Font font = new Font("Arial", 8); // Slightly smaller font to fit more text per line
                 float x = e.MarginBounds.Left;
-                float y = e.MarginBounds.Top - 50;
+                float y = e.MarginBounds.Top;
+                float rowHeight = font.GetHeight(e.Graphics) + 4;
 
-                // Define the maximum width and height for the text
-                float width = e.MarginBounds.Width;
-                float height = e.MarginBounds.Height - 40; // Adjust height to reserve space for the last line
+                // Header Information
+                e.Graphics.DrawString("....أكله جملي....", font, Brushes.Black, x, y);
+                y += rowHeight;
+                e.Graphics.DrawString("", font, Brushes.Black, x, y);
+                y += rowHeight;
+                e.Graphics.DrawString($"Date: {_Order.date.ToString("yyyy-MM-dd")}", font, Brushes.Black, x, y);
+                e.Graphics.DrawString("", font, Brushes.Black, x, y);
+                y += rowHeight;
+                y += rowHeight;
+                e.Graphics.DrawString($"Order ID: {_Order.SerialNumber}", font, Brushes.Black, x, y);
+                e.Graphics.DrawString("", font, Brushes.Black, x, y);
+                y += rowHeight;
+                y += rowHeight;
+                e.Graphics.DrawString(" _______________________", font, Brushes.Black, x, y);
+                y += rowHeight;
 
-                // Create a StringFormat object to handle text wrapping
-                StringFormat stringFormat = new StringFormat
+                // Calculate exact column widths to fit 80mm paper width
+                float itemNameWidth = 95;    // Adjusted for item names
+                float quantityWidth = 35;    // Width for quantity
+                float priceWidth = 50;       // Width for price
+                float totalWidth = 50;       // Width for total
+                float columnSpacing = 5;     // Reduced spacing between columns
+
+                // Print table header row
+                e.Graphics.DrawString("Item", font, Brushes.Black, x, y);
+                e.Graphics.DrawString("Qty", font, Brushes.Black, x + itemNameWidth + columnSpacing, y);
+                e.Graphics.DrawString("Price", font, Brushes.Black, x + itemNameWidth + quantityWidth + columnSpacing * 2, y);
+                e.Graphics.DrawString("Total", font, Brushes.Black, x + itemNameWidth + quantityWidth + priceWidth + columnSpacing * 3, y);
+                y += rowHeight;
+
+                // Print each row of order items
+                foreach (DataGridViewRow row in dgvOrderItems.Rows)
                 {
-                    LineAlignment = StringAlignment.Near,
-                    Alignment = StringAlignment.Near,
-                    FormatFlags = StringFormatFlags.LineLimit
-                };
+                    string itemName = row.Cells["ItemName"].Value.ToString();
+                    string quantity = row.Cells["Quantity"].Value.ToString();
+                    string price = FormatPrice(Convert.ToDecimal(row.Cells["Price"].Value));
+                    string total = FormatPrice(Convert.ToDecimal(row.Cells["TotalItemsPrice"].Value));
 
-                // Calculate how many characters will fit on the page
-                int charsFitted, linesFilled;
-                e.Graphics.MeasureString(orderInfoText, font, new SizeF(width, height), stringFormat, out charsFitted, out linesFilled);
+                    e.Graphics.DrawString(itemName, font, Brushes.Black, x, y);
+                    e.Graphics.DrawString(quantity, font, Brushes.Black, x + itemNameWidth + columnSpacing, y);
+                    e.Graphics.DrawString(price, font, Brushes.Black, x + itemNameWidth + quantityWidth + columnSpacing * 2, y);
+                    e.Graphics.DrawString(total, font, Brushes.Black, x + itemNameWidth + quantityWidth + priceWidth + columnSpacing * 3, y);
 
-                // Print the current page's content
-                e.Graphics.DrawString(orderInfoText, font, Brushes.Black, new RectangleF(x, y, width, height), stringFormat);
-
-                // Remove the printed content from the orderInfo string
-                orderInfoText = orderInfoText.Substring(charsFitted);
-
-                // Check if there's more content to print
-                e.HasMorePages = orderInfoText.Length > 0;
-
-                // If more pages exist, store the remaining text for the next page
-                if (e.HasMorePages)
-                {
-                    e.Graphics.DrawString("Continued on next page...", font, Brushes.Black, new RectangleF(x, y + height - 20, width, 20), stringFormat);
+                    y += rowHeight;
                 }
+
+                // Print subtotal, tax, and total at the bottom
+                y += rowHeight; // Space after items
+                e.Graphics.DrawString(" _______________________", font, Brushes.Black, x, y);
+                y += rowHeight;
+                //e.Graphics.DrawString($"SubTotal: {FormatPrice(decimal.Parse(lbSubTotal.Text))}", font, Brushes.Black, x, y);
+                //y += rowHeight;
+                //e.Graphics.DrawString($"Tax Value: {FormatPrice(decimal.Parse(lbTaxValue.Text))}", font, Brushes.Black, x, y);
+                //y += rowHeight;
+                //e.Graphics.DrawString($"VAT: {lbVat.Text}", font, Brushes.Black, x, y);
+                y += rowHeight;
+                e.Graphics.DrawString($"Total: {FormatPrice(_Order.Total)}", font, Brushes.Black, x, y);
+                y += rowHeight;
+                e.Graphics.DrawString("", font, Brushes.Black, x, y);
+                y += rowHeight;
+                // Footer Message
+                y += rowHeight * 2; // Add space before footer
+                e.Graphics.DrawString("شكرا لزيارتكم أكله جملي ", font, Brushes.Black, x, y);
             };
 
+            // Attempt to print, handling any errors
             try
             {
-                // Print directly to the specified printer without showing the PrintDialog
                 printDoc.Print();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while printing: " + ex.Message);
+                MessageBox.Show("هناك خطأ اثناء الطباعه: " + ex.Message);
             }
         }
+        private string FormatPrice(decimal price)
+        {
+            return price % 1 == 0 ? price.ToString("F0") : price.ToString("F2");
+        }
+
+
 
         private void PrintOrderInfoForChief()
         {
@@ -699,7 +807,7 @@ namespace WinForms_PresentationLayer
 
                 string comment = row.Cells["Comment"].Value.ToString();
 
-                orderInfo.AppendLine($"{itemName}, Quan: {quantity},\n {comment}\n_________________________\n");
+                orderInfo.AppendLine($"{itemName}, الكمية: {quantity},\n {comment}\n_________________________\n");
             }
 
             orderInfo.AppendLine($"\n\n{_Order.date}");
@@ -742,7 +850,7 @@ namespace WinForms_PresentationLayer
             }
             catch (Exception ex)
             {
-                MessageBox.Show("An error occurred while printing: " + ex.Message);
+                MessageBox.Show("هناك خطأ اثناء الطباعه: " + ex.Message);
             }
         }
 
@@ -784,6 +892,10 @@ namespace WinForms_PresentationLayer
                 buttonY += buttonHeight + buttonSpacing; // Move the Y position for the next button
             }
         }
+
+
+
+
 
 
 

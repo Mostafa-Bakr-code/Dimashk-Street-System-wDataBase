@@ -89,7 +89,7 @@ namespace WinForms_PresentationLayer
             }
             else
             {
-                MessageBox.Show("Access Denied");
+                MessageBox.Show("ليس لديك صلاحية الدخول علي القائمة");
             }
         }
 
@@ -193,7 +193,7 @@ namespace WinForms_PresentationLayer
 
             if (endDate < startDate)
             {
-                MessageBox.Show("End date cannot be before start date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("التاريخ الي لا يمكن ان يكون فبل التاريخ من.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -375,10 +375,10 @@ namespace WinForms_PresentationLayer
             DateTime latestDate = clsOrderBusiness.GetLatestOrderDate();
 
 
-            MessageBox.Show($"Total for all orders: {total}\n" +
-                            $"Number of Orders: {numOfOrders}\n" +
-                            $"Earliest order date: {earliestDate.ToShortDateString()}\n" +
-                            $"Latest order date: {latestDate.ToShortDateString()}",
+            MessageBox.Show($"اجمالي جميع الطلبات: {total}\n" +
+                            $"عدد الطلبات: {numOfOrders}\n" +
+                            $"من: {earliestDate.ToShortDateString()}\n" +
+                            $"الي: {latestDate.ToShortDateString()}",
                             "Total Orders Free not included",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
@@ -392,7 +392,7 @@ namespace WinForms_PresentationLayer
 
             if (endDate < startDate)
             {
-                MessageBox.Show("End date cannot be before start date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("التاريخ الي لا يمكن ان يكون فبل التاريخ من.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -401,7 +401,7 @@ namespace WinForms_PresentationLayer
             int numOfOrders = clsOrderBusiness.GetTotalNumberOfOrdersByDateRange(startDate,endDate);
 
 
-            MessageBox.Show($"Total from {startDate.ToShortDateString()} to {endDate.ToShortDateString()}: {total}\n" + $"Number of Orders: {numOfOrders}\n"
+            MessageBox.Show($"الاجمالي من {startDate.ToShortDateString()} الي {endDate.ToShortDateString()}: {total}\n" + $"عدد الطلبات: {numOfOrders}\n"
 
                 , "Total Orders Free not included", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -422,15 +422,15 @@ namespace WinForms_PresentationLayer
                 int countOfCategory = clsCategoryBusiness.GetCategoryCount(selectedCategory);
 
 
-                MessageBox.Show($"Total for category '{selectedCategory}': {total}\n" + 
-                    $"Count {countOfCategory} \n" +
-                    $"Earliest order date: {earliestDate.ToShortDateString()}\n" +
-                            $"Latest order date: {latestDate.ToShortDateString()}", "Total by Category Free not included", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"اجمالي الاصناف '{selectedCategory}': {total}\n" + 
+                    $"العدد {countOfCategory} \n" +
+                    $"من: {earliestDate.ToShortDateString()}\n" +
+                            $"الي: {latestDate.ToShortDateString()}", "Total by Category Free not included", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
 
-                MessageBox.Show("Please select a category from the dropdown.", "Category Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("برجاء اختيار الصنف من اللسته.", "Category Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -448,15 +448,15 @@ namespace WinForms_PresentationLayer
                 int count = clsOrderItemsBusiness.GetItemCountByName(selectedItem);
 
 
-                MessageBox.Show($"Total for Item '{selectedItem}': {total}\n" + $"Earliest order date: {earliestDate.ToShortDateString()}\n" +
+                MessageBox.Show($"اجمالي الاطباق '{selectedItem}': {total}\n" + $"من: {earliestDate.ToShortDateString()}\n" +
 
                             $"Count: {count}\n" +
-                            $"Latest order date: {latestDate.ToShortDateString()}", "Total by ItemName Free Not Included", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            $"الي: {latestDate.ToShortDateString()}", "Total by ItemName Free Not Included", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
 
-                MessageBox.Show("Please select ItemName from the dropdown.", "ItemName Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("برجاء اختيار الطبق من اللسته.", "ItemName Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -467,7 +467,7 @@ namespace WinForms_PresentationLayer
 
             if (endDate < startDate)
             {
-                MessageBox.Show("End date cannot be before start date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("التاريخ الي لا يمكن ان يكون فبل التاريخ من.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -483,14 +483,14 @@ namespace WinForms_PresentationLayer
             else
             {
 
-                MessageBox.Show("Please select ItemName from the dropdown.", "ItemName Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("برجاء اختيار الطبق من اللسته.", "ItemName Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             decimal total = clsOrderItemsBusiness.GetTotalByItemNameAndDateRange(selectedItemName, startDate, endDate);
             int count = clsOrderItemsBusiness.GetItemCountByNameAndDateRange(selectedItemName,startDate,endDate);
 
-            string message = $"Total for ItemName '{selectedItemName}' from {startDate:MM/dd/yyyy} to {endDate:MM/dd/yyyy}: {total}\n"
-                + $"Count: {count}\n";
+            string message = $"اجمالي الطبق '{selectedItemName}' من {startDate:MM/dd/yyyy} الي {endDate:MM/dd/yyyy}: {total}\n"
+                + $"العدد: {count}\n";
 
 
             MessageBox.Show(message, "Total by Item Name and Date Range Free Items Not Included", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -503,7 +503,7 @@ namespace WinForms_PresentationLayer
 
             if (endDate < startDate)
             {
-                MessageBox.Show("End date cannot be before start date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("التاريخ الي لا يمكن ان يكون فبل التاريخ من", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -519,14 +519,14 @@ namespace WinForms_PresentationLayer
             else
             {
 
-                MessageBox.Show("Please select a category from the dropdown.", "Category Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("برجاء اختيارالصنف من اللسته.", "Category Not Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             decimal total = clsOrderItemsBusiness.GetTotalByCategoryNameAndDateRange(selectedCategory, startDate, endDate);
             int count = clsCategoryBusiness.GetCountOfOrdersByCategoryAndDateRange(selectedCategory, startDate, endDate);
 
-            string message = $"Total for category '{selectedCategory}' from {startDate:MM/dd/yyyy} to {endDate:MM/dd/yyyy}: {total}\n"
-                + $"Count: {count}";
+            string message = $"اجمالي الصنف '{selectedCategory}' من {startDate:MM/dd/yyyy} الي {endDate:MM/dd/yyyy}: {total}\n"
+                + $"العدد: {count}";
                 
 
             MessageBox.Show(message, "Total by Category and Date Range Free Not Included", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -543,11 +543,11 @@ namespace WinForms_PresentationLayer
             DateTime latestDate = clsOrderBusiness.GetLatestOrderDate();
 
 
-            MessageBox.Show($"Total for all Free orders: {total}\n" +
-                            $"Number of Free Orders: {numOfFreeOrders}\n" +
-                            $"Earliest order date: {earliestDate.ToShortDateString()}\n" +
-                            $"Latest order date: {latestDate.ToShortDateString()}",
-                            "Total Orders",
+            MessageBox.Show($"اجمالي الطلبات المجانيه: {total}\n" +
+                            $"عدد الطلبات المجانيه: {numOfFreeOrders}\n" +
+                            $"من: {earliestDate.ToShortDateString()}\n" +
+                            $"الي: {latestDate.ToShortDateString()}",
+                            "الطلبات المجانيه",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Information);
         }
@@ -563,15 +563,15 @@ namespace WinForms_PresentationLayer
 
             if (endDate < startDate)
             {
-                MessageBox.Show("End date cannot be before start date.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("التاريخ الي لا يمكن ان يكون فبل التاريخ من.", "Invalid Date Range", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            MessageBox.Show($"Total for all Free orders: {total}\n" +
-                 $"Number of Free Orders: {numOfFreeOrders}\n" +
-                $"Start date: {startDate.ToShortDateString()}\n" +
-                $"End date: {endDate.ToShortDateString()}",
-                "Total Free Orders",
+            MessageBox.Show($"اجمالي الطلبات المجانيه: {total}\n" +
+                 $"عدد الطلبات المجانيه: {numOfFreeOrders}\n" +
+                $"من: {startDate.ToShortDateString()}\n" +
+                $"الي: {endDate.ToShortDateString()}",
+                "الطلبات المجانيه",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
 
@@ -605,13 +605,13 @@ namespace WinForms_PresentationLayer
             string itemID = dgvListItems.CurrentRow.Cells[0].Value.ToString();
 
             DialogResult result =
-            MessageBox.Show($"Are you sure you want to delete Item {itemID}",
+            MessageBox.Show($"هل انت متاكد مسح الطبق {itemID}",
                 "Delete Item", MessageBoxButtons.OKCancel);
 
             if (result == DialogResult.OK)
             {
                 if (clsItemBusiness.DeleteItem(int.Parse(itemID)))
-                    MessageBox.Show("Deleted Sucssefully");
+                    MessageBox.Show("تم المسح بنجاح");
                 _RefreshItemsList();
             }
         }
@@ -627,13 +627,13 @@ namespace WinForms_PresentationLayer
         {
             string categoryID = dgvCategories.CurrentRow.Cells[0].Value.ToString();
             DialogResult result =
-            MessageBox.Show($"Are you sure you want to delete Category {categoryID}",
+            MessageBox.Show($"هل انت متاكد مسح الصنف {categoryID}",
                 "Delete Item", MessageBoxButtons.OKCancel);
 
             if (result == DialogResult.OK)
             {
                 if (clsCategoryBusiness.DeleteCategory((int)dgvCategories.CurrentRow.Cells[0].Value))
-                    MessageBox.Show("Deleted Sucssefully");
+                    MessageBox.Show("تم المسح بنجاح");
                 _RefreshCategoriesList();
             }
         }
@@ -664,13 +664,13 @@ namespace WinForms_PresentationLayer
             string userID = dgvUsersMenu.CurrentRow.Cells[0].Value.ToString();
 
             DialogResult result =
-            MessageBox.Show($"Are you sure you want to delete user {userID}",
+            MessageBox.Show($"هل انت متاكد مسح المستخدم{userID}",
                 "Delete User", MessageBoxButtons.OKCancel);
 
             if (result == DialogResult.OK)
             {
                 if (clsUserBusiness.DeleteUser(int.Parse(userID)))
-                    MessageBox.Show("Deleted Sucssefully");
+                    MessageBox.Show("تم المسح بنجاح");
                 _RefreshUsersList();
             }
         }
@@ -837,6 +837,14 @@ namespace WinForms_PresentationLayer
         {
             LogOutUser();
         }
+
+        private void btnPrintOrder_Click(object sender, EventArgs e)
+        {
+            FormPrintOrder frm = new FormPrintOrder();
+            frm.ShowDialog();
+        }
+
+
 
 
     }

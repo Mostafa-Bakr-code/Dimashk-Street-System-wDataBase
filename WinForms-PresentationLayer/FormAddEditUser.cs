@@ -108,7 +108,7 @@ namespace WinForms_PresentationLayer
                     checkBoxFullAccess.Checked = false;
                     checkBoxCategories.Checked = (permissions & Convert.ToInt32(checkBoxCategories.Tag)) != 0;
                     checkBoxOrders.Checked = (permissions & Convert.ToInt32(checkBoxOrders.Tag)) != 0;
-                    checkBoxOrderItems.Checked = (permissions & Convert.ToInt32(checkBoxOrderItems.Tag)) != 0;
+         
                     checkBoxUsers.Checked = (permissions & Convert.ToInt32(checkBoxUsers.Tag)) != 0;
                     checkBoxItems.Checked = (permissions & Convert.ToInt32(checkBoxItems.Tag)) != 0;
                 }
@@ -148,7 +148,7 @@ namespace WinForms_PresentationLayer
             if (!checkBoxFullAccess.Checked &&
                 !checkBoxCategories.Checked &&
                 !checkBoxOrders.Checked &&
-                !checkBoxOrderItems.Checked &&
+        
                 !checkBoxUsers.Checked &&
                 !checkBoxItems.Checked)
             {

@@ -166,9 +166,9 @@
             this.label2.Location = new System.Drawing.Point(15, 11);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 20);
+            this.label2.Size = new System.Drawing.Size(81, 20);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Order ID ";
+            this.label2.Text = "رقم الاوردر";
             // 
             // label3
             // 
@@ -177,9 +177,9 @@
             this.label3.Location = new System.Drawing.Point(15, 45);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 20);
+            this.label3.Size = new System.Drawing.Size(95, 20);
             this.label3.TabIndex = 6;
-            this.label3.Text = "Order Date";
+            this.label3.Text = "تاريخ الاوردر";
             // 
             // label4
             // 
@@ -188,9 +188,9 @@
             this.label4.Location = new System.Drawing.Point(15, 80);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(99, 20);
+            this.label4.Size = new System.Drawing.Size(100, 20);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Order Total";
+            this.label4.Text = "اجمالي الاوردر";
             // 
             // label5
             // 
@@ -199,9 +199,9 @@
             this.label5.Location = new System.Drawing.Point(15, 140);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 20);
+            this.label5.Size = new System.Drawing.Size(54, 20);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Order Items";
+            this.label5.Text = "الاطباق";
             // 
             // lbOrderID
             // 
@@ -243,7 +243,7 @@
             this.btnFreeOrder.Name = "btnFreeOrder";
             this.btnFreeOrder.Size = new System.Drawing.Size(126, 40);
             this.btnFreeOrder.TabIndex = 17;
-            this.btnFreeOrder.Text = "Free Order";
+            this.btnFreeOrder.Text = "طلب مجاني";
             this.btnFreeOrder.UseVisualStyleBackColor = false;
             this.btnFreeOrder.Click += new System.EventHandler(this.btnFreeOrder_Click);
             // 
@@ -253,7 +253,7 @@
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(107, 33);
             this.btnReset.TabIndex = 14;
-            this.btnReset.Text = "Reset";
+            this.btnReset.Text = "مسح كلي";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 

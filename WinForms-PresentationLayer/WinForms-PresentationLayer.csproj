@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -110,6 +110,12 @@
     <Compile Include="FormAddEditOrder.Designer.cs">
       <DependentUpon>FormAddEditOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPrintOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPrintOrder.Designer.cs">
+      <DependentUpon>FormPrintOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormViewOrderItems.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAddEditOrder.resx">
       <DependentUpon>FormAddEditOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPrintOrder.resx">
+      <DependentUpon>FormPrintOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormViewOrderItems.resx">
       <DependentUpon>FormViewOrderItems.cs</DependentUpon>

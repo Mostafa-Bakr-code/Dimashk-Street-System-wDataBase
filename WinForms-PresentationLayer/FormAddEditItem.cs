@@ -53,7 +53,7 @@ namespace WinForms_PresentationLayer
             // Add Mode
             if (_Mode == enMode.AddNew)
             {
-                lbMode.Text = "Add Item";
+                lbMode.Text = "اضف طبق";
                 _Item = new clsItemBusiness();
                 return;
             }
@@ -103,7 +103,7 @@ namespace WinForms_PresentationLayer
 
             if (string.IsNullOrEmpty(_Item.Name))
             {
-                MessageBox.Show("Item Name cannot be empty. Please enter a valid name.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("يجب اضافه اسم للطبق", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; 
             }
 
@@ -115,7 +115,7 @@ namespace WinForms_PresentationLayer
             }
             else
             {
-                MessageBox.Show("Please enter a valid Price.");
+                MessageBox.Show("يجب اضافه رقم للسعر");
                 return;
             }
 
@@ -123,7 +123,7 @@ namespace WinForms_PresentationLayer
 
             if (_Item.Save())
             {
-                MessageBox.Show("Saved Succssefully");
+                MessageBox.Show("تم بنجاح");
                 lbItemID.Text = _Item.ID.ToString();
 
 
@@ -131,11 +131,11 @@ namespace WinForms_PresentationLayer
 
             else
             {
-                MessageBox.Show("Save Failed");
+                MessageBox.Show("لم يتم الحفظ");
             }
 
             _Mode = enMode.Update;
-            lbMode.Text = "Update Mode";
+            lbMode.Text = "تعديل الاطباق";
         }
 
         private void btnClose_Click(object sender, EventArgs e)

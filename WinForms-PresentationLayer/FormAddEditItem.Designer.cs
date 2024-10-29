@@ -59,9 +59,9 @@
             this.labeliteam.Location = new System.Drawing.Point(42, 166);
             this.labeliteam.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labeliteam.Name = "labeliteam";
-            this.labeliteam.Size = new System.Drawing.Size(62, 20);
+            this.labeliteam.Size = new System.Drawing.Size(59, 20);
             this.labeliteam.TabIndex = 1;
-            this.labeliteam.Text = "Item ID";
+            this.labeliteam.Text = "رقم الطبق";
             // 
             // lbItemName
             // 
@@ -69,9 +69,9 @@
             this.lbItemName.Location = new System.Drawing.Point(42, 249);
             this.lbItemName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbItemName.Name = "lbItemName";
-            this.lbItemName.Size = new System.Drawing.Size(87, 20);
+            this.lbItemName.Size = new System.Drawing.Size(60, 20);
             this.lbItemName.TabIndex = 2;
-            this.lbItemName.Text = "Item Name";
+            this.lbItemName.Text = "اسم الطبق";
             // 
             // lbItemCategory
             // 
@@ -79,9 +79,9 @@
             this.lbItemCategory.Location = new System.Drawing.Point(42, 337);
             this.lbItemCategory.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbItemCategory.Name = "lbItemCategory";
-            this.lbItemCategory.Size = new System.Drawing.Size(109, 20);
+            this.lbItemCategory.Size = new System.Drawing.Size(69, 20);
             this.lbItemCategory.TabIndex = 3;
-            this.lbItemCategory.Text = "Item Category";
+            this.lbItemCategory.Text = "اسم الصنف";
             // 
             // lbItemPrice
             // 
@@ -89,9 +89,9 @@
             this.lbItemPrice.Location = new System.Drawing.Point(42, 438);
             this.lbItemPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbItemPrice.Name = "lbItemPrice";
-            this.lbItemPrice.Size = new System.Drawing.Size(80, 20);
+            this.lbItemPrice.Size = new System.Drawing.Size(65, 20);
             this.lbItemPrice.TabIndex = 4;
-            this.lbItemPrice.Text = "Item Price";
+            this.lbItemPrice.Text = "سعر الطبق";
             // 
             // contextMenuStrip1
             // 

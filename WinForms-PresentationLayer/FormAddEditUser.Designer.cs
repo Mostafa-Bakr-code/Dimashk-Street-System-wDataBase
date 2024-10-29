@@ -39,7 +39,6 @@
             this.checkBoxCategories = new System.Windows.Forms.CheckBox();
             this.checkBoxItems = new System.Windows.Forms.CheckBox();
             this.checkBoxOrders = new System.Windows.Forms.CheckBox();
-            this.checkBoxOrderItems = new System.Windows.Forms.CheckBox();
             this.checkBoxUsers = new System.Windows.Forms.CheckBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -65,9 +64,9 @@
             this.labeluserID.Location = new System.Drawing.Point(72, 116);
             this.labeluserID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labeluserID.Name = "labeluserID";
-            this.labeluserID.Size = new System.Drawing.Size(64, 20);
+            this.labeluserID.Size = new System.Drawing.Size(73, 20);
             this.labeluserID.TabIndex = 2;
-            this.labeluserID.Text = "User ID";
+            this.labeluserID.Text = "رقم المستخدم";
             // 
             // lbUserID
             // 
@@ -85,9 +84,9 @@
             this.lbUserName.Location = new System.Drawing.Point(72, 183);
             this.lbUserName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbUserName.Name = "lbUserName";
-            this.lbUserName.Size = new System.Drawing.Size(89, 20);
+            this.lbUserName.Size = new System.Drawing.Size(74, 20);
             this.lbUserName.TabIndex = 10;
-            this.lbUserName.Text = "User Name";
+            this.lbUserName.Text = "اسم المستخدم";
             // 
             // txtUserName
             // 
@@ -103,9 +102,9 @@
             this.label1.Location = new System.Drawing.Point(72, 244);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 20);
+            this.label1.Size = new System.Drawing.Size(58, 20);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Password";
+            this.label1.Text = "كلمة السر";
             // 
             // txtUserPassword
             // 
@@ -121,19 +120,19 @@
             this.label2.Location = new System.Drawing.Point(72, 310);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 20);
+            this.label2.Size = new System.Drawing.Size(67, 20);
             this.label2.TabIndex = 14;
-            this.label2.Text = "Permissions";
+            this.label2.Text = "الصلاحيات";
             // 
             // checkBoxCategories
             // 
             this.checkBoxCategories.AutoSize = true;
             this.checkBoxCategories.Location = new System.Drawing.Point(14, 15);
             this.checkBoxCategories.Name = "checkBoxCategories";
-            this.checkBoxCategories.Size = new System.Drawing.Size(156, 24);
+            this.checkBoxCategories.Size = new System.Drawing.Size(102, 24);
             this.checkBoxCategories.TabIndex = 15;
             this.checkBoxCategories.Tag = "1";
-            this.checkBoxCategories.Text = "Categories Menu";
+            this.checkBoxCategories.Text = "قائمة الاطباق";
             this.checkBoxCategories.UseVisualStyleBackColor = true;
             // 
             // checkBoxItems
@@ -141,10 +140,10 @@
             this.checkBoxItems.AutoSize = true;
             this.checkBoxItems.Location = new System.Drawing.Point(14, 61);
             this.checkBoxItems.Name = "checkBoxItems";
-            this.checkBoxItems.Size = new System.Drawing.Size(119, 24);
+            this.checkBoxItems.Size = new System.Drawing.Size(111, 24);
             this.checkBoxItems.TabIndex = 16;
             this.checkBoxItems.Tag = "2";
-            this.checkBoxItems.Text = "Items Menu";
+            this.checkBoxItems.Text = "قائمة الاصناف";
             this.checkBoxItems.UseVisualStyleBackColor = true;
             // 
             // checkBoxOrders
@@ -152,32 +151,21 @@
             this.checkBoxOrders.AutoSize = true;
             this.checkBoxOrders.Location = new System.Drawing.Point(14, 110);
             this.checkBoxOrders.Name = "checkBoxOrders";
-            this.checkBoxOrders.Size = new System.Drawing.Size(127, 24);
+            this.checkBoxOrders.Size = new System.Drawing.Size(104, 24);
             this.checkBoxOrders.TabIndex = 17;
             this.checkBoxOrders.Tag = "4";
-            this.checkBoxOrders.Text = "Orders Menu";
+            this.checkBoxOrders.Text = "قائمة المبيعات";
             this.checkBoxOrders.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxOrderItems
-            // 
-            this.checkBoxOrderItems.AutoSize = true;
-            this.checkBoxOrderItems.Location = new System.Drawing.Point(188, 15);
-            this.checkBoxOrderItems.Name = "checkBoxOrderItems";
-            this.checkBoxOrderItems.Size = new System.Drawing.Size(159, 24);
-            this.checkBoxOrderItems.TabIndex = 18;
-            this.checkBoxOrderItems.Tag = "8";
-            this.checkBoxOrderItems.Text = "OrderItems Menu";
-            this.checkBoxOrderItems.UseVisualStyleBackColor = true;
             // 
             // checkBoxUsers
             // 
             this.checkBoxUsers.AutoSize = true;
             this.checkBoxUsers.Location = new System.Drawing.Point(188, 61);
             this.checkBoxUsers.Name = "checkBoxUsers";
-            this.checkBoxUsers.Size = new System.Drawing.Size(121, 24);
+            this.checkBoxUsers.Size = new System.Drawing.Size(118, 24);
             this.checkBoxUsers.TabIndex = 19;
             this.checkBoxUsers.Tag = "16";
-            this.checkBoxUsers.Text = "Users Menu";
+            this.checkBoxUsers.Text = "قائمة المستخدمين";
             this.checkBoxUsers.UseVisualStyleBackColor = true;
             // 
             // btnSave
@@ -207,9 +195,9 @@
             this.checkBoxFullAccess.AutoSize = true;
             this.checkBoxFullAccess.Location = new System.Drawing.Point(188, 110);
             this.checkBoxFullAccess.Name = "checkBoxFullAccess";
-            this.checkBoxFullAccess.Size = new System.Drawing.Size(116, 24);
+            this.checkBoxFullAccess.Size = new System.Drawing.Size(121, 24);
             this.checkBoxFullAccess.TabIndex = 22;
-            this.checkBoxFullAccess.Text = "Full Access";
+            this.checkBoxFullAccess.Text = "جميع الصلاحيات";
             this.checkBoxFullAccess.UseVisualStyleBackColor = true;
             // 
             // lbPermissions
@@ -228,7 +216,6 @@
             this.panelPermissions.Controls.Add(this.checkBoxItems);
             this.panelPermissions.Controls.Add(this.checkBoxFullAccess);
             this.panelPermissions.Controls.Add(this.checkBoxOrders);
-            this.panelPermissions.Controls.Add(this.checkBoxOrderItems);
             this.panelPermissions.Controls.Add(this.checkBoxUsers);
             this.panelPermissions.Location = new System.Drawing.Point(200, 363);
             this.panelPermissions.Name = "panelPermissions";
@@ -275,7 +262,6 @@
         private System.Windows.Forms.CheckBox checkBoxCategories;
         private System.Windows.Forms.CheckBox checkBoxItems;
         private System.Windows.Forms.CheckBox checkBoxOrders;
-        private System.Windows.Forms.CheckBox checkBoxOrderItems;
         private System.Windows.Forms.CheckBox checkBoxUsers;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;

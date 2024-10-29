@@ -90,7 +90,7 @@
             this.btnLogIn.Name = "btnLogIn";
             this.btnLogIn.Size = new System.Drawing.Size(220, 86);
             this.btnLogIn.TabIndex = 11;
-            this.btnLogIn.Text = "Log In";
+            this.btnLogIn.Text = "تسجيل الدخول";
             this.btnLogIn.UseVisualStyleBackColor = false;
             this.btnLogIn.Click += new System.EventHandler(this.btnLogIn_Click);
             // 
@@ -112,12 +112,12 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(455, 78);
             this.label2.TabIndex = 13;
-            this.label2.Text = "Welcom to From Dimashk System";
+            this.label2.Text = "أهلا بك في السيستم الخاص ب أكله جملي";
             // 
             // label3
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft YaHei Light", 14F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(128, 98);
+            this.label3.Location = new System.Drawing.Point(106, 117);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(455, 78);
             this.label3.TabIndex = 14;

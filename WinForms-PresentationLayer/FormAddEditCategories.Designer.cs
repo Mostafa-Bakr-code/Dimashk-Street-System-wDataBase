@@ -40,51 +40,57 @@
             // lbMode
             // 
             this.lbMode.AutoSize = true;
-            this.lbMode.Location = new System.Drawing.Point(153, 29);
+            this.lbMode.Location = new System.Drawing.Point(230, 45);
+            this.lbMode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbMode.Name = "lbMode";
-            this.lbMode.Size = new System.Drawing.Size(94, 13);
+            this.lbMode.Size = new System.Drawing.Size(138, 20);
             this.lbMode.TabIndex = 1;
             this.lbMode.Text = "Add/Edit Category";
             // 
             // labelx
             // 
             this.labelx.AutoSize = true;
-            this.labelx.Location = new System.Drawing.Point(25, 122);
+            this.labelx.Location = new System.Drawing.Point(38, 188);
+            this.labelx.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelx.Name = "labelx";
-            this.labelx.Size = new System.Drawing.Size(63, 13);
+            this.labelx.Size = new System.Drawing.Size(68, 20);
             this.labelx.TabIndex = 2;
-            this.labelx.Text = "Category ID";
+            this.labelx.Text = "رقم الصنف";
             // 
             // lbCategoryID
             // 
             this.lbCategoryID.AutoSize = true;
-            this.lbCategoryID.Location = new System.Drawing.Point(119, 122);
+            this.lbCategoryID.Location = new System.Drawing.Point(178, 188);
+            this.lbCategoryID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbCategoryID.Name = "lbCategoryID";
-            this.lbCategoryID.Size = new System.Drawing.Size(25, 13);
+            this.lbCategoryID.Size = new System.Drawing.Size(36, 20);
             this.lbCategoryID.TabIndex = 9;
             this.lbCategoryID.Text = "???";
             // 
             // lbCategoryName
             // 
             this.lbCategoryName.AutoSize = true;
-            this.lbCategoryName.Location = new System.Drawing.Point(25, 181);
+            this.lbCategoryName.Location = new System.Drawing.Point(38, 278);
+            this.lbCategoryName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbCategoryName.Name = "lbCategoryName";
-            this.lbCategoryName.Size = new System.Drawing.Size(80, 13);
+            this.lbCategoryName.Size = new System.Drawing.Size(69, 20);
             this.lbCategoryName.TabIndex = 10;
-            this.lbCategoryName.Text = "Category Name";
+            this.lbCategoryName.Text = "اسم الصنف";
             // 
             // txtCategoryName
             // 
-            this.txtCategoryName.Location = new System.Drawing.Point(109, 178);
+            this.txtCategoryName.Location = new System.Drawing.Point(164, 274);
+            this.txtCategoryName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtCategoryName.Name = "txtCategoryName";
-            this.txtCategoryName.Size = new System.Drawing.Size(148, 20);
+            this.txtCategoryName.Size = new System.Drawing.Size(220, 26);
             this.txtCategoryName.TabIndex = 11;
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(48, 300);
+            this.btnSave.Location = new System.Drawing.Point(72, 462);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(124, 56);
+            this.btnSave.Size = new System.Drawing.Size(186, 86);
             this.btnSave.TabIndex = 12;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -92,9 +98,10 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(214, 300);
+            this.btnClose.Location = new System.Drawing.Point(321, 462);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(124, 56);
+            this.btnClose.Size = new System.Drawing.Size(186, 86);
             this.btnClose.TabIndex = 13;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -102,9 +109,9 @@
             // 
             // FormAddEditCategories
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(406, 408);
+            this.ClientSize = new System.Drawing.Size(609, 628);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtCategoryName);
@@ -112,6 +119,7 @@
             this.Controls.Add(this.lbCategoryID);
             this.Controls.Add(this.labelx);
             this.Controls.Add(this.lbMode);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FormAddEditCategories";
             this.Text = "Add/Edit Categories";
             this.Load += new System.EventHandler(this.FormCategories_Load);

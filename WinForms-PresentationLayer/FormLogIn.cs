@@ -39,7 +39,7 @@ namespace WinForms_PresentationLayer
                   
                         clsUserBusiness.SetActiveUser(user);
 
-                        MessageBox.Show("Log In Success");
+                        MessageBox.Show("تم تسجيل الدخول بنجاح");
 
                         FormMain frm = new FormMain();
                         frm.ShowDialog();
@@ -56,7 +56,7 @@ namespace WinForms_PresentationLayer
 
                 else
                 {
-                    MessageBox.Show("Log In Failed, Wrong ID or Password");
+                    MessageBox.Show("برجاء ادخال رقم مستخدم صحيح وكلمة مرور صحيحه");
                 }
          
         }
