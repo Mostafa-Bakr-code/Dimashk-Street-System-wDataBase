@@ -72,7 +72,7 @@
             this.toolStripDeleteOrder,
             this.toolStripShowOrderItems});
             this.contextMenuOrders.Name = "contextMenuOrders";
-            this.contextMenuOrders.Size = new System.Drawing.Size(241, 133);
+            this.contextMenuOrders.Size = new System.Drawing.Size(241, 100);
             // 
             // toolStripEditOrder
             // 
@@ -155,7 +155,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1098, 603);
+            this.ClientSize = new System.Drawing.Size(1098, 642);
             this.Controls.Add(this.btnshowOrdersByDate);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.label2);
