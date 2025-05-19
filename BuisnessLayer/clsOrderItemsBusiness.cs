@@ -185,7 +185,21 @@ namespace BuisnessLayer
             return clsOrderItemsData.GetCountOfItemsByName(itemName);
         }
 
+        //--------------------------------------------------------------------
 
+
+        // method to get category name for item to be used for printerchief2
+
+        public static string GetCategoryNameByItemID(int itemID)
+        {
+            return clsOrderItemsData.GetCategoryNameByItemID(itemID);
+        }
+
+
+        public static string GetCategoryNameByItemName(string itemName)
+        {
+            return clsOrderItemsData.GetCategoryNameByItemName(itemName);
+        }
 
     }
 }

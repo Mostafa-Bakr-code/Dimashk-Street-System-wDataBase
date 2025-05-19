@@ -449,8 +449,16 @@ namespace WinForms_PresentationLayer
                 }
             }
 
-            PrintOrderInfoForUser();
+            //PrintOrderInfoForUser();
             //PrintOrderInfoForChief();
+
+            clsSettingsBusiness.LoadPrinterSettings();
+            clsSettingsBusiness.LoadChefPrinter2Item();
+
+            PrintOrderInfoForUser(clsSettingsBusiness.UserPrinterName); 
+            PrintOrderInfoForChief(clsSettingsBusiness.ChefPrinterName);
+            //PrintOrderInfoForChefByKeyword(clsSettingsBusiness.ChefPrinterName2, clsSettingsBusiness.ChefPrinter2Item);
+            PrintOrderInfoForChefByCategoryKeyword(clsSettingsBusiness.ChefPrinterName2, clsSettingsBusiness.ChefPrinter2Item);
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -558,7 +566,47 @@ namespace WinForms_PresentationLayer
             //PrintOrderInfoForChief();
         }
 
+        private void CategoryButton_Click(object sender, EventArgs e, string categoryName)
+        {
+            dgvListItems.DataSource = clsItemBusiness.GetItemsByCategoryName(categoryName);
+        }
 
+        private void LoadCategoriesAndCreateButtons()
+        {
+          
+            DataTable categoriesTable = clsCategoryBusiness.GetAllCategories();
+
+            // Dynamically create buttons based on the categories retrieved
+            int buttonX = 10; // Starting X position for the first button
+            int buttonY = 50; // Starting Y position for the first button
+            int buttonHeight = 30; // Height of the buttons
+            int buttonWidth = 80; // Width of the buttons
+            int buttonSpacing = 10; // Spacing between buttons
+
+            foreach (DataRow row in categoriesTable.Rows)
+            {
+                string categoryName = row["CategoryName"].ToString();
+
+                Button categoryButton = new Button
+                {
+                    Text = categoryName,
+                    Width = buttonWidth,
+                    Height = buttonHeight,
+                    Location = new System.Drawing.Point(buttonX, buttonY),
+                    ForeColor = System.Drawing.Color.White,
+                    Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold)
+                };
+
+                categoryButton.Click += (sender, e) => CategoryButton_Click(sender, e, categoryName);
+
+                this.Controls.Add(categoryButton); // Add the button to the form or a container control
+
+                buttonY += buttonHeight + buttonSpacing; // Move the Y position for the next button
+            }
+        }
+
+        //------------------------------------------------------------------------------------------------
+        // these 3 methods arent used anymore beacuse they have printers name staically
         private void PrintOrderInfoForUser()
         {
             if (_Order == null)
@@ -581,7 +629,7 @@ namespace WinForms_PresentationLayer
                 float rowHeight = font.GetHeight(e.Graphics) + 12; // Increased row height to add space between rows
 
                 // Header Information with increased spacing
-                e.Graphics.DrawString("....أكله جملي....", font, Brushes.Black, x, y);
+                e.Graphics.DrawString("....From Dimashk....", font, Brushes.Black, x, y);
                 y += rowHeight * 2; // Extra space below shop name
 
                 e.Graphics.DrawString($"Date: {_Order.date.ToString("yyyy-MM-dd")}", font, Brushes.Black, x, y);
@@ -631,7 +679,7 @@ namespace WinForms_PresentationLayer
                 y += rowHeight * 2; // Extra space before footer
 
                 // Footer Message
-                e.Graphics.DrawString("شكرا لزيارتكم أكله جملي ", font, Brushes.Black, x, y);
+                e.Graphics.DrawString(" Thanks for visiting From Dimashk ", font, Brushes.Black, x, y);
             };
 
             // Attempt to print, handling any errors
@@ -644,19 +692,6 @@ namespace WinForms_PresentationLayer
                 MessageBox.Show("هناك خطأ اثناء الطباعه: " + ex.Message);
             }
         }
-
-
-        // Helper method to format price, removing trailing zeros if not needed
-        private string FormatPrice(decimal price)
-        {
-            return price % 1 == 0 ? price.ToString("F0") : price.ToString("F2");
-        }
-
-  
-
-
-
-
         private void PrintOrderInfoForChief()
         {
             if (_Order == null)
@@ -733,49 +768,337 @@ namespace WinForms_PresentationLayer
                 MessageBox.Show("هناك خطأ اثناء الطباعه: " + ex.Message);
             }
         }
-
-        private void CategoryButton_Click(object sender, EventArgs e, string categoryName)
+        private void PrintOrderInfoForChief2()
         {
-            dgvListItems.DataSource = clsItemBusiness.GetItemsByCategoryName(categoryName);
-        }
-
-        private void LoadCategoriesAndCreateButtons()
-        {
-          
-            DataTable categoriesTable = clsCategoryBusiness.GetAllCategories();
-
-            // Dynamically create buttons based on the categories retrieved
-            int buttonX = 10; // Starting X position for the first button
-            int buttonY = 50; // Starting Y position for the first button
-            int buttonHeight = 30; // Height of the buttons
-            int buttonWidth = 80; // Width of the buttons
-            int buttonSpacing = 10; // Spacing between buttons
-
-            foreach (DataRow row in categoriesTable.Rows)
+            if (_Order == null)
             {
-                string categoryName = row["CategoryName"].ToString();
+                MessageBox.Show("Order data is not available.");
+                return;
+            }
 
-                Button categoryButton = new Button
+            // Start creating the order info string
+            StringBuilder orderInfo = new StringBuilder();
+
+            orderInfo.AppendLine($"\n\n{_Order.date}");
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+            orderInfo.AppendLine("\n\n _________________________\n");
+
+            bool hasPizzaItems = false;
+
+            // Loop through order items and add only "pizza" items
+            foreach (DataGridViewRow row in dgvOrderItems.Rows)
+            {
+                string itemName = row.Cells["ItemName"].Value.ToString();
+
+                if (itemName.ToLower().Contains("pizza"))
                 {
-                    Text = categoryName,
-                    Width = buttonWidth,
-                    Height = buttonHeight,
-                    Location = new System.Drawing.Point(buttonX, buttonY),
-                    ForeColor = System.Drawing.Color.White,
-                    Font = new System.Drawing.Font("Arial", 10, System.Drawing.FontStyle.Bold)
-                };
+                    hasPizzaItems = true;
 
-                categoryButton.Click += (sender, e) => CategoryButton_Click(sender, e, categoryName);
+                    string quantity = row.Cells["Quantity"].Value.ToString();
+                    string comment = row.Cells["Comment"].Value.ToString();
 
-                this.Controls.Add(categoryButton); // Add the button to the form or a container control
+                    orderInfo.AppendLine($"{itemName}, الكمية: {quantity},\n {comment}\n_________________________\n");
+                }
+            }
 
-                buttonY += buttonHeight + buttonSpacing; // Move the Y position for the next button
+            if (!hasPizzaItems)
+            {
+                MessageBox.Show("No pizza items found in the order.");
+                return;
+            }
+
+            orderInfo.AppendLine($"\n\n{_Order.date}");
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+            orderInfo.AppendLine("******************************\n");
+
+            string orderInfoText = orderInfo.ToString();
+
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.PrinterSettings.PrinterName = "XP-80.51";
+            printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10);
+
+            printDoc.PrintPage += (sender, e) =>
+            {
+                Font font = new Font("Arial", 12);
+                float x = e.MarginBounds.Left;
+                float y = e.MarginBounds.Top;
+                float width = e.PageBounds.Width;
+                float height = e.PageBounds.Height;
+
+                e.Graphics.DrawString(orderInfoText, font, Brushes.Black, new RectangleF(x, y, width, height));
+            };
+
+            try
+            {
+                printDoc.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("هناك خطأ اثناء الطباعه: " + ex.Message);
             }
         }
 
 
 
 
+        // Helper method to format price, removing trailing zeros if not needed
+        private string FormatPrice(decimal price)
+        {
+            return price % 1 == 0 ? price.ToString("F0") : price.ToString("F2");
+        }
+
+
+
+        //------------------------------------------------------------------------------------------------
+        
+        // these 3 methods are used now beacuse they have printers name dynamically
+        private void PrintOrderInfoForUser(string printerName)
+        {
+            if (_Order == null)
+            {
+                MessageBox.Show("Order data is not available.");
+                return;
+            }
+
+            // Check if printerName is null or empty
+            if (string.IsNullOrWhiteSpace(printerName))
+            {
+                MessageBox.Show("Printer name is not specified.");
+                return;
+            }
+
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.PrinterSettings.PrinterName = printerName;
+            printDoc.DefaultPageSettings.Margins = new Margins(0, 0, 0, 0);
+
+            printDoc.PrintPage += (sender, e) =>
+            {
+                Font font = new Font("Arial", 8);
+                float x = e.MarginBounds.Left;
+                float y = e.MarginBounds.Top;
+                float rowHeight = font.GetHeight(e.Graphics) + 12;
+
+                e.Graphics.DrawString("....From Dimashk....", font, Brushes.Black, x, y);
+                y += rowHeight /** 2*/;
+
+                e.Graphics.DrawString($"Date: {_Order.date:yyyy-MM-dd}", font, Brushes.Black, x, y);
+                y += rowHeight;
+
+                e.Graphics.DrawString($"Order ID: {_Order.SerialNumber}", font, Brushes.Black, x, y);
+                y += rowHeight /** 2*/;
+
+                e.Graphics.DrawString(" _______________________", font, Brushes.Black, x, y);
+                y += rowHeight;
+
+                float itemNameWidth = 100;
+                float quantityWidth = 35;
+                float priceWidth = 45;
+                float totalWidth = 50;
+                float columnSpacing = 10;
+
+                e.Graphics.DrawString("Item", font, Brushes.Black, x, y);
+                e.Graphics.DrawString("Qty", font, Brushes.Black, x + itemNameWidth + columnSpacing, y);
+                e.Graphics.DrawString("Price", font, Brushes.Black, x + itemNameWidth + quantityWidth + columnSpacing * 2, y);
+                e.Graphics.DrawString("Total", font, Brushes.Black, x + itemNameWidth + quantityWidth + priceWidth + columnSpacing * 3, y);
+                y += rowHeight /** 1.5f*/;
+
+                foreach (DataGridViewRow row in dgvOrderItems.Rows)
+                {
+                    string itemName = row.Cells["ItemName"].Value.ToString();
+                    string quantity = row.Cells["Quantity"].Value.ToString();
+                    string price = FormatPrice(Convert.ToDecimal(row.Cells["Price"].Value));
+                    string total = FormatPrice(Convert.ToDecimal(row.Cells["TotalItemsPrice"].Value));
+
+                    e.Graphics.DrawString(itemName, font, Brushes.Black, x, y);
+                    e.Graphics.DrawString(quantity, font, Brushes.Black, x + itemNameWidth + columnSpacing, y);
+                    e.Graphics.DrawString(price, font, Brushes.Black, x + itemNameWidth + quantityWidth + columnSpacing * 2, y);
+                    e.Graphics.DrawString(total, font, Brushes.Black, x + itemNameWidth + quantityWidth + priceWidth + columnSpacing * 3, y);
+
+                    y += rowHeight /** 1.5f*/;
+                }
+
+                //y += rowHeight;
+                e.Graphics.DrawString(" _______________________", font, Brushes.Black, x, y);
+                y += rowHeight;
+                e.Graphics.DrawString($"Total: {FormatPrice(_Order.Total)}", font, Brushes.Black, x, y);
+                y += rowHeight * 2;
+
+                e.Graphics.DrawString(" Thanks for visiting From Dimashk ", font, Brushes.Black, x, y);
+            };
+
+            try
+            {
+                printDoc.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("هناك خطأ اثناء الطباعه: " + ex.Message);
+            }
+        }
+        private void PrintOrderInfoForChief(string printerName)
+        {
+            if (_Order == null)
+            {
+                MessageBox.Show("Order data is not available.");
+                return;
+            }
+
+            // Check if printer name is provided
+            if (string.IsNullOrWhiteSpace(printerName))
+            {
+                MessageBox.Show("Printer name is not specified.");
+                return;
+            }
+
+            StringBuilder orderInfo = new StringBuilder();
+            orderInfo.AppendLine($"\n{_Order.date}");
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+            orderInfo.AppendLine("_________________________\n");
+
+            foreach (DataGridViewRow row in dgvOrderItems.Rows)
+            {
+                string itemName = row.Cells["ItemName"].Value.ToString();
+                string quantity = row.Cells["Quantity"].Value.ToString();
+                string comment = row.Cells["Comment"].Value.ToString();
+
+                orderInfo.AppendLine($"{itemName}, الكمية: {quantity},\n {comment}\n_________________________\n");
+            }
+
+            orderInfo.AppendLine($"{_Order.date}");
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+            orderInfo.AppendLine("******************************");
+
+            string orderInfoText = orderInfo.ToString();
+
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.PrinterSettings.PrinterName = printerName;
+            printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10);
+
+            printDoc.PrintPage += (sender, e) =>
+            {
+                Font font = new Font("Arial", 10);
+                float x = e.MarginBounds.Left;
+                float y = e.MarginBounds.Top;
+                float width = e.PageBounds.Width;
+                float height = e.PageBounds.Height;
+
+                e.Graphics.DrawString(orderInfoText, font, Brushes.Black, new RectangleF(x, y, width, height));
+            };
+
+            try
+            {
+                printDoc.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("هناك خطأ اثناء الطباعه: " + ex.Message);
+            }
+        }
+        private void PrintOrderInfoForChefByCategoryKeyword(string printerName, string keyword)
+        {
+            if (_Order == null)
+            {
+                MessageBox.Show("Order data is not available.");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(printerName))
+            {
+                MessageBox.Show("Printer name is not specified.");
+                return;
+            }
+
+            keyword = keyword?.Trim();
+            if (string.IsNullOrWhiteSpace(keyword))
+            {
+                MessageBox.Show("The keyword for filtering categories cannot be empty.");
+                return;
+            }
+
+            StringBuilder orderInfo = new StringBuilder();
+
+            orderInfo.AppendLine($"{_Order.date}");
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+            orderInfo.AppendLine(" _________________________\n");
+
+            bool hasMatchingItems = false;
+
+            foreach (DataGridViewRow row in dgvOrderItems.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                string itemName = row.Cells["ItemName"]?.Value?.ToString()?.Trim();
+                if (string.IsNullOrEmpty(itemName)) continue;
+
+                // Get category name using item name
+                string categoryName = clsOrderItemsBusiness.GetCategoryNameByItemName(itemName);
+                if (string.IsNullOrWhiteSpace(categoryName)) continue;
+
+                // Check if category matches the keyword
+                if (categoryName.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    hasMatchingItems = true;
+
+                    string quantity = row.Cells["Quantity"]?.Value?.ToString()?.Trim() ?? "";
+                    string comment = row.Cells["Comment"]?.Value?.ToString()?.Trim() ?? "";
+
+                    orderInfo.AppendLine($"{itemName}, الكمية: {quantity},\n {comment}\n_________________________\n");
+                }
+            }
+
+            if (!hasMatchingItems)
+            {
+                //MessageBox.Show($"No items found in category '{keyword}'.");
+                return;
+            }
+
+            orderInfo.AppendLine($"{_Order.date}");
+            orderInfo.AppendLine($"ID: {_Order.SerialNumber}");
+            orderInfo.AppendLine("******************************");
+
+            string orderInfoText = orderInfo.ToString();
+
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.PrinterSettings.PrinterName = printerName;
+            printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10);
+
+            printDoc.PrintPage += (sender, e) =>
+            {
+                Font font = new Font("Arial", 9);
+                float x = e.MarginBounds.Left;
+                float y = e.MarginBounds.Top;
+                float width = e.PageBounds.Width;
+                float height = e.PageBounds.Height;
+
+                e.Graphics.DrawString(orderInfoText, font, Brushes.Black, new RectangleF(x, y, width, height));
+            };
+
+            try
+            {
+                printDoc.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("هناك خطأ اثناء الطباعة: " + ex.Message);
+            }
+        }
+
+
+
+
+
+
+
+        // test function not used in application (used to test results coming from settings table in database) 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //clsSettingsBusiness.LoadPrinterSettings();
+            //clsSettingsBusiness.LoadChefPrinter2Item();
+            //textBox1.Text = clsSettingsBusiness.UserPrinterName;
+            //textBox2.Text = clsSettingsBusiness.ChefPrinterName;
+            //textBox3.Text = clsSettingsBusiness.ChefPrinterName2;
+            //textBox4.Text = clsSettingsBusiness.ChefPrinter2Item;
+        }
 
 
 

@@ -641,5 +641,123 @@ namespace DataAccessLayer
         }
 
 
+        //----------------------------------------------------------------------
+
+        // method to get category name for item to be used for printerchief2
+
+        public static string GetCategoryNameByItemID(int itemID)
+        {
+            string categoryName = null;
+            int categoryID = -1;
+            
+
+            using (SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string getCategoryIDQuery = "SELECT CategoryID FROM Items WHERE ItemID = @ItemID";
+                using (SqlCommand cmd = new SqlCommand(getCategoryIDQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ItemID", itemID);
+                    try
+                    {
+                        conn.Open();
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            categoryID = Convert.ToInt32(result);
+                        }
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Error getting CategoryID", ex);
+                    }
+                }
+            }
+
+            if (categoryID != -1)
+            {
+                using (SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    string getCategoryNameQuery = "SELECT CategoryName FROM Categories WHERE CategoryID = @CategoryID";
+                    using (SqlCommand cmd = new SqlCommand(getCategoryNameQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+                        try
+                        {
+                            conn.Open();
+                            object result = cmd.ExecuteScalar();
+                            if (result != null && result != DBNull.Value)
+                            {
+                                categoryName = result.ToString();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Error getting CategoryName", ex);
+                        }
+                    }
+                }
+            }
+
+            return categoryName;
+        }
+
+        public static string GetCategoryNameByItemName(string itemName)
+        {
+            string categoryName = null;
+            int categoryID = -1;
+
+            using (SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string getCategoryIDQuery = "SELECT CategoryID FROM Items WHERE ItemName = @ItemName";
+                using (SqlCommand cmd = new SqlCommand(getCategoryIDQuery, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ItemName", itemName);
+                    try
+                    {
+                        conn.Open();
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            categoryID = Convert.ToInt32(result);
+                        }
+                        conn.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception("Error getting CategoryID by ItemName", ex);
+                    }
+                }
+            }
+
+            if (categoryID != -1)
+            {
+                using (SqlConnection conn = new SqlConnection(clsDataAccessSettings.ConnectionString))
+                {
+                    string getCategoryNameQuery = "SELECT CategoryName FROM Categories WHERE CategoryID = @CategoryID";
+                    using (SqlCommand cmd = new SqlCommand(getCategoryNameQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@CategoryID", categoryID);
+                        try
+                        {
+                            conn.Open();
+                            object result = cmd.ExecuteScalar();
+                            if (result != null && result != DBNull.Value)
+                            {
+                                categoryName = result.ToString();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Error getting CategoryName by CategoryID", ex);
+                        }
+                    }
+                }
+            }
+
+            return categoryName;
+        }
+
+
     }
 }

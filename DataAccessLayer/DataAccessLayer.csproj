@@ -48,6 +48,7 @@
     <Compile Include="clsLogsData.cs" />
     <Compile Include="clsOrderItemsData.cs" />
     <Compile Include="clsOrdersData.cs" />
+    <Compile Include="clsSettings.cs" />
     <Compile Include="clsUsersData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -42,38 +42,38 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BuisnessLayer.dll" size="16896">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BuisnessLayer.dll" size="18432">
       <assemblyIdentity name="BuisnessLayer" version="1.1.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>0jT9iLAuBxgf08BZSdcYaH8LGLpMXnCDeDI0OeX4D3E=</dsig:DigestValue>
+        <dsig:DigestValue>EynijbTUZPP4ksPx3FRt15yg3yN9Ov/+bQX6A8PCyLA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataAccessLayer.dll" size="47104">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataAccessLayer.dll" size="49152">
       <assemblyIdentity name="DataAccessLayer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>uESwHOOfSelPEeHpiRjWjNEXWqgEtL0VYzsN3WQ+rbM=</dsig:DigestValue>
+        <dsig:DigestValue>4kheX6gDhxQfscRzdNUA9aClVl+ZcMRhnj3etMsTUZs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WinForms-PresentationLayer.exe" size="83424">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WinForms-PresentationLayer.exe" size="89568">
       <assemblyIdentity name="WinForms-PresentationLayer" version="1.1.0.1" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>06NwwWU+GQw7ebhWat4OhXAxwqfEaplZQN+lc/+2IxA=</dsig:DigestValue>
+        <dsig:DigestValue>D5D5di3JlD4TOl4L662DMbKoWVRlmyF49KBTZzfQs8k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
