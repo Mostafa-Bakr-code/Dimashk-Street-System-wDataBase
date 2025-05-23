@@ -850,7 +850,7 @@ namespace WinForms_PresentationLayer
 
 
         //------------------------------------------------------------------------------------------------
-        
+
         // these 3 methods are used now beacuse they have printers name dynamically
         private void PrintOrderInfoForUser(string printerName)
         {
@@ -873,7 +873,7 @@ namespace WinForms_PresentationLayer
 
             printDoc.PrintPage += (sender, e) =>
             {
-                Font font = new Font("Arial", 8);
+                Font font = new Font("Times New Roman", 8);
                 float x = e.MarginBounds.Left;
                 float y = e.MarginBounds.Top;
                 float rowHeight = font.GetHeight(e.Graphics) + 12;
@@ -919,7 +919,7 @@ namespace WinForms_PresentationLayer
 
                 //y += rowHeight;
                 e.Graphics.DrawString(" _______________________", font, Brushes.Black, x, y);
-                y += rowHeight;
+                y += rowHeight ;
                 e.Graphics.DrawString($"Total: {FormatPrice(_Order.Total)}", font, Brushes.Black, x, y);
                 y += rowHeight * 2;
 
@@ -976,7 +976,7 @@ namespace WinForms_PresentationLayer
 
             printDoc.PrintPage += (sender, e) =>
             {
-                Font font = new Font("Arial", 10);
+                Font font = new Font("Arial", 12);
                 float x = e.MarginBounds.Left;
                 float y = e.MarginBounds.Top;
                 float width = e.PageBounds.Width;

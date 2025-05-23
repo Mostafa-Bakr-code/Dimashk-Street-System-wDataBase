@@ -1,7 +1,9 @@
 ﻿
 using System;
 using System.Data;
+using System.Data.SqlClient;
 using BuisnessLayer;
+using System.Data.SqlClient;
 
 namespace DimashStreet_3Tier_
 {
@@ -467,6 +469,9 @@ namespace DimashStreet_3Tier_
         {
             return clsOrderItemsBusiness.GetTotalByCategoryNameAndDateRange(categoryName, startDate, endDate);
         }
+
+
+
         static void Main(string[] args)
         {
 
@@ -536,7 +541,26 @@ namespace DimashStreet_3Tier_
 
             //Console.WriteLine(GetTotalByCategoryName("other"));
 
-            Console.WriteLine(GetTotalByCategoryNameAndDateRange("Fish", new DateTime(2024, 8, 22), new DateTime(2024, 8, 22)));
+            //Console.WriteLine(GetTotalByCategoryNameAndDateRange("Fish", new DateTime(2024, 8, 22), new DateTime(2024, 8, 22)));
+
+
+
+            // test connection with database
+            string connectionString = "Server=.;Database=Dimash-Street;Trusted_Connection=True;"; 
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    Console.WriteLine("✅ Connection succeeded!");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("❌ Connection failed: " + ex.Message);
+                }
+            }
+
 
             Console.ReadKey();
         }
