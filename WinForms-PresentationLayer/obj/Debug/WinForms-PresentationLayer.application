@@ -7,14 +7,14 @@
     <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="WinForms-PresentationLayer.exe.manifest" size="4857">
+    <dependentAssembly dependencyType="install" codebase="WinForms-PresentationLayer.exe.manifest" size="13146">
       <assemblyIdentity name="WinForms-PresentationLayer.exe" version="1.0.0.16" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OUlr0wvvAcYP9dd9mUXNaLm74PXyA5mOU0A0kBmmEQ0=</dsig:DigestValue>
+        <dsig:DigestValue>WAawh/wFeuQjJXb4IFzym0Ionp/16GLvl+1SbdTRGdM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

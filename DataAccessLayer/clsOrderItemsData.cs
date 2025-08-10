@@ -550,13 +550,6 @@ namespace DataAccessLayer
 
             using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
             {
-                //string query = @"
-                //     SELECT COUNT(*)
-                //     FROM OrderItems
-                //    INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
-                //    INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
-                //    WHERE Items.ItemName = @ItemName
-                //    AND Orders.Total > 0";  // Exclude free orders
 
 
                 string query = @"
@@ -757,6 +750,150 @@ namespace DataAccessLayer
 
             return categoryName;
         }
+
+
+        //-------------------------------------------------------------------
+        // adding for excel sheet report and datagrid report
+
+        public static DataTable GetSalesReportByDateRange(DateTime startDate, DateTime endDate)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+          SELECT 
+              Categories.CategoryName,
+              Items.ItemName, 
+              Items.Price AS CurrentPrice,
+              SUM(OrderItems.TotalItemsPrice) AS Total, 
+              SUM(OrderItems.Quantity) AS Quantity
+          FROM OrderItems
+          INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+          INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+          INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+          WHERE CAST(Orders.Date AS DATE) BETWEEN @StartDate AND @EndDate
+          AND Orders.Total > 0
+          GROUP BY Categories.CategoryName, Items.ItemName, Items.Price
+          ORDER BY Categories.CategoryName, Items.ItemName";
+
+
+
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@StartDate", startDate.Date);
+                command.Parameters.AddWithValue("@EndDate", endDate.Date);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return dataTable;
+        }
+        public static DataTable GetSalesReport()
+        {
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+          SELECT 
+              Categories.CategoryName,
+              Items.ItemName, 
+              Items.Price AS CurrentPrice,
+              SUM(OrderItems.TotalItemsPrice) AS Total, 
+              SUM(OrderItems.Quantity) AS Quantity
+          FROM OrderItems
+          INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+          INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+          INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+          WHERE Orders.Total > 0
+          GROUP BY Categories.CategoryName, Items.ItemName, Items.Price
+          ORDER BY Categories.CategoryName, Items.ItemName";
+
+                SqlCommand command = new SqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return dataTable;
+        }
+
+
+        //-------------------------------------------------------
+        // adding sales report modifed to include start and end dates to be included in the excel report and datagrid report
+
+        public static DataTable GetSalesReportByDateRangeInludeDates(DateTime startDate, DateTime endDate)
+        {
+            DataTable dataTable = new DataTable();
+
+            using (SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString))
+            {
+                string query = @"
+
+                            SELECT 
+                            CAST(Orders.Date AS DATE) AS OrderDate,
+                            Categories.CategoryName,
+                            Items.ItemName, 
+                            OrderItems.Price AS CurrentPrice,
+                            SUM(OrderItems.TotalItemsPrice) AS Total, 
+                            SUM(OrderItems.Quantity) AS Quantity
+                            FROM OrderItems
+                            INNER JOIN Items ON OrderItems.ItemID = Items.ItemID
+                            INNER JOIN Categories ON Items.CategoryID = Categories.CategoryID
+                            INNER JOIN Orders ON OrderItems.OrderID = Orders.OrderID
+                            WHERE CAST(Orders.Date AS DATE) BETWEEN @StartDate AND @EndDate
+                            AND Orders.Total > 0
+                            GROUP BY 
+                            CAST(Orders.Date AS DATE),
+                            Categories.CategoryName,
+                            Items.ItemName,
+                            OrderItems.Price
+                            ORDER BY 
+                            OrderDate,
+                            Categories.CategoryName,
+                            Items.ItemName;
+
+                      ";
+ 
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@StartDate", startDate.Date);
+                command.Parameters.AddWithValue("@EndDate", endDate.Date);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
+            }
+
+            return dataTable;
+        }
+
+
 
 
     }

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Data;
 using DataAccessLayer;
+using ClosedXML.Excel;
+using System.IO;
+using DocumentFormat.OpenXml.Wordprocessing;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace BuisnessLayer
 {
@@ -195,11 +199,173 @@ namespace BuisnessLayer
             return clsOrderItemsData.GetCategoryNameByItemID(itemID);
         }
 
-
         public static string GetCategoryNameByItemName(string itemName)
         {
             return clsOrderItemsData.GetCategoryNameByItemName(itemName);
         }
+
+
+        //---------------------------------------------------------------
+        // adding functions for FormshowAllCategoriesSales
+
+        public static DataTable GetSalesReportByDateRange(DateTime startDate, DateTime endDate)
+        {
+            return clsOrderItemsData.GetSalesReportByDateRange(startDate,endDate);
+        }
+
+        public static DataTable GetSalesReport()
+        {
+            return clsOrderItemsData.GetSalesReport();
+        }
+
+
+        // adding for excel sheet
+
+        private static string GetDesktopReportsPath()
+        {
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string reportsPath = Path.Combine(desktopPath, "Reports");
+
+            if (!Directory.Exists(reportsPath))
+                Directory.CreateDirectory(reportsPath);
+
+            return reportsPath;
+        }
+
+        public static bool ExportSalesReportByDateRange(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+               
+
+                DataTable rawData = clsOrderItemsData.GetSalesReportByDateRange(startDate, endDate);
+
+                // Reorder the columns
+                DataTable data = rawData.DefaultView.ToTable(false,
+                    "CategoryName", "ItemName", "Quantity", "CurrentPrice", "Total");
+
+
+                string formattedStart = startDate.ToString("yyyy-MM-dd");
+                string formattedEnd = endDate.ToString("yyyy-MM-dd");
+
+                string fileName = $"Daily Report ({formattedStart} to {formattedEnd})_Summary.xlsx";
+                string filePath = Path.Combine(GetDesktopReportsPath(), fileName);
+
+                using (var workbook = new XLWorkbook())
+                {
+
+                    string worksheetName = $"{formattedStart} to {formattedEnd}";
+                    var worksheet = workbook.Worksheets.Add(worksheetName);
+                    worksheet.Cell(1, 1).InsertTable(data);
+
+
+                    // Auto-fit all columns
+                    worksheet.Columns().AdjustToContents();
+
+
+                    workbook.SaveAs(filePath);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Optionally log ex.Message
+                return false;
+            }
+        }
+
+        public static bool ExportAllTimeSalesReport()
+        {
+            try
+            {
+               
+
+                DataTable rawData = clsOrderItemsData.GetSalesReport();
+
+                // Reorder the columns
+                DataTable data = rawData.DefaultView.ToTable(false,
+                    "CategoryName", "ItemName", "Quantity", "CurrentPrice", "Total");
+
+                string filePath = Path.Combine(GetDesktopReportsPath(), "All Time Report.xlsx");
+
+                using (var workbook = new XLWorkbook())
+                {
+                    var worksheet = workbook.Worksheets.Add("All Time Report");
+                    worksheet.Cell(1, 1).InsertTable(data);
+
+
+                    // Auto-fit all columns
+                    worksheet.Columns().AdjustToContents();
+
+                    workbook.SaveAs(filePath);
+
+
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Optionally log ex.Message
+                return false;
+            }
+        }
+
+        //-------------------------------------------------------
+        // adding sales report modifed to include start and end dates to be included in the excel and datagrid reports
+
+
+        public static DataTable GetSalesReportByDateRangeInludeDates(DateTime startDate, DateTime endDate)
+        {
+            return clsOrderItemsData.GetSalesReportByDateRangeInludeDates(startDate, endDate);
+        }
+
+
+        public static bool ExportSalesReportByDateRangeModifiedDateIncluded(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                DataTable rawData = clsOrderItemsData.GetSalesReportByDateRangeInludeDates(startDate, endDate);
+
+                // Reorder the columns
+                DataTable data = rawData.DefaultView.ToTable(false,
+                    "OrderDate", "CategoryName", "ItemName", "Quantity", "CurrentPrice", "Total");
+
+                string formattedStart = startDate.ToString("yyyy-MM-dd");
+                string formattedEnd = endDate.ToString("yyyy-MM-dd");
+
+                string fileName = $"Daily Report ({formattedStart} to {formattedEnd})_WithDates.xlsx";
+                string filePath = Path.Combine(GetDesktopReportsPath(), fileName);
+
+                using (var workbook = new XLWorkbook())
+                {
+                    string worksheetName = $"{formattedStart} to {formattedEnd}";
+                    var worksheet = workbook.Worksheets.Add(worksheetName);
+                    var table = worksheet.Cell(1, 1).InsertTable(data);
+
+                    // Format OrderDate column (Column 1)
+                    worksheet.Column(1).Style.DateFormat.Format = "dd-MM-yyyy";
+
+                    // Auto-fit all columns
+                    worksheet.Columns().AdjustToContents();
+
+                    workbook.SaveAs(filePath);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Optionally log ex.Message
+                return false;
+            }
+        }
+
+
+
+
+
 
     }
 }

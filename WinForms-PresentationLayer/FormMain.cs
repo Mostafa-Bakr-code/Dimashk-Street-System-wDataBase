@@ -845,6 +845,17 @@ namespace WinForms_PresentationLayer
         }
 
 
+        //___________________________________________
+ 
+
+        private void btnShowAll_Click(object sender, EventArgs e)
+        {
+            FormShowAllCategoriesSales frm = new FormShowAllCategoriesSales();
+            frm.ShowDialog();
+        }
+
+
+
 
 
     }
